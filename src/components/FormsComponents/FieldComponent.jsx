@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FieldComponent = (props) => {
+const FieldComponent = ({ type, id, label, placeholder, reference }) => {
 
   const dateMaskHandler = (e) => {
     let v = e.target.value.replace(/\D/g, "");
@@ -13,31 +13,35 @@ const FieldComponent = (props) => {
   };
 
   return (
-    props.inputs.map((item) => {
-      if(item.id === "birth-date"){
-        return (
-          <div key={item.id}>
-            <label htmlFor={item.id}>{item.label}</label>
+    <React.Fragment>
+      {
+        id === "birth-date" && (
+          <div key={id}>
+            <label htmlFor={id}>{label}</label>
             <input 
-              type={item.type} 
-              id={item.id} 
-              placeholder={item.placeholder}
+              type={type} 
+              ref={reference}
+              id={id} 
+              placeholder={placeholder}
               onInput={dateMaskHandler}
             />
           </div>
         )
       }
-      return (
-        <div key={item.id}>
-          <label htmlFor={item.id}>{item.label}</label>
-          <input 
-            type={item.type} 
-            id={item.id} 
-            placeholder={item.placeholder}
-          />
-        </div>
-      );
-    })
+      {
+        id !== "birth-date" && (
+          <div key={id}>
+            <label htmlFor={id}>{label}</label>
+            <input 
+              type={type} 
+              ref={reference}
+              id={id} 
+              placeholder={placeholder}
+            />
+          </div>
+        )
+      }
+    </React.Fragment>
   );
 }
 
