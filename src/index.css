@@ -9,12 +9,67 @@
 
 .initial-wrapper{
   display: flex;
+  color: #E0E0E0;
 }
 
 .initial-section{
   width: 50%;
   height: 100vh;
   background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.initial-section hgroup h1{
+  font-size: 3.75rem;
+  font-weight: 400;
+}
+
+.register-form{
+  margin-top: 67px;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-input{
+  margin-bottom: 56px;
+  display: flex;
+  flex-direction: column;
+  row-gap: .5rem;
+}
+
+.register-input div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-input div label{
+  flex: .35;
+}
+
+.register-input div input{
+  width: 279px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 50px;
+  flex: 1;
+  padding: .55rem;
+  outline: none;
+  color: var(--color-text);
+}
+
+.form-button{
+  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+  box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+  border-width: 0;
+  color: var(--color-text);
+  font-weight: 400px;
+  font-size: 1.125rem;
+  padding-block: .65rem;
 }
 
 .image-section{
@@ -24,4 +79,47 @@
   background-position: center;
   background-size: cover;
   text-align: center;
+}
+
+.image-section img{
+  margin-top: 36px;
+}
+
+.login-description{
+  width: 300px;
+}
+
+.login-form{
+  margin-top: 135px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form h3{
+  font-weight: 400;
+  font-size: 1.875rem;
+}
+
+.login-input{
+  margin-top: 1.5rem;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.login-input label{
+  display: flex;
+  align-items: center;
+  column-gap: .75rem;
+}
+
+.login-input input{
+  width: 100%;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 50px;
+  padding: .85rem;
+  outline: none;
+  color: var(--color-text);
 }

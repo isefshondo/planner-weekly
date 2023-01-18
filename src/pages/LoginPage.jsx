@@ -1,8 +1,8 @@
 import React from 'react'
-import RegisterForm from '../components/FormsComponents/RegisterForm'
 import Logo from '../assets/logo.svg'
+import LoginForm from '../components/FormsComponents/LoginForm'
 
-const RegisterPage = () => {
+const LoginPage = () => {
   return (
     <React.Fragment>
       <main className='initial-wrapper'>
@@ -10,9 +10,9 @@ const RegisterPage = () => {
           <div>
             <hgroup>
               <h1>Welcome,</h1>
-              <p>Please, register to continue</p>
+              <p className='login-description'>To continue browsing, log in to the network.</p>
             </hgroup>
-            <RegisterForm />
+            <LoginForm />
           </div>
         </section>
         <section className='image-section'>
@@ -23,4 +23,4 @@ const RegisterPage = () => {
   )
 }
 
-export default RegisterPage
+export default LoginPage
