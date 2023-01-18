@@ -1,10 +1,12 @@
 import React from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FieldComponent from './FieldComponent';
 import { ButtonForm } from '../../styled-components/styled-components';
 
 const RegisterForm = () => {
-  // const navigate = useNavigate();
+  const [isFormValid, setIsFormValid] = React.useState(true);
+
+  const navigate = useNavigate();
   
   const firstName = React.useRef(null);
   const lastName = React.useRef(null);
@@ -26,12 +28,12 @@ const RegisterForm = () => {
     const isPasswordEqual = password.current.value === confirmPassword.current.value && password.current.value.length === confirmPassword.current.value.length;
 
     if (
-      isNameValid &&
-      isLastNameValid &&
-      isCountryValid &&
-      isCityValid &&
-      isEmailValid &&
-      isPasswordEqual
+      isNameValid === true &&
+      isLastNameValid === true &&
+      isCountryValid === true &&
+      isCityValid === true &&
+      isEmailValid === true &&
+      isPasswordEqual === true
     ) {
       localStorage.setItem("currentUser", JSON.stringify(
         {
@@ -43,7 +45,9 @@ const RegisterForm = () => {
           password: password.current.value,
         }
       ));
-      // navigate('login');
+      navigate('login');
+    } else{
+      setIsFormValid(false);
     }
 
   };
@@ -109,7 +113,7 @@ const RegisterForm = () => {
             placeholder={"Confirm your password"}
           />
         </div>
-        {/* {!isFormValid && <p>{errorMessage}</p>} */}
+        {!isFormValid && <p>There's something wrong</p>}
         <ButtonForm>Register Now</ButtonForm>
       </form>
     </React.Fragment>

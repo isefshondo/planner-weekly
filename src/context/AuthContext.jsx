@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = React.createContext({
   isLoggedIn: false,
@@ -7,6 +8,7 @@ export const AuthContext = React.createContext({
 });
 
 export const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
@@ -14,9 +16,16 @@ export const AuthProvider = ({ children }) => {
     if(currentLoginState === "LOGGED_IN") return setIsLoggedIn(true);
   }, []);
 
-  const onLogInHandler = () => {
-    localStorage.setItem("isLoggedIn", "LOGGED_IN");
-    setIsLoggedIn(true);
+  const onLogInHandler = (username, password) => {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if(user === null){
+      return;
+    }
+    if((user.fullName === username || user.email === username ) && (user.password === password)){
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "LOGGED_IN");
+      navigate("/");
+    }
   };
 
   const onLogOutHandler = () => {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
 import { AuthContext } from '../../context/AuthContext'
 import InputFormLogin from './InputFormLogin'
@@ -6,6 +7,7 @@ import IconUser from '../../assets/icon-user.svg'
 import IconPassword from '../../assets/icon-password.svg'
 
 const FormLogin = () => {
+  const navigate = useNavigate();
   const { user } = React.useContext(UserContext);
   const authCtx = React.useContext(AuthContext);
   const { fullName, email, password } = user;
@@ -15,15 +17,8 @@ const FormLogin = () => {
 
   const onLoginSubmitHandler = (e) => {
     e.preventDefault();
-
-    const isUsernameValid = 
-      enteredUsername.current.value === fullName || enteredUsername.current.value === email;
-    const isPasswordValid = 
-      enteredPassword.current.value === password;
-
-    if(isUsernameValid && isPasswordValid){
-      authCtx.onLogin(enteredUsername.current.value, enteredPassword.current.value);
-    }
+    
+    authCtx.onLogin(enteredUsername.current.value, enteredPassword.current.value);
   };
 
   return (
@@ -36,6 +31,7 @@ const FormLogin = () => {
           alt={"User's Icon"}
           reference={enteredUsername}
           type={"text"}
+          placeholder={"user name"}
         />
         <InputFormLogin 
           id={"password"}
@@ -43,6 +39,7 @@ const FormLogin = () => {
           alt={"Password's Icon"}
           reference={enteredPassword}
           type={"password"}
+          placeholder={"password"}
         />
       </div>
       <button className="form-button">Log in</button>

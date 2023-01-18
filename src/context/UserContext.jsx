@@ -7,8 +7,8 @@ export const UserContextProvider = ({ children }) => {
 
   React.useEffect(() => {
     if(localStorage.getItem("currentUser") !== null){
-      const userLocalStorage = localStorage.getItem("currentUser");
-      setUser(JSON.parse(userLocalStorage));
+      const userLocalStorage = JSON.parse(localStorage.getItem("currentUser"));
+      setUser(userLocalStorage);
     }
   }, []);
 
