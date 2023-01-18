@@ -60,3 +60,5 @@ export const BtnDashboard = styled.button`
   padding-block: .3rem;
   color: white;
 `;
+
+/* Trying a new start */

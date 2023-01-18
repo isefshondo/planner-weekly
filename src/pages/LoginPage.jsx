@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../assets/logo.svg'
-import LoginForm from '../components/FormsComponents/LoginForm'
+import FormLogin from '../components/Login/FormLogin'
 
 const LoginPage = () => {
   return (
@@ -12,7 +12,7 @@ const LoginPage = () => {
               <h1>Welcome,</h1>
               <p className='login-description'>To continue browsing, log in to the network.</p>
             </hgroup>
-            <LoginForm />
+            <FormLogin />
           </div>
         </section>
         <section className='image-section'>

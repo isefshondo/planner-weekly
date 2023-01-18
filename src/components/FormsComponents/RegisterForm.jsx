@@ -33,7 +33,7 @@ const RegisterForm = () => {
       isEmailValid &&
       isPasswordEqual
     ) {
-      localStorage.setItem('user', JSON.stringify(
+      localStorage.setItem("currentUser", JSON.stringify(
         {
           fullName: firstName.current.value + ' ' + lastName.current.value,
           birthDate: birthDate.current.value,
