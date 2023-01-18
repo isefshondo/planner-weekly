@@ -13,7 +13,10 @@ export const AuthProvider = ({ children }) => {
 
   React.useEffect(() => {
     const currentLoginState = localStorage.getItem("isLoggedIn");
-    if(currentLoginState === "LOGGED_IN") return setIsLoggedIn(true);
+    if(currentLoginState === "LOGGED_IN"){
+      setIsLoggedIn(true);
+      navigate("/");
+    }
   }, []);
 
   const onLogInHandler = (username, password) => {
@@ -29,8 +32,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const onLogOutHandler = () => {
-    localStorage.removeItem("isLoggedIn", "LOGGED_IN");
-    localStorage.removeItem("currentUser")
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("currentUser");
     setIsLoggedIn(false);
   };
 

@@ -8,9 +8,8 @@ import IconPassword from '../../assets/icon-password.svg'
 
 const FormLogin = () => {
   const navigate = useNavigate();
-  const { user } = React.useContext(UserContext);
+  const { fullName, email, password } = React.useContext(UserContext);
   const authCtx = React.useContext(AuthContext);
-  const { fullName, email, password } = user;
   const [isFormValid, setIsFormValid] = React.useState(null);
   const enteredUsername = React.useRef(null);
   const enteredPassword = React.useRef(null);

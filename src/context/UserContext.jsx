@@ -13,7 +13,7 @@ export const UserContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={ { user } }>
+    <UserContext.Provider value={ user }>
       { children }
     </UserContext.Provider>
   );
