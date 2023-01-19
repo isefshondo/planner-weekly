@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { UserContext } from '../../../context/UserContext';
+import { HeaderWeather } from './Header.styles';
 
 const Weather = () => {
   const myApiKey = '28272ea1cee8074586ce4325ff060c94';
@@ -16,7 +17,6 @@ const Weather = () => {
     }).then(
       (data) => {
         setWeatherObject(data.data);
-           console.log(data.data);
       }
     );
   }
@@ -26,7 +26,7 @@ const Weather = () => {
   }, []);
 
   return (
-    <div>
+    <HeaderWeather>
       <p>
         {city} - {country}
       </p>
@@ -37,7 +37,7 @@ const Weather = () => {
         />
         {weatherObject?.main?.temp}&#186;
       </label>
-    </div>
+    </HeaderWeather>
   );
 }
 
