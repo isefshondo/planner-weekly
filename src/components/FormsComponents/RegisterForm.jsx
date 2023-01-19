@@ -2,9 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import FieldComponent from './FieldComponent';
 import { ButtonForm } from '../../styled-components/styled-components';
+import { AuthContext } from '../../context/AuthContext';
 
 const RegisterForm = () => {
   const [isFormValid, setIsFormValid] = React.useState(true);
+  const authCtx = React.useContext(AuthContext);
 
   const navigate = useNavigate();
   
@@ -35,16 +37,18 @@ const RegisterForm = () => {
       isEmailValid === true &&
       isPasswordEqual === true
     ) {
-      localStorage.setItem("currentUser", JSON.stringify(
-        {
-          fullName: firstName.current.value + ' ' + lastName.current.value,
-          birthDate: birthDate.current.value,
-          country: country.current.value,
-          city: city.current.value,
-          email: email.current.value,
-          password: password.current.value,
-        }
-      ));
+      authCtx.onRegister(
+        JSON.stringify(
+          {
+            fullName: firstName.current.value + ' ' + lastName.current.value,
+            birthDate: birthDate.current.value,
+            country: country.current.value,
+            city: city.current.value,
+            email: email.current.value,
+            password: password.current.value,
+          }
+        )
+      );
       navigate('login');
     } else{
       setIsFormValid(false);

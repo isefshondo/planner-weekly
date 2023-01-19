@@ -5,11 +5,26 @@ export const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogin: (username, password) => {},
   onLogout: () => {},
+  onRegister: (obj) => {}
 });
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [user, setUser] = React.useState({});
+
+  React.useEffect(() => {
+    if(localStorage.getItem("currentUser") !== null){
+      const userLocalStorage = JSON.parse(localStorage.getItem("currentUser"));
+      setUser(userLocalStorage);
+    }
+  }, [setUser]);
+
+  const onUserRegister = (obj) => {
+    setUser(JSON.parse(obj));
+    localStorage.setItem("currentUser", obj);
+    navigate("login");
+  };
 
   React.useEffect(() => {
     const currentLoginState = localStorage.getItem("isLoggedIn");
@@ -45,6 +60,8 @@ export const AuthProvider = ({ children }) => {
         isLoggedIn: isLoggedIn,
         onLogin: onLogInHandler,
         onLogout: onLogOutHandler,
+        onRegister: onUserRegister,
+        user: user,
       }
     }>
       { children }

@@ -1,22 +1,29 @@
 import React from 'react'
-import { PlannerRow, PlannerWrapper } from './Dashboard.styles';
+import { PlannerRow, PlannerWrapper, TaskColor, TaskDescription } from './Dashboard.styles';
+import DeleteButton from './DeleteButton';
 import PlannerHeader from './PlannerHeader'
 import TaskTime from './TaskTime';
 
 const Planner = ({ cards }) => {
-  const [getDay, setGetDay] = React.useState(null);
-  console.log(cards);
-
-  const getDayHandler = (choosenDay) => {};
-
+  const [getDay, setGetDay] = React.useState('');
   return (
     <PlannerWrapper>
-      <PlannerHeader onGetDay={getDayHandler} />
-      // Gerar por map a partir daqui
+      <PlannerHeader />
       <PlannerRow>
-        <TaskTime day={'monday'} time={'Time'} />
-      
+        <TaskTime time={'Time'} />
       </PlannerRow>
+      {
+        cards && cards.map((task) => {
+          return <PlannerRow>
+          <TaskTime day={task.day} time={task.time} />
+          <TaskDescription>
+            <TaskColor day={task.day} />
+             <p>{task.title}</p>
+            <DeleteButton />
+          </TaskDescription>
+        </PlannerRow>
+        })
+      }
     </PlannerWrapper>
   )
 }

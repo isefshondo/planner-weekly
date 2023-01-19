@@ -1,17 +1,17 @@
 import axios from 'axios';
 import React from 'react'
-import { UserContext } from '../../../context/UserContext';
 import { HeaderWeather } from './Header.styles';
 import WeatherIcon from '../../../assets/weather-icon.svg';
+import { AuthContext } from '../../../context/AuthContext';
 
 const Weather = () => {
   const myApiKey = '28272ea1cee8074586ce4325ff060c94';
 
   const [weatherObject, setWeatherObject] = React.useState(null);
-  const { country, city } = React.useContext(UserContext);
+  const { user } = React.useContext(AuthContext);
 
   async function fetchingWeather(){
-    const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${myApiKey}`,{
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${user.city}&units=metric&appid=${myApiKey}`,{
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       }
@@ -19,7 +19,9 @@ const Weather = () => {
       (data) => {
         setWeatherObject(data.data);
       }
-    );
+    ).finally(() => {
+      setLoading(false);
+    })
   }
 
   React.useEffect(() => {
@@ -29,7 +31,7 @@ const Weather = () => {
   return (
     <HeaderWeather>
       <p>
-        {city} - {country}
+        {user.city} - {user.country}
       </p>
       <label htmlFor="weather">
         <img
@@ -37,7 +39,7 @@ const Weather = () => {
           // src={`http://openweathermap.org/img/wn/${weatherObject?.weather[0]?.icon}.png`}
           alt="Weather's Icon"
         />
-        {weatherObject?.main?.temp}&#186;
+        {Number(weatherObject?.main?.temp).toFixed(0)}
       </label>
     </HeaderWeather>
   );
