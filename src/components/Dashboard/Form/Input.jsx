@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyledInput } from './Form.styles'
 
-const Input = ({ type, placeholder }) => {
+const Input = ({ reference, type, placeholder }) => {
   return (
     <React.Fragment>
-      <StyledInput type={type} placeholder={placeholder} />
+      <StyledInput ref={reference} type={type} placeholder={placeholder} />
     </React.Fragment>
   )
 }

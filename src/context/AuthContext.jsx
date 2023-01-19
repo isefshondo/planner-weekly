@@ -21,9 +21,11 @@ export const AuthProvider = ({ children }) => {
 
   const onLogInHandler = (username, password) => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
+
     if(user === null){
       return;
     }
+    
     if((user.fullName === username || user.email === username ) && (user.password === password)){
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "LOGGED_IN");

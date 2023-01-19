@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { UserContext } from '../../../context/UserContext';
 import { HeaderWeather } from './Header.styles';
+import WeatherIcon from '../../../assets/weather-icon.svg';
 
 const Weather = () => {
   const myApiKey = '28272ea1cee8074586ce4325ff060c94';
@@ -32,7 +33,8 @@ const Weather = () => {
       </p>
       <label htmlFor="weather">
         <img
-          src={`http://openweathermap.org/img/wn/${weatherObject?.weather[0]?.icon}.png`}
+          src={WeatherIcon}
+          // src={`http://openweathermap.org/img/wn/${weatherObject?.weather[0]?.icon}.png`}
           alt="Weather's Icon"
         />
         {weatherObject?.main?.temp}&#186;

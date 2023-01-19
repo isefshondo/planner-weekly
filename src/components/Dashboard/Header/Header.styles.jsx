@@ -47,6 +47,7 @@ export const HeaderWeather = styled.div`
   & label{
     display: flex;
     align-items: center;
+    column-gap: .75rem;
     font-size: 2.5rem;
     font-weight: 700;
   }
@@ -63,4 +64,5 @@ export const ButtonLogout = styled.button`
   border-width: 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 `;

@@ -1,15 +1,16 @@
 import React from 'react'
 
-import {Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { AuthContext } from './context/AuthContext'
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './pages/ProtectedRoute'
 
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import DashboardPage from './pages/DashboardPage'
 
 function App() {
-  const authCtx = React.useContext(AuthContext)
+  const authCtx = React.useContext(AuthContext);
+  
   return (
     <React.Fragment>
       <Routes>

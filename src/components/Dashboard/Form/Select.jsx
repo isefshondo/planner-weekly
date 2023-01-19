@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyledSelect } from './Form.styles'
 
-const Select = () => {
+const Select = ({ reference }) => {
   return (
     <React.Fragment>
-      <StyledSelect id="week">
+      <StyledSelect ref={reference} name="days" id="days">
         <option value="monday" defaultValue>Monday</option>
         <option value="tuesday">Tuesday</option>
         <option value="wednesday">Wednesday</option>

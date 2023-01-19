@@ -1,20 +1,23 @@
 import React from 'react'
-import { WeekRow } from './Dashboard.styles'
-import ButtonWeek from './ButtonWeek'
+import { PlannerRow, PlannerWrapper } from './Dashboard.styles';
+import PlannerHeader from './PlannerHeader'
+import TaskTime from './TaskTime';
 
-const Planner = () => {
+const Planner = ({ cards }) => {
+  const [getDay, setGetDay] = React.useState(null);
+  console.log(cards);
+
+  const getDayHandler = (choosenDay) => {};
+
   return (
-    <React.Fragment>
-      <WeekRow>
-          <ButtonWeek day={'Monday'} buttonValue={'monday'} />
-          <ButtonWeek day={'Tuesday'} buttonValue={'tuesday'} />
-          <ButtonWeek day={'Wednesday'} buttonValue={'wednesday'} />
-          <ButtonWeek day={'Thursday'} buttonValue={'thursday'} />
-          <ButtonWeek day={'Friday'} buttonValue={'friday'} />
-          <ButtonWeek day={'Saturday'} buttonValue={'saturday'} />
-          <ButtonWeek day={'Sunday'} buttonValue={'sunday'} />
-        </WeekRow>
-    </React.Fragment>
+    <PlannerWrapper>
+      <PlannerHeader onGetDay={getDayHandler} />
+      // Gerar por map a partir daqui
+      <PlannerRow>
+        <TaskTime day={'monday'} time={'Time'} />
+      
+      </PlannerRow>
+    </PlannerWrapper>
   )
 }
 
