@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledWelcome } from '../Global.styles'
+import { StyledWelcome } from '../../Global.styles'
 
 const WelcomeMessage = ({ message }) => {
   return (

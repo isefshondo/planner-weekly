@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import FormLogin from '../components/Login/FormLogin'
 import { LinkWrapper } from '../components/Login/Login.styles'
 import { InitialSection, Wrapper } from '../Global.styles'
-import BackgroundImage from '../UI/BackgroundImage'
-import WelcomeMessage from '../UI/WelcomeMessage'
+import BackgroundImage from '../components/UI/BackgroundImage'
+import WelcomeMessage from '../components/UI/WelcomeMessage'
 
 const LoginPage = () => {
   return (

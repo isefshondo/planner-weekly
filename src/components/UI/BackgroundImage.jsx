@@ -1,6 +1,6 @@
 import React from 'react'
-import { ImageWrapper } from '../Global.styles'
-import Logo from '../assets/logo.svg'
+import { ImageWrapper } from '../../Global.styles'
+import Logo from '../../assets/logo.svg'
 
 const BackgroundImage = () => {
   return (
