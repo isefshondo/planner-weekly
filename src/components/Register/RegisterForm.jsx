@@ -118,7 +118,9 @@ const RegisterForm = () => {
             placeholder={"Confirm your password"}
           />
         </RegisterInputWrapper>
-        <InvalidMessage></InvalidMessage>
+        <InvalidMessage>
+          {!isFormValid && <p>Check if it's all filled in correctly and if the passwords match.</p>}
+        </InvalidMessage>
         <GeneralButton>
           Register Now
         </GeneralButton>

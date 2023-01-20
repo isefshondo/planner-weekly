@@ -23,7 +23,7 @@ export const ImageWrapper = styled.section`
 export const InputForm = styled.input`
   width: 379px;
   background: transparent;
-  border: 1px solid #fff;
+  border: 1px solid #FFF;
   border-radius: 50px;
   color: #E0E0E0;
   outline: none;

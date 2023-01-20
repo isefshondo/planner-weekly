@@ -5,20 +5,20 @@ import Header from '../components/Dashboard/Header/Header'
 import Planner from '../components/Dashboard/Planner/Planner'
 
 const DashboardPage = () => {
-  const [tasks, setTasks] = React.useState([]);
+  const [assignments, setAssignments] = React.useState([]);
 
-  const addNewTask = (newTask) => {
-    setTasks((prevTasks) => {
-      return [newTask, ...prevTasks];
-    });
+  const saveAssignments = (assignment) => {
+    setAssignments((prevAssignment) => {
+      return [assignment, ...prevAssignment];
+    }); 
   };
 
   return (
     <Background>
       <Header />
       <main>
-        <FormTask onAddNewTask={addNewTask} />
-        <Planner cards={tasks} />
+        <FormTask onAddAssignment={saveAssignments} />
+        <Planner tasks={assignments} />
       </main>
     </Background>
   )

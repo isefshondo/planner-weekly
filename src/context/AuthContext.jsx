@@ -5,7 +5,7 @@ export const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogin: (username, password) => {},
   onLogout: () => {},
-  onRegister: (obj) => {}
+  onRegister: (obj) => {},
 });
 
 export const AuthProvider = ({ children }) => {

@@ -1,32 +1,34 @@
 import React from 'react'
+import { AuthContext } from '../../../context/AuthContext'
 import ButtonAction from './ButtonAction'
 import { InputWrapper, StyledFormTask } from './Form.styles'
 import Input from './Input'
 import Select from './Select'
 
-const FormTask = ({ onAddNewTask }) => {
+const FormTask = ({ onAddAssignment }) => {
   const enteredTitle = React.useRef(null);
   const enteredDay = React.useRef(null);
   const enteredTime = React.useRef(null);
 
-  const saveTaskHandler = (enteredNewTask) => {
-    const tasksData = {
-      ...enteredNewTask,
+  const eachTaskHandler = (enteredAssignment) => {
+    const assignmentInfomation = {
+      ...enteredAssignment,
       id: Math.random().toString()
     }
 
-    onAddNewTask(tasksData);
+    onAddAssignment(assignmentInfomation);
   };
 
   const onTaskSubmit = (e) => {
     e.preventDefault();
-    const taskData = {
-      title: enteredTitle.current.value,
-      day: enteredDay.current.value,
-      time: enteredTime.current.value,
+
+    const eachTaskInformation = {
+      selectDay: enteredDay.current.value,
+      choosenTime: enteredTime.current.value,
+      description: enteredTitle.current.value,
     };
 
-    saveTaskHandler(taskData);
+    eachTaskHandler(eachTaskInformation);
   };
 
   return (

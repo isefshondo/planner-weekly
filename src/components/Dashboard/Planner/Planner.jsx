@@ -4,29 +4,33 @@ import DeleteButton from './DeleteButton';
 import PlannerHeader from './PlannerHeader'
 import TaskTime from './TaskTime';
 
-const Planner = ({ cards }) => {
-  const [getDay, setGetDay] = React.useState('');
-  
-  const onGetDayHandler = (choosenDay) => {
-    setGetDay(choosenDay);
+const Planner = ({ tasks }) => {
+  const [filterWeekDay, setFilterWeekDay] = React.useState(null);
+
+  const filterDaySelected = (enteredWeekDay) => {
+    setFilterWeekDay(enteredWeekDay);
   };
 
   return (
     <PlannerWrapper>
-      <PlannerHeader onGetDay={onGetDayHandler} />
+      <PlannerHeader onGetDay={filterDaySelected} />
       <PlannerRow>
         <TaskTime time={'Time'} />
       </PlannerRow>
       {
-        cards && cards.map((task) => {
-          return <PlannerRow>
-          <TaskTime day={task.day} time={task.time} />
-          <TaskDescription>
-            <TaskColor day={task.day} />
-             <p>{task.title}</p>
-            <DeleteButton />
-          </TaskDescription>
-        </PlannerRow>
+        tasks && tasks.filter((selectedDay) => {
+          return selectedDay.selectDay === filterWeekDay
+        }).map((task) => {
+          return <PlannerRow key={task.id}>
+            <TaskTime day={task.selectDay} time={task.choosenTime} />
+            <TaskDescription>
+              <TaskColor day={task.selectDay} />
+              <p>
+                {task.description}
+              </p>
+              <DeleteButton />
+            </TaskDescription>
+          </PlannerRow>
         })
       }
     </PlannerWrapper>
