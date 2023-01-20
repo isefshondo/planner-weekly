@@ -83,7 +83,11 @@ export const TaskDescription = styled.div`
   border-radius: 15px;
 
   & p{
-    padding: .75rem;
+    width: 435px;
+    height: 60px;
+    overflow: hidden;
+    padding-block: .75rem;
+    padding-inline: 1.5rem;
     font-size: 20px;
   }
 `;
@@ -100,6 +104,7 @@ export const TaskColor = styled.div`
   height: 85px;
   border-radius: 15px 0px 0px 15px;
   background-color: var(--${(props) => props.day});
+  position: absolute;
 `;
 
 export const DeleteTask = styled.button`
@@ -109,4 +114,9 @@ export const DeleteTask = styled.button`
   border-radius: 4px;
   border-width: 0;
   color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 6px;
+  margin-right: 7px;
 `;
