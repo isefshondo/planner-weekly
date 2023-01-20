@@ -1,10 +1,17 @@
 import styled from "styled-components";
 import DashboardLogo from "../../../assets/logo-uol.svg"
 
+export const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
 export const WeekRow = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding-inline-end: 2.85rem;
+  padding-inline-end: 47px;
+  column-gap: 3px;
 `;
 
 export const StyledButton = styled.button`
@@ -57,18 +64,15 @@ export const StyledTime = styled.div`
 export const PlannerWrapper = styled.section`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  row-gap: .65em;
   padding-inline-start: 1.75rem;
   padding-inline-end: .25rem;
-  overflow-x: auto;
-  overflow-y: auto;
+  column-gap: 1rem;
+  overflow-y: scroll;
 `;
 
-export const PlannerRow = styled.li`
+export const PlannerRow = styled.div`
   width: 100%;
-  display: flex;
-  column-gap: 1rem;
+  height: 85px;
 `;
 
 export const TaskDescription = styled.div`
@@ -119,4 +123,18 @@ export const DeleteTask = styled.button`
   right: 0;
   margin-top: 6px;
   margin-right: 7px;
+`;
+
+export const PlannerColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  row-gap: .75rem;
+`;
+
+export const PanelTask = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  row-gap: .75rem;
 `;

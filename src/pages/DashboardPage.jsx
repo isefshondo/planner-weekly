@@ -1,5 +1,5 @@
 import React from 'react'
-import { Background } from '../components/Dashboard/Planner/Dashboard.styles'
+import { Background, StyledMain } from '../components/Dashboard/Planner/Dashboard.styles'
 import FormTask from '../components/Dashboard/Form/FormTask'
 import Header from '../components/Dashboard/Header/Header'
 import Planner from '../components/Dashboard/Planner/Planner'
@@ -9,6 +9,10 @@ const DashboardPage = () => {
 
   const saveAssignments = (assignment) => {
     setAssignments((prevAssignment) => {
+      assignment = {
+        id: prevAssignment.length + 1,
+        ...assignment
+      };
       return [assignment, ...prevAssignment];
     }); 
   };
@@ -16,10 +20,10 @@ const DashboardPage = () => {
   return (
     <Background>
       <Header />
-      <main>
+      <StyledMain>
         <FormTask onAddAssignment={saveAssignments} />
-        <Planner tasks={assignments} />
-      </main>
+        <Planner tasks={assignments} setTasks={setAssignments} />
+      </StyledMain>
     </Background>
   )
 }

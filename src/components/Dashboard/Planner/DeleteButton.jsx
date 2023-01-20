@@ -1,9 +1,9 @@
 import React from 'react'
 import { DeleteTask } from './Dashboard.styles'
 
-const DeleteButton = () => {
+const DeleteButton = ({ onClick }) => {
   return (
-    <DeleteTask>
+    <DeleteTask onClick={onClick}>
       Delete
     </DeleteTask>
   )
