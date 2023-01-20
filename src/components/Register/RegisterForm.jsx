@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import FieldComponent from './FieldComponent';
-import { ButtonForm } from '../../styled-components/styled-components';
 import { AuthContext } from '../../context/AuthContext';
+import { GeneralButton } from '../../Global.styles';
+import { FormRegisterWrapper, InvalidMessage, RegisterInputWrapper } from './Register.styles';
 
 const RegisterForm = () => {
   const [isFormValid, setIsFormValid] = React.useState(true);
@@ -58,8 +59,8 @@ const RegisterForm = () => {
 
   return (
     <React.Fragment>
-      <form onSubmit={onFormSubmitHandler} className="register-form">
-        <div className="register-input">
+      <FormRegisterWrapper onSubmit={onFormSubmitHandler}>
+        <RegisterInputWrapper>
           <FieldComponent
             id={"first-name"}
             reference={firstName}
@@ -116,10 +117,12 @@ const RegisterForm = () => {
             type={"password"}
             placeholder={"Confirm your password"}
           />
-        </div>
-        {!isFormValid && <p>There's something wrong</p>}
-        <ButtonForm>Register Now</ButtonForm>
-      </form>
+        </RegisterInputWrapper>
+        <InvalidMessage></InvalidMessage>
+        <GeneralButton>
+          Register Now
+        </GeneralButton>
+      </FormRegisterWrapper>
     </React.Fragment>
   );
 }

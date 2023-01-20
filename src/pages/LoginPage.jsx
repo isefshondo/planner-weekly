@@ -1,24 +1,26 @@
 import React from 'react'
-import Logo from '../assets/logo.svg'
+import { Link } from 'react-router-dom'
 import FormLogin from '../components/Login/FormLogin'
+import { LinkWrapper } from '../components/Login/Login.styles'
+import { InitialSection, Wrapper } from '../Global.styles'
+import BackgroundImage from '../UI/BackgroundImage'
+import WelcomeMessage from '../UI/WelcomeMessage'
 
 const LoginPage = () => {
   return (
     <React.Fragment>
-      <main className='initial-wrapper'>
-        <section className='initial-section'>
-          <div>
-            <hgroup>
-              <h1>Welcome,</h1>
-              <p className='login-description'>To continue browsing, log in to the network.</p>
-            </hgroup>
+      <Wrapper>
+        <InitialSection>
+          <LinkWrapper>
+            <WelcomeMessage message={'To continue browsing safely, log in to the network.'} />
             <FormLogin />
-          </div>
-        </section>
-        <section className='image-section'>
-          <img src={Logo} alt="Compasso's logo" />
-        </section>
-      </main>
+            <span>
+              <Link to={"../register"}>Don't have an account yet? Register now</Link>
+            </span>
+          </LinkWrapper>
+        </InitialSection>
+        <BackgroundImage />
+      </Wrapper>
     </React.Fragment>
   )
 }

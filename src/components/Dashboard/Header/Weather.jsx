@@ -5,6 +5,7 @@ import WeatherIcon from '../../../assets/weather-icon.svg';
 import { AuthContext } from '../../../context/AuthContext';
 
 const Weather = () => {
+  const [loading, setLoading] = React.useState(true);
   const myApiKey = '28272ea1cee8074586ce4325ff060c94';
 
   const [weatherObject, setWeatherObject] = React.useState(null);

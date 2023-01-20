@@ -1,12 +1,19 @@
 import React from 'react'
+import { InputFormWrapper } from './Login.styles';
+import { InputForm } from '../../Global.styles';
 
-const InputFormLogin = ({ id, icon, alt, reference, type, onBlur, onChange, placeholder }) => {
+const InputFormLogin = ({ id, icon, alt, reference, type, placeholder, inputState, onChange }) => {
   return (
-    <label htmlFor={id}>
-      <input ref={reference} id={id} type={type} placeholder={placeholder} onBlur={onBlur} onChange={onChange} />
+    <InputFormWrapper htmlFor={id} inputState={inputState}>
+      <InputForm
+        ref={reference}
+        id={id}
+        type={type}
+        placeholder={placeholder}
+      />
       <img src={icon} alt={alt} />
-    </label>
-  )
+    </InputFormWrapper>
+  );
 }
 
 export default InputFormLogin

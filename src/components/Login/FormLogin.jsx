@@ -3,9 +3,12 @@ import { AuthContext } from '../../context/AuthContext'
 import InputFormLogin from './InputFormLogin'
 import IconUser from '../../assets/icon-user.svg'
 import IconPassword from '../../assets/icon-password.svg'
+import { GeneralButton } from '../../Global.styles'
+import { ErrorMessage, FormLoginWrapper, LoginInput } from './Login.styles'
 
 const FormLogin = () => {
   const authCtx = React.useContext(AuthContext);
+
   const enteredUsername = React.useRef(null);
   const enteredPassword = React.useRef(null);
 
@@ -15,10 +18,14 @@ const FormLogin = () => {
     authCtx.onLogin(enteredUsername.current.value, enteredPassword.current.value);
   };
 
+  const onUsernameChange = () => {};
+
+  const onPasswordChange = () => {};
+
   return (
-    <form onSubmit={onLoginSubmitHandler} className='login-form'>
-      <h3>Login</h3>
-      <div className='login-input'>
+    <FormLoginWrapper onSubmit={onLoginSubmitHandler}>
+      <LoginInput>
+        <h3>Login</h3>
         <InputFormLogin 
           id={"username"}
           icon={IconUser}
@@ -35,9 +42,14 @@ const FormLogin = () => {
           type={"password"}
           placeholder={"password"}
         />
+      </LoginInput>
+      <ErrorMessage></ErrorMessage>
+      <div>
+        <GeneralButton>
+          Log in
+        </GeneralButton>
       </div>
-      <button className="form-button">Log in</button>
-    </form>
+    </FormLoginWrapper>
   )
 }
 

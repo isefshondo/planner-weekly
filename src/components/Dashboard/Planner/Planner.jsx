@@ -6,9 +6,14 @@ import TaskTime from './TaskTime';
 
 const Planner = ({ cards }) => {
   const [getDay, setGetDay] = React.useState('');
+  
+  const onGetDayHandler = (choosenDay) => {
+    setGetDay(choosenDay);
+  };
+
   return (
     <PlannerWrapper>
-      <PlannerHeader />
+      <PlannerHeader onGetDay={onGetDayHandler} />
       <PlannerRow>
         <TaskTime time={'Time'} />
       </PlannerRow>

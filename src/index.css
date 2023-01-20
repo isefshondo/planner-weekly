@@ -49,18 +49,6 @@
 .register-input div label{
   flex: .35;
 }
-
-.register-input div input{
-  width: 279px;
-  background: transparent;
-  border: 1px solid white;
-  border-radius: 50px;
-  flex: 1;
-  padding: .55rem;
-  outline: none;
-  color: var(--color-text);
-}
-
 .form-button{
   background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
   box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
@@ -106,22 +94,6 @@
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
-}
-
-.login-input label{
-  display: flex;
-  align-items: center;
-  column-gap: .75rem;
-}
-
-.login-input input{
-  width: 100%;
-  background: transparent;
-  border: 1px solid white;
-  border-radius: 50px;
-  padding: .85rem;
-  outline: none;
-  color: var(--color-text);
 }
 
 .main-header{

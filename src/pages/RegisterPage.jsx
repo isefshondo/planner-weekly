@@ -1,24 +1,26 @@
 import React from 'react'
-import RegisterForm from '../components/FormsComponents/RegisterForm'
-import Logo from '../assets/logo.svg'
+import { Link } from 'react-router-dom'
+import RegisterForm from '../components/Register/RegisterForm'
+import BackgroundImage from '../UI/BackgroundImage'
+import { InitialSection, Wrapper } from '../Global.styles'
+import WelcomeMessage from '../UI/WelcomeMessage'
+import { LinkWrapper } from '../components/Login/Login.styles'
 
 const RegisterPage = () => {
   return (
     <React.Fragment>
-      <main className='initial-wrapper'>
-        <section className='initial-section'>
-          <div>
-            <hgroup>
-              <h1>Welcome,</h1>
-              <p>Please, register to continue</p>
-            </hgroup>
+      <Wrapper>
+        <InitialSection>
+          <LinkWrapper>
+            <WelcomeMessage message={'Please, register to continue'} />
             <RegisterForm />
-          </div>
-        </section>
-        <section className='image-section'>
-          <img src={Logo} alt="Compasso's logo" />
-        </section>
-      </main>
+            <span>
+              <Link to={"../login"}>Already have an account? Log in</Link>
+            </span>
+          </LinkWrapper>
+        </InitialSection>
+        <BackgroundImage />
+      </Wrapper>
     </React.Fragment>
   )
 }

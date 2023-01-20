@@ -1,4 +1,5 @@
 import React from 'react'
+import { InputForm } from '../../Global.styles';
 
 const FieldComponent = ({ type, id, label, placeholder, reference }) => {
 
@@ -18,7 +19,7 @@ const FieldComponent = ({ type, id, label, placeholder, reference }) => {
         id === "birth-date" && (
           <div key={id}>
             <label htmlFor={id}>{label}</label>
-            <input 
+            <InputForm 
               type={type} 
               ref={reference}
               id={id} 
@@ -32,7 +33,7 @@ const FieldComponent = ({ type, id, label, placeholder, reference }) => {
         id !== "birth-date" && (
           <div key={id}>
             <label htmlFor={id}>{label}</label>
-            <input 
+            <InputForm
               type={type} 
               ref={reference}
               id={id} 
