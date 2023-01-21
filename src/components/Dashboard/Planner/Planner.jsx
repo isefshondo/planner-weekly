@@ -15,6 +15,8 @@ const Planner = ({ tasks, setTasks }) => {
     setTasks(tasks.filter((assignment) => assignment.id !== id));
   };
 
+  console.log(tasks);
+
   return (
     <React.Fragment>
       <PlannerHeader onGetDay={filterDaySelected} />
@@ -47,28 +49,6 @@ const Planner = ({ tasks, setTasks }) => {
         </PanelTask>
       </PlannerWrapper>
     </React.Fragment>
-    // <PlannerWrapper>
-    //   <PlannerHeader onGetDay={filterDaySelected} />
-    //   <PlannerRow>
-    //     <TaskTime time={'Time'} />
-    //   </PlannerRow>
-    //   {
-    //     tasks && tasks.filter((selectedDay) => {
-    //       return selectedDay.selectDay === filterWeekDay
-    //     }).map((task) => {
-    //       return <PlannerRow key={task.id}>
-    //         <TaskTime day={task.selectDay} time={task.choosenTime} />
-    //         <TaskDescription>
-    //           <TaskColor day={task.selectDay} />
-    //           <p>
-    //             {task.description}
-    //           </p>
-    //           <DeleteButton />
-    //         </TaskDescription>
-    //       </PlannerRow>
-    //     })
-    //   }
-    // </PlannerWrapper>
   )
 }
 

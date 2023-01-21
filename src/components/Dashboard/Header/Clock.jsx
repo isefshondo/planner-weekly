@@ -21,8 +21,8 @@ const Clock = () => {
 
 
   React.useEffect(() => {
-    setInterval(() => setCurrentTime(new Date()), 60000);
-    return clearInterval(setInterval(() => setCurrentTime(new Date()), 60000));
+    setInterval(() => setCurrentTime(new Date()), 1000);
+    return clearInterval(setInterval(() => setCurrentTime(new Date()), 1000));
   }, []);
 
   return (

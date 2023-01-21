@@ -63,7 +63,9 @@ export const StyledTime = styled.div`
 
 export const PlannerWrapper = styled.section`
   width: 100%;
+  height: calc(100% - 125px);
   display: flex;
+  padding-block: 1.75rem;
   padding-inline-start: 1.75rem;
   padding-inline-end: .25rem;
   column-gap: 1rem;

@@ -10,15 +10,6 @@ const FormTask = ({ onAddAssignment }) => {
   const enteredDay = React.useRef(null);
   const enteredTime = React.useRef(null);
 
-  // const eachTaskHandler = (enteredAssignment) => {
-  //   const assignmentInfomation = {
-  //     ...enteredAssignment,
-  //     id: Math.random().toString()
-  //   }
-
-  //   onAddAssignment(assignmentInfomation);
-  // };
-
   const onTaskSubmit = (e) => {
     e.preventDefault();
 
@@ -26,6 +17,7 @@ const FormTask = ({ onAddAssignment }) => {
       selectDay: enteredDay.current.value,
       choosenTime: enteredTime.current.value,
       description: enteredTitle.current.value,
+      conflictedTasks: [enteredTitle.current.value],
     };
 
     onAddAssignment(eachTaskInformation);
