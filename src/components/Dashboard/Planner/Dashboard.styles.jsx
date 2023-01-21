@@ -70,6 +70,12 @@ export const PlannerWrapper = styled.section`
   padding-inline-end: .25rem;
   column-gap: 1rem;
   overflow-y: scroll;
+
+  /* &::-webkit-scrollbar-track{
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+  } */
 `;
 
 export const PlannerRow = styled.div`

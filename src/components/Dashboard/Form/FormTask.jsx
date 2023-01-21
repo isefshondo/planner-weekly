@@ -17,7 +17,7 @@ const FormTask = ({ onAddAssignment }) => {
       selectDay: enteredDay.current.value,
       choosenTime: enteredTime.current.value,
       description: enteredTitle.current.value,
-      conflictedTasks: [enteredTitle.current.value],
+      // conflictedTasks: [enteredTitle.current.value],
     };
 
     onAddAssignment(eachTaskInformation);

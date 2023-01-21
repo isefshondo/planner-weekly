@@ -15,7 +15,7 @@ export const InputFormWrapper = styled.label`
   column-gap: .75rem;
 
   & img{
-    transform: translateX(${(props) => props.inputState ? `-2.5rem` : `0`});
+    transform: translateX(${(props) => props.inputState ? `-3.25rem` : `0`});
   }
 `;
 

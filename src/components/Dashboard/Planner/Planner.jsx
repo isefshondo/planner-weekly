@@ -15,8 +15,6 @@ const Planner = ({ tasks, setTasks }) => {
     setTasks(tasks.filter((assignment) => assignment.id !== id));
   };
 
-  console.log(tasks);
-
   return (
     <React.Fragment>
       <PlannerHeader onGetDay={filterDaySelected} />

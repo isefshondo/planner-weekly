@@ -10,6 +10,8 @@ const InputFormLogin = ({ id, icon, alt, reference, type, placeholder, inputStat
         id={id}
         type={type}
         placeholder={placeholder}
+        inputState={inputState}
+        onChange={onChange}
       />
       <img src={icon} alt={alt} />
     </InputFormWrapper>

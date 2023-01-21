@@ -9,6 +9,12 @@ import { ErrorMessage, FormLoginWrapper, LoginInput } from './Login.styles'
 const FormLogin = () => {
   const authCtx = React.useContext(AuthContext);
 
+  const [isUsernameFilled, setIsUsernameFilled] = React.useState("");
+  const [isPasswordFilled, setIsPasswordFilled] = React.useState("");
+
+  const [usernameIconMove, setUsernameIconMove] = React.useState(false);
+  const [passwordIconMove, setPasswordIconMove] = React.useState(false);
+
   const enteredUsername = React.useRef(null);
   const enteredPassword = React.useRef(null);
 
@@ -18,9 +24,15 @@ const FormLogin = () => {
     authCtx.onLogin(enteredUsername.current.value, enteredPassword.current.value);
   };
 
-  const onUsernameChange = () => {};
+  const onUsernameChange = (e) => {
+    setIsUsernameFilled(e.target.value);
+    isUsernameFilled.length > 1 ? setUsernameIconMove(true) : setUsernameIconMove(false);
+  };
 
-  const onPasswordChange = () => {};
+  const onPasswordChange = (e) => {
+    setIsPasswordFilled(e.target.value);
+    isPasswordFilled.length > 1 ? setPasswordIconMove(true) : setPasswordIconMove(false);
+  };
 
   return (
     <FormLoginWrapper onSubmit={onLoginSubmitHandler}>
@@ -33,6 +45,8 @@ const FormLogin = () => {
           reference={enteredUsername}
           type={"text"}
           placeholder={"user name"}
+          inputState={usernameIconMove}
+          onChange={onUsernameChange}
         />
         <InputFormLogin 
           id={"password"}
@@ -41,6 +55,8 @@ const FormLogin = () => {
           reference={enteredPassword}
           type={"password"}
           placeholder={"password"}
+          inputState={passwordIconMove}
+          onChange={onPasswordChange}
         />
       </LoginInput>
       <ErrorMessage></ErrorMessage>
