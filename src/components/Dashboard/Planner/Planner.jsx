@@ -50,6 +50,7 @@ const Planner = ({ tasks, setTasks, setWeekDay }) => {
               const hasHourConflictCard = task.conflictedTasks.length > 1;
               return (
                 <PlannerRow>
+                  {hasHourConflictCard && <span />}
                   {
                     task.conflictedTasks.map((cards, index) => (
                       <TaskDescription key={`${task.id}_${index}`}>

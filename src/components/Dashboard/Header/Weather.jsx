@@ -37,7 +37,6 @@ const Weather = () => {
       <label htmlFor="weather">
         <img
           src={WeatherIcon}
-          // src={`http://openweathermap.org/img/wn/${weatherObject?.weather[0]?.icon}.png`}
           alt="Weather's Icon"
         />
         {Number(weatherObject?.main?.temp).toFixed(0)}&#186;

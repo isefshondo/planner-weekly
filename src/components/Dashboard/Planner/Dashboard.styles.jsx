@@ -75,9 +75,19 @@ export const PlannerWrapper = styled.section`
 
 export const PlannerRow = styled.div`
   display: flex;
+  align-items: center;
   column-gap: 17px;
   width: 100%;
   height: 85px;
+
+  & span{
+    width: 90%;
+    height: 0;
+    background: rgba(0, 0, 0, .7);
+    border: 4px solid rgba(0, 0, 0, .7);
+    position: absolute;
+    z-index: 1;
+  }
 `;
 
 export const TaskDescription = styled.div`
