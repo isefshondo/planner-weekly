@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputForm } from '../../Global.styles';
 
-const FieldComponent = ({ type, id, label, placeholder, reference }) => {
+const FieldComponent = ({ type, id, label, placeholder, reference, isValid }) => {
 
   const dateMaskHandler = (e) => {
     let v = e.target.value.replace(/\D/g, "");
@@ -25,6 +25,7 @@ const FieldComponent = ({ type, id, label, placeholder, reference }) => {
               id={id} 
               placeholder={placeholder}
               onInput={dateMaskHandler}
+              isValid={isValid}
             />
           </div>
         )
@@ -38,6 +39,7 @@ const FieldComponent = ({ type, id, label, placeholder, reference }) => {
               ref={reference}
               id={id} 
               placeholder={placeholder}
+              isValid={isValid}
             />
           </div>
         )

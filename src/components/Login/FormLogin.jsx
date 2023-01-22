@@ -9,6 +9,8 @@ import { ErrorMessage, FormLoginWrapper, LoginInput } from './Login.styles'
 const FormLogin = () => {
   const authCtx = React.useContext(AuthContext);
 
+  const [isLoginValid, setIsLoginValid] = React.useState(true);
+
   const [isUsernameFilled, setIsUsernameFilled] = React.useState("");
   const [isPasswordFilled, setIsPasswordFilled] = React.useState("");
 
@@ -21,7 +23,7 @@ const FormLogin = () => {
   const onLoginSubmitHandler = (e) => {
     e.preventDefault();
     
-    authCtx.onLogin(enteredUsername.current.value, enteredPassword.current.value);
+    authCtx.onLogin(enteredUsername.current.value, enteredPassword.current.value, setIsLoginValid);
   };
 
   const onUsernameChange = (e) => {
@@ -47,6 +49,7 @@ const FormLogin = () => {
           placeholder={"user name"}
           inputState={usernameIconMove}
           onChange={onUsernameChange}
+          isValid={isLoginValid}
         />
         <InputFormLogin 
           id={"password"}
@@ -57,9 +60,14 @@ const FormLogin = () => {
           placeholder={"password"}
           inputState={passwordIconMove}
           onChange={onPasswordChange}
+          isValid={isLoginValid}
         />
       </LoginInput>
-      <ErrorMessage></ErrorMessage>
+      <ErrorMessage>
+        {
+          !isLoginValid && "Wow, invalid username or password. Please try again!"
+        }
+      </ErrorMessage>
       <div>
         <GeneralButton>
           Log in

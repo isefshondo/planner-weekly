@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = React.createContext({
   isLoggedIn: false,
-  onLogin: (username, password) => {},
+  onLogin: (username, password, isLoginValid) => {},
   onLogout: () => {},
   onRegister: (obj) => {},
 });
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const onLogInHandler = (username, password) => {
+  const onLogInHandler = (username, password, isLoginValid) => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
 
     if(user === null){
@@ -45,6 +45,8 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(true);
       localStorage.setItem("isLoggedIn", "LOGGED_IN");
       navigate("/");
+    } else{
+      isLoginValid(false);
     }
   };
 

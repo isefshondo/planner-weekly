@@ -67,6 +67,7 @@ const RegisterForm = () => {
             label={"first name"}
             type={"text"}
             placeholder={"Your first name"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"last-name"}
@@ -74,6 +75,7 @@ const RegisterForm = () => {
             label={"last name"}
             type={"text"}
             placeholder={"Your last name"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"birth-date"}
@@ -81,6 +83,7 @@ const RegisterForm = () => {
             label={"birth date"}
             type={"text"}
             placeholder={"MM/DD/YYYY"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"country"}
@@ -88,6 +91,7 @@ const RegisterForm = () => {
             label={"Country"}
             type={"text"}
             placeholder={"Your country"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"city"}
@@ -95,6 +99,7 @@ const RegisterForm = () => {
             label={"City"}
             type={"text"}
             placeholder={"Your city"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"email"}
@@ -102,6 +107,7 @@ const RegisterForm = () => {
             label={"e-mail"}
             type={"email"}
             placeholder={"A valid e-mail here"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"password"}
@@ -109,6 +115,7 @@ const RegisterForm = () => {
             label={"password"}
             type={"password"}
             placeholder={"Your password"}
+            isValid={isFormValid}
           />
           <FieldComponent
             id={"confirm-password"}
@@ -116,6 +123,7 @@ const RegisterForm = () => {
             label={"password"}
             type={"password"}
             placeholder={"Confirm your password"}
+            isValid={isFormValid}
           />
         </RegisterInputWrapper>
         <InvalidMessage>

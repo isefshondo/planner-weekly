@@ -25,7 +25,7 @@ export const LoginInput = styled.div`
   row-gap: 1.5rem;
 `;
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.p`
   display: flex;
   align-items: center;
   height: 115px;
