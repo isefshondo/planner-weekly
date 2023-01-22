@@ -17,7 +17,7 @@ const FormTask = ({ onAddAssignment }) => {
       selectDay: enteredDay.current.value,
       choosenTime: enteredTime.current.value,
       description: enteredTitle.current.value,
-      // conflictedTasks: [enteredTitle.current.value],
+      conflictedTasks: [enteredTitle.current.value],
     };
 
     onAddAssignment(eachTaskInformation);
@@ -31,7 +31,7 @@ const FormTask = ({ onAddAssignment }) => {
         <Input reference={enteredTime} type={'time'} />
       </InputWrapper>
       <InputWrapper variant='buttons'>
-        <ButtonAction type={'submit'}>+ Add Task</ButtonAction>
+        <ButtonAction type={'submit'}>+ Add to calendar</ButtonAction>
         <ButtonAction type={'button'}>- Delete All</ButtonAction>
       </InputWrapper>
     </StyledFormTask>

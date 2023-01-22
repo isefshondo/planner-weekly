@@ -8,15 +8,33 @@ const DashboardPage = () => {
   const [assignments, setAssignments] = React.useState([]);
 
   const saveAssignments = (assignment) => {
-    setAssignments((prevAssignment) => {
-      assignment = {
+    // setAssignments((prevAssignment) => {
+    //   assignment = {
+    //     id: Math.floor((1 + Math.random()) * 0x10000)
+    //     .toString(16)
+    //     .substring(1),
+    //     ...assignment
+    //   };
+    //   return [assignment, ...prevAssignment];
+    // });
+    const isTaskConflicting = [...assignments].findIndex((task) => {
+      return task.selectDay === assignment.selectDay && task.choosenTime === assignment.choosenTime;
+    });
+
+    const filteredAssignment = [...assignments];
+    
+    if(isTaskConflicting >= 0){
+      filteredAssignment[isTaskConflicting].conflictedTasks.push(assignment.description);
+    } else{
+      filteredAssignment.push({
         id: Math.floor((1 + Math.random()) * 0x10000)
         .toString(16)
         .substring(1),
         ...assignment
-      };
-      return [assignment, ...prevAssignment];
-    });
+      })
+    }
+
+    setAssignments(filteredAssignment);
   };
 
   return (

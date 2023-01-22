@@ -11,8 +11,18 @@ const Planner = ({ tasks, setTasks }) => {
     setFilterWeekDay(enteredWeekDay);
   };
 
-  const onDeleteTask = ({ id }) => {
-    setTasks(tasks.filter((assignment) => assignment.id !== id));
+  const onDeleteTask = (id) => {
+    const filterId = id.split('_');
+    const filterCards = [...tasks];
+    const deletedCards = filterCards.findIndex((deleted) => {
+      return deleted.id == filterId[0];
+    });
+    if(filterCards[deletedCards].conflictedTasks.length === 1){
+      filterCards.splice(deletedCards, 1);
+    } else{
+      filterCards[deletedCards].conflictedTasks.splice(filterId[1], 1);
+    }
+    setTasks(filterCards);
   };
 
   return (
@@ -35,16 +45,55 @@ const Planner = ({ tasks, setTasks }) => {
             tasks && tasks.filter((selectedDay) => {
               return selectedDay.selectDay === filterWeekDay
             }).map((task) => {
-              return <TaskDescription key={task.id}>
-                <TaskColor day={task.selectDay} />
-                <p>
-                  {task.description}
-                </p>
-                <DeleteButton onClick={() => onDeleteTask(task)} />
-              </TaskDescription>
+              return (
+                <PlannerRow>
+                  {
+                    task.conflictedTasks.map((cards, index) => (
+                      <TaskDescription key={`${task.id}_${index}`}>
+                        <TaskColor day={task.selectDay} />
+                        <p>{cards}</p>
+                        <DeleteButton onClick={() => onDeleteTask(`${task.id}_${index}`)} />
+                      </TaskDescription>
+                    ))
+                  }
+                </PlannerRow>
+              );
             })
           }
         </PanelTask>
+        {/* <PlannerColumn>
+          <TaskTime time={'Time'} />
+          {
+            tasks && tasks.filter((selectedDay) => {
+              return selectedDay.selectDay === filterWeekDay
+            }).map((task) => {
+              return <TaskTime key={task.id} day={task.selectDay} time={task.choosenTime} />
+            })
+          }
+        </PlannerColumn>
+        <PanelTask>
+          <PlannerRow />
+          {
+            tasks && tasks.filter((selectedDay) => {
+              return selectedDay.selectDay === filterWeekDay
+            }).map((task) => {
+              return (
+                <>
+              {
+                task.conflictedTasks.map((card, index) => (
+                  <TaskDescription key={`${task.id}_${index}`}>
+                    <TaskColor day={task.selectDay} />
+                    <p>
+                      {card}
+                    </p>
+                    <DeleteButton onClick={() => onDeleteTask(`${task.id}_${index}`)} />
+                  </TaskDescription>
+                ))
+              }
+              </>
+            )})
+          }
+        </PanelTask> */}
       </PlannerWrapper>
     </React.Fragment>
   )
