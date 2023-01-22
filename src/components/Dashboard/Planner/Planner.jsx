@@ -4,11 +4,12 @@ import DeleteButton from './DeleteButton';
 import PlannerHeader from './PlannerHeader'
 import TaskTime from './TaskTime';
 
-const Planner = ({ tasks, setTasks }) => {
+const Planner = ({ tasks, setTasks, setWeekDay }) => {
   const [filterWeekDay, setFilterWeekDay] = React.useState(null);
 
   const filterDaySelected = (enteredWeekDay) => {
     setFilterWeekDay(enteredWeekDay);
+    setWeekDay(enteredWeekDay);
   };
 
   const onDeleteTask = (id) => {
@@ -61,39 +62,6 @@ const Planner = ({ tasks, setTasks }) => {
             })
           }
         </PanelTask>
-        {/* <PlannerColumn>
-          <TaskTime time={'Time'} />
-          {
-            tasks && tasks.filter((selectedDay) => {
-              return selectedDay.selectDay === filterWeekDay
-            }).map((task) => {
-              return <TaskTime key={task.id} day={task.selectDay} time={task.choosenTime} />
-            })
-          }
-        </PlannerColumn>
-        <PanelTask>
-          <PlannerRow />
-          {
-            tasks && tasks.filter((selectedDay) => {
-              return selectedDay.selectDay === filterWeekDay
-            }).map((task) => {
-              return (
-                <>
-              {
-                task.conflictedTasks.map((card, index) => (
-                  <TaskDescription key={`${task.id}_${index}`}>
-                    <TaskColor day={task.selectDay} />
-                    <p>
-                      {card}
-                    </p>
-                    <DeleteButton onClick={() => onDeleteTask(`${task.id}_${index}`)} />
-                  </TaskDescription>
-                ))
-              }
-              </>
-            )})
-          }
-        </PanelTask> */}
       </PlannerWrapper>
     </React.Fragment>
   )

@@ -5,10 +5,14 @@ import { InputWrapper, StyledFormTask } from './Form.styles'
 import Input from './Input'
 import Select from './Select'
 
-const FormTask = ({ onAddAssignment }) => {
+const FormTask = ({ onAddAssignment, getWeekDay, tasks, setTasks }) => {
   const enteredTitle = React.useRef(null);
   const enteredDay = React.useRef(null);
   const enteredTime = React.useRef(null);
+
+  const onDeleteAll = (day) => {
+    setTasks(tasks.filter((cards) => cards.selectDay !== day))
+  };
 
   const onTaskSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +36,7 @@ const FormTask = ({ onAddAssignment }) => {
       </InputWrapper>
       <InputWrapper variant='buttons'>
         <ButtonAction type={'submit'}>+ Add to calendar</ButtonAction>
-        <ButtonAction type={'button'}>- Delete All</ButtonAction>
+        <ButtonAction type={'button'} onClick={() => onDeleteAll(getWeekDay)}>- Delete All</ButtonAction>
       </InputWrapper>
     </StyledFormTask>
   )

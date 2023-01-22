@@ -5,18 +5,10 @@ import Header from '../components/Dashboard/Header/Header'
 import Planner from '../components/Dashboard/Planner/Planner'
 
 const DashboardPage = () => {
+  const [selectedWeekDay, setSelectedWeekDay] = React.useState(null);
   const [assignments, setAssignments] = React.useState([]);
 
   const saveAssignments = (assignment) => {
-    // setAssignments((prevAssignment) => {
-    //   assignment = {
-    //     id: Math.floor((1 + Math.random()) * 0x10000)
-    //     .toString(16)
-    //     .substring(1),
-    //     ...assignment
-    //   };
-    //   return [assignment, ...prevAssignment];
-    // });
     const isTaskConflicting = [...assignments].findIndex((task) => {
       return task.selectDay === assignment.selectDay && task.choosenTime === assignment.choosenTime;
     });
@@ -41,8 +33,8 @@ const DashboardPage = () => {
     <Background>
       <Header />
       <StyledMain>
-        <FormTask onAddAssignment={saveAssignments} />
-        <Planner tasks={assignments} setTasks={setAssignments} />
+        <FormTask onAddAssignment={saveAssignments} tasks={assignments} setTasks={setAssignments} getWeekDay={selectedWeekDay} />
+        <Planner tasks={assignments} setTasks={setAssignments} setWeekDay={setSelectedWeekDay} />
       </StyledMain>
     </Background>
   )
