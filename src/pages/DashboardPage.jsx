@@ -26,7 +26,7 @@ const DashboardPage = () => {
       })
     }
 
-    setAssignments(filteredAssignment);
+    setAssignments(filteredAssignment.sort((a, b) => a.choosenTime.localeCompare(b.choosenTime)));
   };
 
   return (
