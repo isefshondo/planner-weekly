@@ -52,7 +52,8 @@ export const StyledTime = styled.div`
   --sunday: rgba(255, 0, 36, 0.5);
   width: 85px;
   height: 85px;
-  background-color: var(--${(props) => props.day});
+  background: ${(props) => props.hasConflict ? 'rgba(0, 0, 0, 0.7)' : `var(--${props.day})`};
+  color: ${(props) => props.hasConflict ? '#fff' : '#000'};
   border-radius: 10px;
   box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
   display: flex;
@@ -111,7 +112,7 @@ export const TaskColor = styled.div`
   width: 14px;
   height: 85px;
   border-radius: 15px 0px 0px 15px;
-  background-color: var(--${(props) => props.day});
+  background: ${(props) => props.hasConflict ? 'rgba(0, 0, 0, 0.7)' : `var(--${props.day})`};
   position: absolute;
 `;
 

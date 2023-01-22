@@ -36,7 +36,8 @@ const Planner = ({ tasks, setTasks, setWeekDay }) => {
             tasks && tasks.filter((selectedDay) => {
               return selectedDay.selectDay === filterWeekDay
             }).map((task) => {
-              return <TaskTime key={task.id} day={task.selectDay} time={task.choosenTime} />
+              const hasHourConflictTime = task.conflictedTasks.length > 1;
+              return <TaskTime key={task.id} day={task.selectDay} time={task.choosenTime} hasConflict={hasHourConflictTime} />
             })
           }
         </PlannerColumn>
@@ -46,12 +47,13 @@ const Planner = ({ tasks, setTasks, setWeekDay }) => {
             tasks && tasks.filter((selectedDay) => {
               return selectedDay.selectDay === filterWeekDay
             }).map((task) => {
+              const hasHourConflictCard = task.conflictedTasks.length > 1;
               return (
                 <PlannerRow>
                   {
                     task.conflictedTasks.map((cards, index) => (
                       <TaskDescription key={`${task.id}_${index}`}>
-                        <TaskColor day={task.selectDay} />
+                        <TaskColor day={task.selectDay} hasConflict={hasHourConflictCard} />
                         <p>{cards}</p>
                         <DeleteButton onClick={() => onDeleteTask(`${task.id}_${index}`)} />
                       </TaskDescription>
