@@ -29,9 +29,9 @@ Do not utilize libraries.
 <p>After running the git clone command, install the dependencies:</p>
 
 `npm install` <br/>
-`npm install react-router-dom` <br/>
-`npm -i axios` <br/>
-`npm styled-components` <br/>
+`npm install react-router-dom@6` <br/>
+`npm install axios` <br/>
+`npm install --save styled-components` <br/>
 
 <p>To run the application use:</p>
 
