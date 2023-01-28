@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledInput, StyledLabel } from "../../assets/styles/Global.styles";
 import { InputProps } from "../../interfaces/Interfaces";
 
 const Input = (props : InputProps) => {
@@ -13,35 +14,35 @@ const Input = (props : InputProps) => {
     <React.Fragment>
       {
         props.hasLabel && !props.hasIcon && props.id === "birth-date" && (
-          <label key={props.id} htmlFor={props.id}>
+          <StyledLabel key={props.id} htmlFor={props.id}>
             {props.label}
-            <input
+            <StyledInput
               id={props.id}
               type={props.type}
               placeholder={props.placeholder}
               onChange={props.onChange}
               onInput={dateMaskHandler}
             />
-          </label>
+          </StyledLabel>
         )
       }
       {
         props.hasLabel && !props.hasIcon && props.id !== "birth-date" && (
-          <label key={props.id} htmlFor={props.id}>
+          <StyledLabel key={props.id} htmlFor={props.id}>
             {props.label}
-            <input
+            <StyledInput
               id={props.id}
               type={props.type}
               placeholder={props.placeholder}
               onChange={props.onChange}
             />
-          </label>
+          </StyledLabel>
         )
       }
       {
         !props.hasLabel && props.hasIcon && props.id !== "birth-date" && (
-          <label key={props.id} htmlFor={props.id}>
-            <input
+          <StyledLabel key={props.id} htmlFor={props.id}>
+            <StyledInput
               id={props.id}
               type={props.type}
               placeholder={props.placeholder}
@@ -50,7 +51,7 @@ const Input = (props : InputProps) => {
               onBlur={props.onBlur}
             />
             <img src={props.icon} alt={props.alt} />
-          </label>
+          </StyledLabel>
         )
       }
     </React.Fragment>
