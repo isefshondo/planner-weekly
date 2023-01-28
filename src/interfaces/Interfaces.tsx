@@ -8,8 +8,8 @@ export interface InputProps {
   icon?: string,
   alt?: string,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  onFocus: () => void,
-  onBlur: () => void,
+  onFocus?: () => void,
+  onBlur?: () => void,
   hasLabel: boolean,
   hasIcon: boolean,
 };

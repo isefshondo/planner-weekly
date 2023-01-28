@@ -40,6 +40,22 @@ export const StyledMessage = styled.hgroup`
   }
 `;
 
+export const LinkWrapper = styled.div`
+  & span{
+    display: flex;
+    justify-content: center;
+    padding-block: 1.25rem;
+
+    & a{
+      text-decoration: none;
+    }
+
+    & a:visited{
+      color: #e0e0e045;
+    }
+  }
+`;
+
 export const StyledLabel = styled.label`
   width: 100%;
   display: flex;
