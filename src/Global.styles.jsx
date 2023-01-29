@@ -37,9 +37,9 @@ export const GeneralButton = styled.button`
   box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
   color: #E0E0E0;
   font-weight: 700;
-  font-size: 32px;
-  padding-block: .75rem;
-  padding-inline: 8.95rem;
+  font-size: 2rem;
+  /* padding-block: .75rem;
+  padding-inline: 8.95rem; */
 `;
 
 export const InitialSection = styled.section`

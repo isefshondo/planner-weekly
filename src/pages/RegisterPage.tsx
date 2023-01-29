@@ -12,6 +12,9 @@ const RegisterPage: React.FC = () => {
         <LinkWrapper>
           <WelcomeMessage message="Please, register to continue" />
           <RegisterForm />
+          <span>
+            <Link to={"../login"}>Already have an account? Log in</Link>
+          </span>
         </LinkWrapper>
       </InitialSection>
       <BackgroundImage />

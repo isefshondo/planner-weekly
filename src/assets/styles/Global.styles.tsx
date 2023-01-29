@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ErrorMessageProps } from "../../interfaces/Interfaces"
 import Background from "../imgs/main-img.png";
 
 export const Wrapper = styled.main`
@@ -56,6 +57,38 @@ export const LinkWrapper = styled.div`
   }
 `;
 
+/* Register Page & Components Style */
+
+export const StyledRegisterForm = styled.form`
+  margin-top: 4.2rem;
+  width: 29.5rem;
+`;
+
+export const StyledInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.125rem;
+
+  & span{
+    padding-top: 1.125rem;
+    padding-bottom: 0;
+    text-align: right;
+  }
+`;
+
+export const StyledErrorMessage = styled.div<ErrorMessageProps>`
+  & span{
+    display: ${(props) => props.isTouched && !props.isValid ? `block` : `none`};
+    color: #E9B425;
+  }
+
+  & input{
+    border: 1px solid ${(props) => props.isTouched && !props.isValid ? `#E9B425` : `#FFF`};
+  }
+`;
+
+/* End of Register Page & Components Style */
+
 export const StyledLabel = styled.label`
   width: 100%;
   display: flex;
@@ -71,4 +104,23 @@ export const StyledInput = styled.input`
   color: #E0E0E0;
   outline: none;
   padding: 1.25rem;
+`;
+
+export const InvalidForm = styled.span`
+  display: flex;
+  align-items: center;
+  height: 56px;
+  color: #E9B425;
+`;
+
+export const GeneralButton = styled.button`
+  width: 100%;
+  background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+  border-radius: 50px;
+  border-width: 0;
+  box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
+  color: #E0E0E0;
+  font-weight: 700;
+  font-size: 2rem;
+  padding-block: .75rem;
 `;
