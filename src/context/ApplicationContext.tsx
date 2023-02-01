@@ -19,7 +19,7 @@ let enteredUserData = {
 
 export const AppContext = React.createContext<ApplicationContext>({
   isLoggedIn: false,
-  onLogin: (username, password, isLoginValid) => {},
+  onLogin: (username, password, isLoginValid) => { },
   onLogout: () => {},
   onRegister: (obj) => {},
   enteredUser: enteredUserData

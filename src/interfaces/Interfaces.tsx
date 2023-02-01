@@ -2,20 +2,41 @@ import React from "react";
 
 export interface InputProps {
   id: string,
-  name: string,
+  name?: string,
   type: string,
   placeholder: string,
   label?: string,
   icon?: string,
   alt?: string,
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: () => void,
   onBlur?: () => void,
+  errorPattern: boolean,
+  errorMessage?: string,
   hasLabel: boolean,
   hasIcon: boolean,
-  errorMessage: string,
-  errorPattern: boolean,
+  isAnimated: boolean,
 };
+
+// export interface InputProps {
+//   id: string,
+//   name?: string,
+//   type: string,
+//   placeholder: string,
+//   label?: string,
+//   icon?: string,
+//   alt?: string,
+//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+//   onFocus?: () => void,
+//   onBlur?: () => void,
+//   hasLabel: boolean,
+//   hasIcon: boolean,
+// };
+
+// export interface ErrorMessageProps {
+//   errorMessage?: string,
+//   errorPattern?: boolean,
+// }
 
 export interface RegisterProps {
   enteredFirstName: string,
@@ -40,7 +61,19 @@ export interface ApplicationContext {
   enteredUser: RegisterProps
 }
 
-export interface ErrorMessageProps {
+export interface StyledErrorMessageProps {
   isTouched: boolean,
-  isValid: boolean,
+  errorPattern: boolean | undefined,
 }
+
+export interface Assignments {
+  id: string,
+  title: string,
+  selectedDay: string,
+  choosenTime: string,
+  conflictedTasks: Array<string>,
+};
+
+export interface PlannerFormProps {
+  addNewTask: (tasks: Assignments) => void,
+};

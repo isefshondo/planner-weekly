@@ -1,14 +1,39 @@
 import styled from "styled-components";
-import { ErrorMessageProps } from "../../interfaces/Interfaces"
+import { StyledErrorMessageProps } from "../../interfaces/Interfaces"
 import Background from "../imgs/main-img.png";
+import PlannerLogo from "../imgs/logo-uol.svg"
 
-export const Wrapper = styled.main`
+/* Defining Props to Styled */
+
+type StyledErrorProps = {
+  isTouched?: boolean,
+  errorPattern: boolean,
+  isAnimated: boolean,
+};
+
+type StyledButtonProps = {
+  enteredButtonAction: string,
+};
+
+type WrapperProps = {
+  isPlanner: boolean,
+};
+
+/* End of Defininf Props */
+
+export const Wrapper = styled.main<WrapperProps>`
   display: flex;
-  color: #e0e0e0;
-
-  // Here check if the current page is
-  // the planner. If it is, apply Background
-  // style.
+  color:  #e0e0e0;
+  ${(props) => props.isPlanner && (
+    `
+      flex-direction: column;
+      background-image: url(${PlannerLogo});
+      background-repeat: no-repeat;
+      background-position: bottom right;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.9);
+    `
+  )}
 `;
 
 export const InitialSection = styled.section`
@@ -76,24 +101,31 @@ export const StyledInputWrapper = styled.div`
   }
 `;
 
-export const StyledErrorMessage = styled.div<ErrorMessageProps>`
+export const StyledErrorMessage = styled.div<StyledErrorMessageProps>`
   & span{
-    display: ${(props) => props.isTouched && !props.isValid ? `block` : `none`};
+    display: ${(props) => props.isTouched && !props.errorPattern ? `block` : `none`};
     color: #E9B425;
   }
 
   & input{
-    border: 1px solid ${(props) => props.isTouched && !props.isValid ? `#E9B425` : `#FFF`};
+    border: 1px solid ${(props) => props.isTouched && !props.errorPattern ? `#E9B425` : `#FFF`};
   }
 `;
 
 /* End of Register Page & Components Style */
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.label<StyledErrorProps>`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${(props) => props.isAnimated ? (`
+    & img{
+      transform: translateX(-3.25rem);
+      transition: transform .2s;
+    }
+  `) : (``)}
 `;
 
 export const StyledInput = styled.input`
@@ -104,6 +136,7 @@ export const StyledInput = styled.input`
   color: #E0E0E0;
   outline: none;
   padding: 1.25rem;
+
 `;
 
 export const InvalidForm = styled.span`
@@ -113,8 +146,8 @@ export const InvalidForm = styled.span`
   color: #E9B425;
 `;
 
-export const GeneralButton = styled.button`
-  width: 100%;
+export const GeneralButton = styled.button<StyledButtonProps>`
+  width: ${(props) => props.enteredButtonAction === "Login" ? `23.688rem` : `100%`};
   background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
   border-radius: 50px;
   border-width: 0;

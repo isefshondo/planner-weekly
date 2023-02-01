@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { InitialSection, LinkWrapper, Wrapper } from "../assets/styles/Global.styles";
-import RegisterForm from "../components/Register/RegisterForm";
+import LoginForm from "../components/Login/LoginForm";
 import BackgroundImage from "../components/UI/BackgroundImage";
 import WelcomeMessage from "../components/UI/WelcomeMessage";
 
-const RegisterPage: React.FC = () => {
+const LoginPage: React.FC  = () => {
   return (
     <Wrapper isPlanner={false}>
       <InitialSection>
         <LinkWrapper>
-          <WelcomeMessage message="Please, register to continue" />
-          <RegisterForm />
+          <WelcomeMessage message="To continue browsing safely, log in to the network." />
+          <LoginForm />
           <span>
-            <Link to={"../login"}>Already have an account? Log in</Link>
+            <Link to={"../register"}>Don't have an account yet? Register now</Link>
           </span>
         </LinkWrapper>
       </InitialSection>
@@ -22,4 +22,4 @@ const RegisterPage: React.FC = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;

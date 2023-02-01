@@ -79,6 +79,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Shouldn't contain numbers or be less than two letters."
           errorPattern={isFirstNameValid}
+          isAnimated={false}
         />
         <Input
           id="last-name"
@@ -91,6 +92,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Shouldn't contain numbers or be less than two letters."
           errorPattern={isLastNameValid}
+          isAnimated={false}
         />
         <Input
           id="birth-date"
@@ -103,6 +105,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Enter a valid birth date."
           errorPattern={isBirthDateValid}
+          isAnimated={false}
         />
         <Input
           id="country"
@@ -115,6 +118,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Can't be empty."
           errorPattern={isCountryValid}
+          isAnimated={false}
         />
         <Input
           id="city"
@@ -127,6 +131,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Can't be empty."
           errorPattern={isCityValid}
+          isAnimated={false}
         />
         <Input
           id="email"
@@ -139,6 +144,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Enter a valid e-mail."
           errorPattern={isEmailValid}
+          isAnimated={false}
         />
         <Input
           id="password"
@@ -151,6 +157,7 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Must be at least 8 characters long."
           errorPattern={isPasswordValid}
+          isAnimated={false}
         />
         <Input
           id="confirm-password"
@@ -163,12 +170,13 @@ const RegisterForm = () => {
           hasIcon={false}
           errorMessage="Passwords must be equals!"
           errorPattern={isPasswordEqual}
+          isAnimated={false}
         />
       </StyledInputWrapper>
       <InvalidForm>
         {!isFormValid && <p>Check if it's all filled in correctly and if the passwords match.</p>}
       </InvalidForm>
-      <GeneralButton>
+      <GeneralButton enteredButtonAction="Register">
         Register Now
       </GeneralButton>
     </StyledRegisterForm>

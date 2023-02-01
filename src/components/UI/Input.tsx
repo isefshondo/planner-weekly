@@ -17,9 +17,15 @@ const Input = (props : InputProps) => {
       {props.hasLabel && !props.hasIcon && props.id === "birth-date" && (
         <StyledErrorMessage
           isTouched={isInputTouched}
-          isValid={props.errorPattern}
+          errorPattern={props.errorPattern}
         >
-          <StyledLabel key={props.id} htmlFor={props.id}>
+          <StyledLabel
+            key={props.id}
+            htmlFor={props.id}
+            isTouched={isInputTouched}
+            errorPattern={props.errorPattern}
+            isAnimated={props.isAnimated}
+          >
             {props.label}
             <StyledInput
               id={props.id}
@@ -37,9 +43,15 @@ const Input = (props : InputProps) => {
       {props.hasLabel && !props.hasIcon && props.id !== "birth-date" && (
         <StyledErrorMessage
           isTouched={isInputTouched}
-          isValid={props.errorPattern}
+          errorPattern={props.errorPattern}
         >
-          <StyledLabel key={props.id} htmlFor={props.id}>
+          <StyledLabel
+            key={props.id}
+            htmlFor={props.id}
+            isTouched={isInputTouched}
+            errorPattern={props.errorPattern}
+            isAnimated={props.isAnimated}
+          >
             {props.label}
             <StyledInput
               id={props.id}
@@ -49,12 +61,17 @@ const Input = (props : InputProps) => {
               onChange={props.onChange}
               onFocus={() => setIsInputTouched(true)}
             />
+            <span>{props.errorMessage}</span>
           </StyledLabel>
-          <span>{props.errorMessage}</span>
         </StyledErrorMessage>
       )}
       {!props.hasLabel && props.hasIcon && props.id !== "birth-date" && (
-        <StyledLabel key={props.id} htmlFor={props.id}>
+        <StyledLabel
+          key={props.id}
+          htmlFor={props.id}
+          errorPattern={props.errorPattern}
+          isAnimated={props.isAnimated}
+        >
           <StyledInput
             id={props.id}
             type={props.type}
