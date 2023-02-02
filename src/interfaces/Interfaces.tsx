@@ -53,3 +53,7 @@ export interface Assignments {
 export interface PlannerFormProps {
   addNewTask: (tasks: Assignments) => void,
 };
+
+export interface WeatherProps {
+  temp: React.SetStateAction<number>,
+};

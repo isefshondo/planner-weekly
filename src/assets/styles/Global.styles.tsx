@@ -37,7 +37,7 @@ type WrapperProps = {
 
 /* End of Defininf Props */
 
-export const Wrapper = styled.main<WrapperProps>`
+export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   color:  #e0e0e0;
   ${(props) => props.isPlanner && (
@@ -48,6 +48,7 @@ export const Wrapper = styled.main<WrapperProps>`
       background-position: bottom right;
       height: 100vh;
       background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
     `
   )}
 `;
@@ -243,4 +244,75 @@ export const InputWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   column-gap: 1.5rem;
+`;
+
+/* A organized start right there */
+export const StyledHeader = styled.header`
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-block-start: 1.519rem;
+  padding-block-end: 1.813rem;
+`;
+
+export const DescriptionWrapper = styled.hgroup`
+  width: 36.75rem;
+  height: 4rem;
+  background-color: #000;
+  border-radius: 0px 14px 15px 0px;
+  color: #fff;
+  padding-block: 0.625rem;
+  padding-inline: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+`;
+
+export const ClockWrapper = styled.hgroup`
+  text-align: center;
+
+  & h1{
+    font-size: 2.5rem;
+  }
+
+  & p{
+    font-size: 1.25rem;
+  }
+`;
+
+export const WeatherWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  & h6{
+    font-weight: 400;
+  }
+`;
+
+export const StyledWeather = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 700;
+`;
+
+export const LogoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 1.313rem;
+  padding-inline-end: 1.438rem;
+`;
+
+export const StyledLogoutButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background-color: transparent;
 `;

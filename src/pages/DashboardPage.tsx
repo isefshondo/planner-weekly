@@ -2,9 +2,10 @@ import React from "react";
 import { Wrapper } from "../assets/styles/Global.styles";
 import PlannerForm from "../components/Dashboard/Form/PlannerForm";
 import Header from "../components/Dashboard/Header/Header";
+import DashboardPlanner from "../components/Dashboard/Planner/DashboardPlanner";
 import { Assignments } from "../interfaces/Interfaces";
 
-const DashboardPage = () => {
+const DashboardPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = React.useState<string>("");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
@@ -27,14 +28,13 @@ const DashboardPage = () => {
   };
 
   return (
-    <React.Fragment>
+    <Wrapper isPlanner={true}>
       <Header />
-      <Wrapper 
-        isPlanner={true}
-      >
+      <section>
         <PlannerForm addNewTask={addAssignments} />
-      </Wrapper>
-    </React.Fragment>
+        <DashboardPlanner />
+      </section>
+    </Wrapper>
   );
 };
 

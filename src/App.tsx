@@ -1,15 +1,22 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { AppContext } from "./context/ApplicationContext";
 import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 const App: React.FC = () => {
+  const appCtx = React.useContext(AppContext);
   return (
     <Routes>
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
-      <Route path="*" element={<DashboardPage />} />
+      <Route path="*" element={
+        <ProtectedRoute isLoggedIn={appCtx.isLoggedIn}>
+          <DashboardPage />
+        </ProtectedRoute>
+      } />
     </Routes>
   );
 };

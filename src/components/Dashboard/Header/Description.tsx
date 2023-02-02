@@ -1,4 +1,5 @@
 import React from "react";
+import { DescriptionWrapper } from "../../../assets/styles/Global.styles";
 
 type DescriptionProps = {
   title: string,
@@ -7,10 +8,10 @@ type DescriptionProps = {
 
 const Description = (props: DescriptionProps) => {
   return (
-    <hgroup>
+    <DescriptionWrapper>
       <h3>{props.title}</h3>
       <p>{props.message}</p>
-    </hgroup>
+    </DescriptionWrapper>
   );
 };
 
