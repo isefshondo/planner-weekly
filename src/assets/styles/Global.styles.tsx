@@ -1,14 +1,22 @@
 import styled from "styled-components";
-import { StyledErrorMessageProps } from "../../interfaces/Interfaces"
 import Background from "../imgs/main-img.png";
 import PlannerLogo from "../imgs/logo-uol.svg"
 
 /* Defining Props to Styled */
 
-type StyledErrorProps = {
-  isTouched?: boolean,
+type StyledErrorMessageProps = {
+  isTouched: boolean,
   errorPattern: boolean,
+}
+
+type StyledErrorProps = {
+  hasIcon?: boolean,
   isAnimated: boolean,
+};
+
+type StyledLoginErrorProps = {
+  isFormSent: boolean,
+  errorPattern: boolean,
 };
 
 type StyledButtonProps = {
@@ -82,11 +90,19 @@ export const LinkWrapper = styled.div`
   }
 `;
 
-/* Register Page & Components Style */
-
 export const StyledRegisterForm = styled.form`
   margin-top: 4.2rem;
   width: 29.5rem;
+`;
+
+export const StyledLoginForm = styled.form`
+  margin-top: 8.438rem;
+`;
+
+export const StyledLogin = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
 `;
 
 export const StyledInputWrapper = styled.div`
@@ -112,7 +128,11 @@ export const StyledErrorMessage = styled.div<StyledErrorMessageProps>`
   }
 `;
 
-/* End of Register Page & Components Style */
+export const StyledLoginError = styled.div<StyledLoginErrorProps>`
+  & input{
+    border: 1px solid ${(props) => props.isFormSent && !props.errorPattern ? `#E9B425` : `#FFF`};
+  }
+`;
 
 export const StyledLabel = styled.label<StyledErrorProps>`
   width: 100%;
@@ -122,10 +142,15 @@ export const StyledLabel = styled.label<StyledErrorProps>`
 
   ${(props) => props.isAnimated ? (`
     & img{
-      transform: translateX(-3.25rem);
-      transition: transform .2s;
+      transform: translateX(-2.375rem);
+      transition: transform .25s;
     }
-  `) : (``)}
+  `) : (`
+    & img{
+      transform: translateX(1.125rem);
+      transition: transform .25s;
+    }
+  `)}
 `;
 
 export const StyledInput = styled.input`
@@ -142,8 +167,9 @@ export const StyledInput = styled.input`
 export const InvalidForm = styled.span`
   display: flex;
   align-items: center;
-  height: 56px;
+  height: 7.2rem;
   color: #E9B425;
+  text-align: center;
 `;
 
 export const GeneralButton = styled.button<StyledButtonProps>`

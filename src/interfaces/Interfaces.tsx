@@ -16,27 +16,8 @@ export interface InputProps {
   hasLabel: boolean,
   hasIcon: boolean,
   isAnimated: boolean,
+  formState: boolean,
 };
-
-// export interface InputProps {
-//   id: string,
-//   name?: string,
-//   type: string,
-//   placeholder: string,
-//   label?: string,
-//   icon?: string,
-//   alt?: string,
-//   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-//   onFocus?: () => void,
-//   onBlur?: () => void,
-//   hasLabel: boolean,
-//   hasIcon: boolean,
-// };
-
-// export interface ErrorMessageProps {
-//   errorMessage?: string,
-//   errorPattern?: boolean,
-// }
 
 export interface RegisterProps {
   enteredFirstName: string,
@@ -47,6 +28,7 @@ export interface RegisterProps {
   enteredEmail: string,
   enteredPassword: string,
   enteredConfirmPassword: string,
+  fullName: string,
 }
 
 export interface ApplicationContext {
@@ -59,11 +41,6 @@ export interface ApplicationContext {
   onLogout: () => void,
   onRegister: (obj: string) => void,
   enteredUser: RegisterProps
-}
-
-export interface StyledErrorMessageProps {
-  isTouched: boolean,
-  errorPattern: boolean | undefined,
 }
 
 export interface Assignments {

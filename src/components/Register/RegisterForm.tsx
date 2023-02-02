@@ -6,7 +6,6 @@ import Input from "../UI/Input";
 
 const RegisterForm = () => {
   const appCtx = React.useContext(AppContext);
-  const [isFormValid, setIsFormValid] = React.useState<boolean>(true);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>({
     enteredFirstName: "",
     enteredLastName: "",
@@ -16,6 +15,7 @@ const RegisterForm = () => {
     enteredEmail: "",
     enteredPassword: "",
     enteredConfirmPassword: "",
+    fullName: "",
   });
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +60,6 @@ const RegisterForm = () => {
           fullName: `${enteredUser.enteredFirstName} ${enteredUser.enteredLastName}`,
         })
       );
-    } else{
-      setIsFormValid(false);
     }
   };
 
@@ -80,6 +78,7 @@ const RegisterForm = () => {
           errorMessage="Shouldn't contain numbers or be less than two letters."
           errorPattern={isFirstNameValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="last-name"
@@ -93,6 +92,7 @@ const RegisterForm = () => {
           errorMessage="Shouldn't contain numbers or be less than two letters."
           errorPattern={isLastNameValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="birth-date"
@@ -106,6 +106,7 @@ const RegisterForm = () => {
           errorMessage="Enter a valid birth date."
           errorPattern={isBirthDateValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="country"
@@ -119,6 +120,7 @@ const RegisterForm = () => {
           errorMessage="Can't be empty."
           errorPattern={isCountryValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="city"
@@ -132,6 +134,7 @@ const RegisterForm = () => {
           errorMessage="Can't be empty."
           errorPattern={isCityValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="email"
@@ -145,6 +148,7 @@ const RegisterForm = () => {
           errorMessage="Enter a valid e-mail."
           errorPattern={isEmailValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="password"
@@ -158,6 +162,7 @@ const RegisterForm = () => {
           errorMessage="Must be at least 8 characters long."
           errorPattern={isPasswordValid}
           isAnimated={false}
+          formState={false}
         />
         <Input
           id="confirm-password"
@@ -171,11 +176,10 @@ const RegisterForm = () => {
           errorMessage="Passwords must be equals!"
           errorPattern={isPasswordEqual}
           isAnimated={false}
+          formState={false}
         />
       </StyledInputWrapper>
-      <InvalidForm>
-        {!isFormValid && <p>Check if it's all filled in correctly and if the passwords match.</p>}
-      </InvalidForm>
+      <InvalidForm />
       <GeneralButton enteredButtonAction="Register">
         Register Now
       </GeneralButton>

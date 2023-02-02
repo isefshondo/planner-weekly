@@ -15,6 +15,7 @@ let enteredUserData = {
   enteredEmail: "",
   enteredPassword: "",
   enteredConfirmPassword: "",
+  fullName: "",
 }
 
 export const AppContext = React.createContext<ApplicationContext>({
@@ -38,7 +39,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   }, [setEnteredUser]);
   
   const onRegister = (obj: string) => {
-    console.log(obj);
     setEnteredUser(JSON.parse(obj));
     localStorage.setItem("enteredUser", obj);
     toNavigate("login");

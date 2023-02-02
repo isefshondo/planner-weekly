@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledErrorMessage, StyledInput, StyledLabel } from "../../assets/styles/Global.styles";
+import { StyledErrorMessage, StyledInput, StyledLabel, StyledLoginError } from "../../assets/styles/Global.styles";
 import { InputProps } from "../../interfaces/Interfaces";
 
 const Input = (props : InputProps) => {
@@ -22,8 +22,6 @@ const Input = (props : InputProps) => {
           <StyledLabel
             key={props.id}
             htmlFor={props.id}
-            isTouched={isInputTouched}
-            errorPattern={props.errorPattern}
             isAnimated={props.isAnimated}
           >
             {props.label}
@@ -48,8 +46,6 @@ const Input = (props : InputProps) => {
           <StyledLabel
             key={props.id}
             htmlFor={props.id}
-            isTouched={isInputTouched}
-            errorPattern={props.errorPattern}
             isAnimated={props.isAnimated}
           >
             {props.label}
@@ -61,27 +57,32 @@ const Input = (props : InputProps) => {
               onChange={props.onChange}
               onFocus={() => setIsInputTouched(true)}
             />
-            <span>{props.errorMessage}</span>
           </StyledLabel>
+          <span>{props.errorMessage}</span>
         </StyledErrorMessage>
       )}
       {!props.hasLabel && props.hasIcon && props.id !== "birth-date" && (
-        <StyledLabel
-          key={props.id}
-          htmlFor={props.id}
+        <StyledLoginError
+          isFormSent={props.formState}
           errorPattern={props.errorPattern}
-          isAnimated={props.isAnimated}
         >
-          <StyledInput
-            id={props.id}
-            type={props.type}
-            placeholder={props.placeholder}
-            onChange={props.onChange}
-            onFocus={props.onFocus}
-            onBlur={props.onBlur}
-          />
-          <img src={props.icon} alt={props.alt} />
-        </StyledLabel>
+          <StyledLabel
+            key={props.id}
+            htmlFor={props.id}
+            isAnimated={props.isAnimated}
+            hasIcon={props.hasIcon}
+          >
+            <StyledInput
+              id={props.id}
+              type={props.type}
+              placeholder={props.placeholder}
+              onChange={props.onChange}
+              onFocus={props.onFocus}
+              onBlur={props.onBlur}
+            />
+              <img src={props.icon} alt={props.alt} />
+            </StyledLabel>
+        </StyledLoginError>
       )}
     </React.Fragment>
   );
