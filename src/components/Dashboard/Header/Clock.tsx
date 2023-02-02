@@ -1,7 +1,7 @@
 import React from "react";
 
 const Clock = () => {
-  const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [currentDate, setCurrentDate] = React.useState<Date>(new Date());
 
   let months = ["January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December"];

@@ -29,7 +29,9 @@ const DashboardPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <Wrapper isPlanner={true}>
+      <Wrapper 
+        isPlanner={true}
+      >
         <PlannerForm addNewTask={addAssignments} />
       </Wrapper>
     </React.Fragment>
