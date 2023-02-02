@@ -36,6 +36,8 @@ const LoginForm = () => {
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
+    appCtx.onLogin(enteredUsername, enteredPassword);
+
     setIsFormSent(true);
   };
 

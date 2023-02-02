@@ -20,7 +20,7 @@ let enteredUserData = {
 
 export const AppContext = React.createContext<ApplicationContext>({
   isLoggedIn: false,
-  onLogin: (username, password, isLoginValid) => { },
+  onLogin: (username, password) => {},
   onLogout: () => {},
   onRegister: (obj) => {},
   enteredUser: enteredUserData
@@ -55,14 +55,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const onLogInHandler = (
     username: string,
     password: string,
-    isLoginValid: React.SetStateAction<boolean>
   ) => {
     const enteredUser = JSON.parse(localStorage.getItem("enteredUser")!);
 
     if(enteredUser === null) return;
 
-    if((enteredUser.fullName === username || enteredUser.email === username) && (enteredUser.password === password)){
-      console.log("LOGGED_IN");
+    if((enteredUser.fullName === username || enteredUser.enteredEmail === username) && (enteredUser.enteredPassword === password)){
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "LOGGED_IN");
+      toNavigate("/");
     }
   };
 

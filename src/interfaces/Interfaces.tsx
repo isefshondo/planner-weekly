@@ -36,7 +36,6 @@ export interface ApplicationContext {
   onLogin: (
     username: string,
     password: string,
-    isLoginValid: React.SetStateAction<boolean>
   ) => void,
   onLogout: () => void,
   onRegister: (obj: string) => void,
