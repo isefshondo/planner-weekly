@@ -137,6 +137,7 @@ export const StyledInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 1.125rem;
+  margin-bottom: 3.5rem;
 
   & span{
     padding-top: 1.125rem;
@@ -372,7 +373,7 @@ export const PlannerWrapper = styled.section`
   height: 70vh;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow: scroll;
   padding-inline-start: 1.5rem;
   padding-inline-end: .625rem;
 `;

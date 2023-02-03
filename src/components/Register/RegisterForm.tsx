@@ -179,7 +179,6 @@ const RegisterForm = () => {
           formState={false}
         />
       </StyledInputWrapper>
-      <InvalidForm />
       <GeneralButton enteredButtonAction="Register">
         Register Now
       </GeneralButton>
