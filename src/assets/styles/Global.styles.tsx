@@ -3,6 +3,15 @@ import Background from "../imgs/main-img.png";
 import PlannerLogo from "../imgs/logo-uol.svg"
 
 /* Defining Props to Styled */
+type StyledTimeProps = {
+  belongDay: string,
+  belongTime: string,
+  hasConflict: boolean,
+};
+
+type StyledDayProps = {
+  value: string,
+};
 
 type StyledButtonTaskProps = {
   type: string,
@@ -33,6 +42,11 @@ type StyledButtonProps = {
 
 type WrapperProps = {
   isPlanner: boolean,
+};
+
+type StyledDivProps = {
+  selectedDay: string,
+  hasConflict: boolean
 };
 
 /* End of Defininf Props */
@@ -315,4 +329,94 @@ export const StyledLogoutButton = styled.button`
   align-items: center;
   border: none;
   background-color: transparent;
+`;
+
+export const StyledDayWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-inline-end: 2.938rem;
+`;
+
+export const StyledDayFilter = styled.button<StyledDayProps>`
+  width: 15rem;
+  height: 2.063rem;
+  list-style: none;
+  background-color: var(--${(props) => props.value.toLocaleLowerCase()});
+  box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+  border-width: 0;
+  border-radius: 9px 9px 0px 0px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding-inline: .375rem;
+`;
+
+export const StyledTaskTime = styled.time<StyledTimeProps>`
+  width: 5.313rem;
+  height: ${(props) => props.belongTime === "Time" ? `4.688rem` : `5.313rem`};
+  background: ${(props) => props.hasConflict ? 'rgba(0, 0, 0, 0.7)' : `var(--${props.belongDay.toLocaleLowerCase()})`};
+  border-radius: 10px;
+  box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+  color: ${(props) => props.hasConflict ? '#fff' : '#000'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.063rem;
+  font-weight: 800;
+  margin-block: .875rem;
+`;
+
+export const PlannerWrapper = styled.section`
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding-inline-start: 1.5rem;
+  padding-inline-end: .625rem;
+`;
+
+export const Card = styled.div`
+  width: 32rem;
+  height: 5.313rem;
+  background: linear-gradient(112.83deg, rgba(228, 240, 248, 0.42) 0%, rgba(255, 255, 255, 0.336) 110.84%);
+  box-shadow: 0px 2px 5.5px rgba(0, 0, 0, 0.02);
+  backdrop-filter: blur(10.5px);
+  border-radius: 15px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  overflow: hidden;
+
+  & p{
+    position: absolute;
+    width: 27.25rem;
+    height: 3.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-block: .75rem;
+    margin-inline-start: 1.75rem;
+  }
+`;
+
+export const StyledDivTask = styled.div<StyledDivProps>`
+  width: .875rem;
+  height: 100%;
+  background: ${(props) => props.hasConflict ? 'rgba(0, 0, 0, 0.7)' : `var(--${props.selectedDay.toLocaleLowerCase()})`};
+  border-radius: 15px 0px 0px 15px;
+  position: absolute;
+`;
+
+export const DeleteCardButton = styled.button`
+  width: 3.563rem;
+  height: 1.563rem;
+  background-color: #FF3D1F;
+  border-width: 0;
+  border-radius: 4px;
+  color: #fff;
+  position: absolute;
+  top: .375rem;
+  right: .438rem;
 `;

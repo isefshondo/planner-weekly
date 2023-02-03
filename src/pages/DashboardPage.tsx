@@ -30,10 +30,19 @@ const DashboardPage: React.FC = () => {
   return (
     <Wrapper isPlanner={true}>
       <Header />
-      <section>
-        <PlannerForm addNewTask={addAssignments} />
-        <DashboardPlanner />
-      </section>
+      <main>
+        <PlannerForm
+          addNewTask={addAssignments}
+          enteredTasks={assignments}
+          setEnteredTasks={setAssignments}
+          selectedDay={selectedDay}
+        />
+        <DashboardPlanner
+          enteredTasks={assignments}
+          setEnteredTasks={setAssignments}
+          setSelectedDay={setSelectedDay}
+        />
+      </main>
     </Wrapper>
   );
 };

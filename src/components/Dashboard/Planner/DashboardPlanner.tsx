@@ -1,13 +1,73 @@
 import React from "react";
+import { PlannerWrapper } from "../../../assets/styles/Global.styles";
+import { PlannerProps } from "../../../interfaces/Interfaces";
+import Cards from "./Cards";
 import HeaderDay from "./HeaderDay";
+import TaskTime from "./TaskTime";
 
-const DashboardPlanner = () => {
-  const [selectedDay, setSelectedDay] = React.useState<string>("");
+const DashboardPlanner = (props: PlannerProps) => {
+  const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
 
-  const selectedDayFilter = (selectedWeekDay: string) => {};
+  const selectedDayFilter = (selectedWeekDay: string) => {
+    setSelectedDay(selectedWeekDay);
+    props.setSelectedDay(selectedWeekDay);
+  };
+
+  const onDeleteTask = (id: string) => {
+    const deletedId = id.split("_");
+    const cards = [...props.enteredTasks];
+    const deleteCards = cards.findIndex((deleted) => {
+      return deleted.id == deletedId[0];
+    })
+
+    if(cards[deleteCards].conflictedTasks.length === 1){
+      cards.splice(deleteCards, 1);
+    } else{
+      cards[deleteCards].conflictedTasks.splice(Number(deletedId[1]), 1);
+    }
+
+    props.setEnteredTasks(cards);
+  };
 
   return (
-    <HeaderDay />
+    <React.Fragment>
+      <PlannerWrapper></PlannerWrapper>
+    </React.Fragment>
+    // <React.Fragment>
+    //   <HeaderDay setSelectedDayFilter={selectedDayFilter} />
+    //   <PlannerWrapper>
+    //       {props.enteredTasks &&
+    //         props.enteredTasks.map((task) => {
+    //           return (
+    //             <React.Fragment>
+    //               <div style={{display: "flex", columnGap: "1.063rem"}}>
+    //               <TaskTime
+    //                 key={task.id}
+    //                 belongDay={task.selectedDay}
+    //                 belongTime={task.choosenTime}
+    //                 hasConflict={false}
+    //               />
+    //               <div style={{display: "flex", columnGap: "1.063rem"}}>
+    //                 {
+    //                   task.conflictedTasks.map((items, index) => {
+    //                     return (
+    //                       <Cards
+    //                         id={`${task.id}_${index}`}
+    //                         selectedDay={task.selectedDay}
+    //                         description={items}
+    //                         hasConflict={false}
+    //                         onClick={() => {}}
+    //                       />
+    //                     );
+    //                   })
+    //                 }
+    //               </div>
+    //     </div>
+    //             </React.Fragment>
+    //           );
+    //         })}
+    //   </PlannerWrapper>
+    // </React.Fragment>
   );
 };
 

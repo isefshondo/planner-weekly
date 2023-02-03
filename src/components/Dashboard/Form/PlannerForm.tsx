@@ -14,6 +14,10 @@ const PlannerForm = (props: PlannerFormProps) => {
     return setEnteredTime(formatedTime);
   };
 
+  const onDeleteAll = (selectedWeekDay: string) => {
+    props.setEnteredTasks(props.enteredTasks.filter((tasks) => tasks.selectedDay !== selectedWeekDay));
+  };
+
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -55,7 +59,7 @@ const PlannerForm = (props: PlannerFormProps) => {
       </InputWrapper>
       <ButtonWrapper>
         <StyledButtonTask type="submit">+ Add to calendar</StyledButtonTask>
-        <StyledButtonTask type="button">- Delete All</StyledButtonTask>
+        <StyledButtonTask type="button" onClick={() => onDeleteAll(props.selectedDay)}>- Delete All</StyledButtonTask>
       </ButtonWrapper>
     </StyledFormTask>
   );

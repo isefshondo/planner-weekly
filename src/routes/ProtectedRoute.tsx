@@ -9,6 +9,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute = (props: ProtectedRouteProps) => {
   if(!props.isLoggedIn) 
     return (<Navigate to="login" replace />);
+  
   return <React.Fragment>
     {props.children}
   </React.Fragment>;

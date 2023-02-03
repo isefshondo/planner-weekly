@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
 
+:root{
+  --monday: #ff0024;
+  --tuesday: #ff8000;
+  --wednesday: #ffce00;
+  --thursday: rgba(255, 0, 36, 0.7);
+  --friday: rgba(255, 128, 0, 0.7);
+  --saturday: rgba(255, 206, 0, 0.7);
+  --sunday: rgba(255, 0, 36, 0.5);
+}
+
 *{
   box-sizing: border-box;
   margin: 0;

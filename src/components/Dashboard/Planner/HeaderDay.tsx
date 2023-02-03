@@ -1,4 +1,6 @@
 import React from "react";
+import { StyledDayFilter, StyledDayWrapper } from "../../../assets/styles/Global.styles";
+import { HeaderDayProps } from "../../../interfaces/Interfaces";
 
 const WeekDays = [
   { id: "Monday", value: "MONDAY" },
@@ -10,17 +12,23 @@ const WeekDays = [
   { id: "Sunday", value: "SUNDAY" },
 ];
 
-const HeaderDay = () => {
+const HeaderDay = (props: HeaderDayProps) => {
   return (
-    <ul>
+    <StyledDayWrapper>
       {WeekDays.map((days) => {
         return (
-          <li value={days.value}>
+          <StyledDayFilter
+            key={days.id}
+            value={days.value}
+            onClick={(e: React.MouseEvent)  => {
+              props.setSelectedDayFilter((e.target as HTMLButtonElement).value);
+            }}
+          >
             {days.id}
-          </li>
-        )
+          </StyledDayFilter>
+        );
       })}
-    </ul>
+    </StyledDayWrapper>
   );
 };
 

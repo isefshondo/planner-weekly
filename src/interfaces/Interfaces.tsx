@@ -52,8 +52,35 @@ export interface Assignments {
 
 export interface PlannerFormProps {
   addNewTask: (tasks: Assignments) => void,
+  enteredTasks: Assignments[],
+  setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
+  selectedDay: string,
+};
+
+export interface PlannerProps {
+  enteredTasks: Assignments[],
+  setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
+  setSelectedDay: React.Dispatch<React.SetStateAction<string>>,
 };
 
 export interface WeatherProps {
   temp: React.SetStateAction<number>,
+};
+
+export interface HeaderDayProps {
+  setSelectedDayFilter: (selectedWeekDay: string) => void,
+};
+
+export interface TaskTimeProps {
+  belongDay: string,
+  belongTime: string,
+  hasConflict: boolean,
+};
+
+export interface CardsProps {
+  id: string,
+  selectedDay: string,
+  description: string,
+  hasConflict: boolean,
+  onClick: () => void,
 };
