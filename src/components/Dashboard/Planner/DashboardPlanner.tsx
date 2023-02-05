@@ -1,5 +1,5 @@
 import React from "react";
-import { PlannerWrapper } from "../../../assets/styles/Global.styles";
+import { CardsWrapper, PlannerWrapper } from "../../../assets/styles/Global.styles";
 import { PlannerProps } from "../../../interfaces/Interfaces";
 import Cards from "./Cards";
 import HeaderDay from "./HeaderDay";
@@ -57,7 +57,7 @@ const DashboardPlanner = (props: PlannerProps) => {
                     belongTime={task.choosenTime}
                     hasConflict={hasConflict}
                   />
-                  <div style={{ display: "flex", columnGap: "1.063rem" }}>
+                  <CardsWrapper hasConflicts={hasConflict}>
                     {task.conflictedTasks.map((items, index) => {
                       return (
                         <Cards
@@ -69,7 +69,7 @@ const DashboardPlanner = (props: PlannerProps) => {
                         />
                       );
                     })}
-                  </div>
+                  </CardsWrapper>
                 </div>
               );
             })}

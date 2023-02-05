@@ -3,6 +3,10 @@ import Background from "../imgs/main-img.png";
 import PlannerLogo from "../imgs/logo-uol.svg"
 
 /* Defining Props to Styled */
+type CardsWrapperProps = {
+  hasConflicts: boolean,
+};
+
 type StyledTimeProps = {
   belongDay: string,
   belongTime: string,
@@ -63,7 +67,7 @@ export const Wrapper = styled.div<WrapperProps>`
       background-repeat: no-repeat;
       background-position: bottom right;
       height: 100vh;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: #fbfbfb;
       color: #000;
     `
   )}
@@ -442,4 +446,21 @@ export const DeleteCardButton = styled.button`
   position: absolute;
   top: .375rem;
   right: .438rem;
+`;
+
+export const CardsWrapper = styled.div<CardsWrapperProps>`
+  display: flex;
+  align-items: center;
+  column-gap: 1.063rem;
+
+  ${(props) => props.hasConflicts && (
+    `&::after{
+      content: "";
+      width: 90%;
+      background: rgba(0, 0, 0, .7);
+      border: 4px solid rgba(0, 0, 0, .7);
+      border-radius: 5px;
+      position: absolute;
+    }`
+  )}
 `;
