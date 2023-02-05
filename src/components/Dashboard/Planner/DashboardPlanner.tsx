@@ -31,8 +31,17 @@ const DashboardPlanner = (props: PlannerProps) => {
 
   return (
     <React.Fragment>
-      <HeaderDay choosenDay={selectedDay} setSelectedDayFilter={selectedDayFilter} />
+      <HeaderDay
+        choosenDay={selectedDay}
+        setSelectedDayFilter={selectedDayFilter}
+      />
       <PlannerWrapper>
+        <TaskTime
+          key="TimeColumn"
+          belongDay="Everyday"
+          belongTime="Time"
+          hasConflict={false}
+        />
         {props.enteredTasks &&
           props.enteredTasks
             .filter((cards) => {

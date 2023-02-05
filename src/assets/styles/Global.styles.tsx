@@ -316,6 +316,7 @@ export const StyledWeather = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+  column-gap: .75rem;
   font-size: 3rem;
   font-weight: 700;
 `;
@@ -339,6 +340,7 @@ export const StyledLogoutButton = styled.button`
 export const StyledDayWrapper = styled.ul`
   display: flex;
   justify-content: flex-end;
+  column-gap: .188rem;
   padding-inline-end: 2.938rem;
 `;
 
@@ -381,6 +383,21 @@ export const PlannerWrapper = styled.section`
   overflow: scroll;
   padding-inline-start: 1.5rem;
   padding-inline-end: .625rem;
+  
+  &::-webkit-scrollbar{
+    width: 1rem;
+    background: #fff;
+    border-radius: 1.375rem;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background: #dcdfe3;
+    border-radius: .5rem;
+  }
+
+  &::-webkit-scrollbar-corner{
+    visibility: hidden;
+  }
 `;
 
 export const Card = styled.div`
