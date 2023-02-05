@@ -32,6 +32,11 @@ const PlannerForm = (props: PlannerFormProps) => {
     };
 
     props.addNewTask(addTaskInformation);
+
+    // Reseting Input
+    setEnteredTitle("");
+    setEnteredDay("MONDAY");
+    setEnteredTime("");
   };
 
   return (
@@ -44,6 +49,7 @@ const PlannerForm = (props: PlannerFormProps) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setEnteredTitle(e.target.value);
           }}
+          value={enteredTitle}
         />
         <Select setWeekDay={setEnteredDay} valueWeekDay={enteredDay} />
         <StyledInputTask

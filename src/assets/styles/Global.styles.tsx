@@ -54,6 +54,7 @@ type StyledDivProps = {
 export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   color:  #e0e0e0;
+
   ${(props) => props.isPlanner && (
     `
       flex-direction: column;
@@ -220,6 +221,7 @@ export const StyledSelect = styled.select`
   border-radius: 10px;
   padding-block: .782rem;
   padding-inline: .5rem;
+  outline: none;
 `;
 
 export const StyledInputTask = styled.input<StyledInputTaskProps>`
@@ -229,6 +231,7 @@ export const StyledInputTask = styled.input<StyledInputTaskProps>`
   border-radius: 10px;
   padding-block: .782rem;
   padding-inline: .5rem;
+  outline: none;
 `;
 
 export const StyledButtonTask = styled.button<StyledButtonTaskProps>`
