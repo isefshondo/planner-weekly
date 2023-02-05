@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { InitialSection, LinkWrapper, Wrapper } from "../assets/styles/Global.styles";
-import RegisterForm from "../components/Register/RegisterForm";
+import {
+  InitialSection,
+  LinkWrapper,
+  Wrapper,
+} from "../assets/styles/Global.styles";
+import RegisterForm from "../components/RegisterForm";
 import BackgroundImage from "../components/UI/BackgroundImage";
 import WelcomeMessage from "../components/UI/WelcomeMessage";
 

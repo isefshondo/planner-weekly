@@ -36,13 +36,14 @@ const DashboardPlanner = (props: PlannerProps) => {
         {props.enteredTasks && props.enteredTasks.filter((cards) => {
           return cards.selectedDay === selectedDay
         }).map((task) => {
+          const hasConflict = task.conflictedTasks.length > 1;
           return (
             <div style={{display: "flex", columnGap: "1.063rem"}}>
               <TaskTime
                 key={task.id}
                 belongDay={task.selectedDay}
                 belongTime={task.choosenTime}
-                hasConflict={false}
+                hasConflict={hasConflict}
               />
               <div style={{display: "flex", columnGap: "1.063rem"}}>
                 {task.conflictedTasks.map((items, index) => {
@@ -51,7 +52,7 @@ const DashboardPlanner = (props: PlannerProps) => {
                       id={`${task.id}_${index}`}
                       selectedDay={task.selectedDay}
                       description={items}
-                      hasConflict={false}
+                      hasConflict={hasConflict}
                       onClick={() => onDeleteTask(`${task.id}_${index}`)}
                     />
                   );

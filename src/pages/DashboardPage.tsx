@@ -11,20 +11,27 @@ const DashboardPage: React.FC = () => {
 
   const addAssignments = (tasks: Assignments) => {
     const isTaskConflicting = [...assignments].findIndex((task) => {
-      return task.selectedDay === tasks.selectedDay && task.choosenTime === tasks.choosenTime;
+      return (
+        task.selectedDay === tasks.selectedDay &&
+        task.choosenTime === tasks.choosenTime
+      );
     });
 
     const organizedAssignments = [...assignments];
 
-    if(isTaskConflicting >= 0){
+    if (isTaskConflicting >= 0) {
       organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks.title);
-    } else{
+    } else {
       organizedAssignments.push({
-        ...tasks
-      })
+        ...tasks,
+      });
     }
 
-    setAssignments(organizedAssignments.sort((a, b) => a.choosenTime.localeCompare(b.choosenTime)));
+    setAssignments(
+      organizedAssignments.sort((a, b) =>
+        a.choosenTime.localeCompare(b.choosenTime)
+      )
+    );
   };
 
   return (

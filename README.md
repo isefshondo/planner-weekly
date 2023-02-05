@@ -52,17 +52,13 @@ Do not utilize libraries.
 
 ## :bomb: Issues
 <ol>
-<li>On Login Page, there's a delay on input's icon animations.</li>
-<li>There's no error message on Weather's component if the inserted city doesn't exists.</li>
 <li>The line used to cross conflicting tasks doesn't fully follows the Figma layout.</li>
-<li>The time displayed on card is incorrectly formated.</li>
 <li>The planner doesn't have a scroll on overflow.</li>
 </ol>
 
 ## :hammer_and_wrench: Future implementations
 <ol>
 <li>On Register Page I would like to implement a way to show which input has an error.</li>
-<li>Using Typescript instead of Javascript</li>
 <li>Writing cleaner code</li>
 </ol>
 

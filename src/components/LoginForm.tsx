@@ -1,9 +1,14 @@
 import React from "react";
-import Input from "../UI/Input";
-import User from "../../assets/imgs/icon-user.svg";
-import Password from "../../assets/imgs/icon-password.svg";
-import { GeneralButton, InvalidForm, StyledLogin, StyledLoginForm } from "../../assets/styles/Global.styles";
-import { AppContext } from "../../context/ApplicationContext";
+import Input from "./UI/Input";
+import User from "../assets/imgs/icon-user.svg";
+import Password from "../assets/imgs/icon-password.svg";
+import {
+  GeneralButton,
+  InvalidForm,
+  StyledLogin,
+  StyledLoginForm,
+} from "../assets/styles/Global.styles";
+import { AppContext } from "../context/ApplicationContext";
 
 const LoginForm = () => {
   const appCtx = React.useContext(AppContext);
@@ -90,7 +95,9 @@ const LoginForm = () => {
       </StyledLogin>
       <InvalidForm>
         {isFormSent && !isLoginValid && (
-          <p>Wow, invalid username or password. <br /> Please, try again!</p>
+          <p>
+            Wow, invalid username or password. <br /> Please, try again!
+          </p>
         )}
       </InvalidForm>
       <GeneralButton enteredButtonAction="Login">Log in</GeneralButton>

@@ -332,13 +332,13 @@ export const StyledLogoutButton = styled.button`
   background-color: transparent;
 `;
 
-export const StyledDayWrapper = styled.div`
+export const StyledDayWrapper = styled.ul`
   display: flex;
   justify-content: flex-end;
   padding-inline-end: 2.938rem;
 `;
 
-export const StyledDayFilter = styled.button<StyledDayProps>`
+export const StyledDayFilter = styled.li<StyledDayProps>`
   width: 15rem;
   height: 2.063rem;
   list-style: none;

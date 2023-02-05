@@ -21,7 +21,7 @@ const HeaderDay = (props: HeaderDayProps) => {
             key={days.id}
             value={days.value}
             onClick={(e: React.MouseEvent)  => {
-              props.setSelectedDayFilter((e.target as HTMLButtonElement).value);
+              props.setSelectedDayFilter((e.target as HTMLLIElement).innerHTML.toUpperCase());
             }}
           >
             {days.id}

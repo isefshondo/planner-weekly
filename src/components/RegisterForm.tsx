@@ -1,8 +1,12 @@
 import React from "react";
-import { GeneralButton, InvalidForm, StyledInputWrapper, StyledRegisterForm } from "../../assets/styles/Global.styles";
-import { AppContext } from "../../context/ApplicationContext";
-import { RegisterProps } from "../../interfaces/Interfaces";
-import Input from "../UI/Input";
+import {
+  GeneralButton,
+  StyledInputWrapper,
+  StyledRegisterForm,
+} from "../assets/styles/Global.styles";
+import { AppContext } from "../context/ApplicationContext";
+import { RegisterProps } from "../interfaces/Interfaces";
+import Input from "./UI/Input";
 
 const RegisterForm = () => {
   const appCtx = React.useContext(AppContext);
@@ -20,14 +24,18 @@ const RegisterForm = () => {
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredUser({
-      ...enteredUser, [e.target.name]: e.target.value
+      ...enteredUser,
+      [e.target.name]: e.target.value,
     });
   };
 
+  // Checking Input Validity
   const isFirstNameValid =
-    enteredUser.enteredFirstName.length >= 2 && !/\d/.test(enteredUser.enteredFirstName);
+    enteredUser.enteredFirstName.length >= 2 &&
+    !/\d/.test(enteredUser.enteredFirstName);
   const isLastNameValid =
-    enteredUser.enteredLastName.length >= 2 && !/\d/.test(enteredUser.enteredLastName);
+    enteredUser.enteredLastName.length >= 2 &&
+    !/\d/.test(enteredUser.enteredLastName);
   const isBirthDateValid =
     enteredUser.enteredBirthDate.length === 10 &&
     Number(enteredUser.enteredBirthDate.split("/")[0]) <= 12 &&
@@ -35,16 +43,19 @@ const RegisterForm = () => {
     Number(enteredUser.enteredBirthDate.split("/")[2]) >= 1900;
   const isCountryValid = enteredUser.enteredCountry.length > 0;
   const isCityValid = enteredUser.enteredCity.length > 0;
-  const isEmailValid = enteredUser.enteredEmail.length > 0 && enteredUser.enteredEmail.includes("@");
+  const isEmailValid =
+    enteredUser.enteredEmail.length > 0 &&
+    enteredUser.enteredEmail.includes("@");
   const isPasswordValid = enteredUser.enteredPassword.length >= 8;
   const isPasswordEqual =
-    enteredUser.enteredConfirmPassword.length === enteredUser.enteredPassword.length &&
+    enteredUser.enteredConfirmPassword.length ===
+      enteredUser.enteredPassword.length &&
     enteredUser.enteredConfirmPassword === enteredUser.enteredPassword;
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(
+    if (
       isFirstNameValid === true &&
       isLastNameValid === true &&
       isBirthDateValid === true &&
@@ -53,7 +64,7 @@ const RegisterForm = () => {
       isEmailValid === true &&
       isPasswordValid === true &&
       isPasswordEqual === true
-    ){
+    ) {
       appCtx.onRegister(
         JSON.stringify({
           ...enteredUser,
@@ -179,9 +190,7 @@ const RegisterForm = () => {
           formState={false}
         />
       </StyledInputWrapper>
-      <GeneralButton enteredButtonAction="Register">
-        Register Now
-      </GeneralButton>
+      <GeneralButton enteredButtonAction="Register">Register Now</GeneralButton>
     </StyledRegisterForm>
   );
 };

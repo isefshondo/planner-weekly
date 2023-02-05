@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { InitialSection, LinkWrapper, Wrapper } from "../assets/styles/Global.styles";
-import LoginForm from "../components/Login/LoginForm";
+import {
+  InitialSection,
+  LinkWrapper,
+  Wrapper,
+} from "../assets/styles/Global.styles";
+import LoginForm from "../components/LoginForm";
 import BackgroundImage from "../components/UI/BackgroundImage";
 import WelcomeMessage from "../components/UI/WelcomeMessage";
 
-const LoginPage: React.FC  = () => {
+const LoginPage: React.FC = () => {
   return (
     <Wrapper isPlanner={false}>
       <InitialSection>
@@ -13,7 +17,9 @@ const LoginPage: React.FC  = () => {
           <WelcomeMessage message="To continue browsing safely, log in to the network." />
           <LoginForm />
           <span>
-            <Link to={"../register"}>Don't have an account yet? Register now</Link>
+            <Link to={"../register"}>
+              Don't have an account yet? Register now
+            </Link>
           </span>
         </LinkWrapper>
       </InitialSection>
