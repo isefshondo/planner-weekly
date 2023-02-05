@@ -18,11 +18,11 @@ const DashboardPlanner = (props: PlannerProps) => {
     const cards = [...props.enteredTasks];
     const deleteCards = cards.findIndex((deleted) => {
       return deleted.id == deletedId[0];
-    })
+    });
 
-    if(cards[deleteCards].conflictedTasks.length === 1){
+    if (cards[deleteCards].conflictedTasks.length === 1) {
       cards.splice(deleteCards, 1);
-    } else{
+    } else {
       cards[deleteCards].conflictedTasks.splice(Number(deletedId[1]), 1);
     }
 
@@ -31,36 +31,39 @@ const DashboardPlanner = (props: PlannerProps) => {
 
   return (
     <React.Fragment>
-      <HeaderDay setSelectedDayFilter={selectedDayFilter} />
+      <HeaderDay choosenDay={selectedDay} setSelectedDayFilter={selectedDayFilter} />
       <PlannerWrapper>
-        {props.enteredTasks && props.enteredTasks.filter((cards) => {
-          return cards.selectedDay === selectedDay
-        }).map((task) => {
-          const hasConflict = task.conflictedTasks.length > 1;
-          return (
-            <div style={{display: "flex", columnGap: "1.063rem"}}>
-              <TaskTime
-                key={task.id}
-                belongDay={task.selectedDay}
-                belongTime={task.choosenTime}
-                hasConflict={hasConflict}
-              />
-              <div style={{display: "flex", columnGap: "1.063rem"}}>
-                {task.conflictedTasks.map((items, index) => {
-                  return (
-                    <Cards
-                      id={`${task.id}_${index}`}
-                      selectedDay={task.selectedDay}
-                      description={items}
-                      hasConflict={hasConflict}
-                      onClick={() => onDeleteTask(`${task.id}_${index}`)}
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+        {props.enteredTasks &&
+          props.enteredTasks
+            .filter((cards) => {
+              return cards.selectedDay === selectedDay;
+            })
+            .map((task) => {
+              const hasConflict = task.conflictedTasks.length > 1;
+              return (
+                <div style={{ display: "flex", columnGap: "1.063rem" }}>
+                  <TaskTime
+                    key={task.id}
+                    belongDay={task.selectedDay}
+                    belongTime={task.choosenTime}
+                    hasConflict={hasConflict}
+                  />
+                  <div style={{ display: "flex", columnGap: "1.063rem" }}>
+                    {task.conflictedTasks.map((items, index) => {
+                      return (
+                        <Cards
+                          id={`${task.id}_${index}`}
+                          selectedDay={task.selectedDay}
+                          description={items}
+                          hasConflict={hasConflict}
+                          onClick={() => onDeleteTask(`${task.id}_${index}`)}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
       </PlannerWrapper>
     </React.Fragment>
   );

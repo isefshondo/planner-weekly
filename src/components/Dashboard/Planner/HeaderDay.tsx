@@ -23,6 +23,7 @@ const HeaderDay = (props: HeaderDayProps) => {
             onClick={(e: React.MouseEvent)  => {
               props.setSelectedDayFilter((e.target as HTMLLIElement).innerHTML.toUpperCase());
             }}
+            isSelected={props.choosenDay === days.id.toLocaleUpperCase()}
           >
             {days.id}
           </StyledDayFilter>

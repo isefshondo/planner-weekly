@@ -11,6 +11,7 @@ type StyledTimeProps = {
 
 type StyledDayProps = {
   value: string,
+  isSelected: boolean,
 };
 
 type StyledButtonTaskProps = {
@@ -342,11 +343,11 @@ export const StyledDayWrapper = styled.ul`
 `;
 
 export const StyledDayFilter = styled.li<StyledDayProps>`
-  width: 15rem;
+  width: ${(props) => props.isSelected ? `18.125rem` : `15rem` };
   height: 2.063rem;
   list-style: none;
   background-color: var(--${(props) => props.value.toLocaleLowerCase()});
-  box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+  box-shadow: ${(props) => props.isSelected ? `0px 5px 5px rgba(168, 168, 168, 0.75);` : `0px 4px 24px rgba(168, 168, 168, 0.25)`};
   border-width: 0;
   border-radius: 9px 9px 0px 0px;
   font-size: 1.25rem;
@@ -354,6 +355,7 @@ export const StyledDayFilter = styled.li<StyledDayProps>`
   display: flex;
   align-items: center;
   padding-inline: .375rem;
+  transition: width .3s;
 `;
 
 export const StyledTaskTime = styled.time<StyledTimeProps>`

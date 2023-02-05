@@ -2,18 +2,18 @@ import React, { SetStateAction } from "react";
 import { StyledSelect } from "../../../assets/styles/Global.styles";
 
 type SelectProps = {
-  valueWeekDay: string,
-  setWeekDay: React.Dispatch<SetStateAction<string>>,
+  valueWeekDay: string;
+  setWeekDay: React.Dispatch<SetStateAction<string>>;
 };
 
 const WeekDays = [
-  { id: "Monday", value: "MONDAY", isDefault: true },
-  { id: "Tuesday", value: "TUESDAY", isDefault: false },
-  { id: "Wednesday", value: "WEDNESDAY", isDefault: false },
-  { id: "Thursday", value: "THURSDAY", isDefault: false },
-  { id: "Friday", value: "FRIDAY", isDefault: false },
-  { id: "Saturday", value: "SATURDAY", isDefault: false },
-  { id: "Sunday", value: "SUNDAY", isDefault: false },
+  { id: "Monday", value: "MONDAY" },
+  { id: "Tuesday", value: "TUESDAY" },
+  { id: "Wednesday", value: "WEDNESDAY" },
+  { id: "Thursday", value: "THURSDAY" },
+  { id: "Friday", value: "FRIDAY" },
+  { id: "Saturday", value: "SATURDAY" },
+  { id: "Sunday", value: "SUNDAY" },
 ];
 
 const Select = (props: SelectProps) => {

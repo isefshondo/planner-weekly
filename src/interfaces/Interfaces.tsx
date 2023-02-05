@@ -69,6 +69,7 @@ export interface WeatherProps {
 
 export interface HeaderDayProps {
   setSelectedDayFilter: (selectedWeekDay: string) => void,
+  choosenDay: string,
 };
 
 export interface TaskTimeProps {
