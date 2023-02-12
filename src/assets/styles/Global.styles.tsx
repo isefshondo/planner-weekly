@@ -1,62 +1,10 @@
 import styled from "styled-components";
 import Background from "../imgs/main-img.png";
 import PlannerLogo from "../imgs/logo-uol.svg"
+import { StyledButtonActionProps, StyledButtonTaskProps, StyledCardsWrapperProps, StyledDayProps, StyledErrorMessageProps, StyledInputProps, StyledInputTaskProps, StyledLoginErrorProps, StyledTaskProps, StyledWrapperProps } from "../../interfaces/Styles";
+import { TimeProps } from "../../interfaces/Dashboard";
 
-/* Defining Props to Styled */
-type CardsWrapperProps = {
-  hasConflicts: boolean,
-};
-
-type StyledTimeProps = {
-  belongDay: string,
-  belongTime: string,
-  hasConflict: boolean,
-};
-
-type StyledDayProps = {
-  value: string,
-  isSelected: boolean,
-};
-
-type StyledButtonTaskProps = {
-  type: string,
-};
-
-type StyledInputTaskProps = {
-  inputType: string,
-}
-
-type StyledErrorMessageProps = {
-  isTouched: boolean,
-  errorPattern: boolean,
-}
-
-type StyledErrorProps = {
-  hasIcon?: boolean,
-  isAnimated: boolean,
-};
-
-type StyledLoginErrorProps = {
-  isFormSent: boolean,
-  errorPattern: boolean,
-};
-
-type StyledButtonProps = {
-  enteredButtonAction: string,
-};
-
-type WrapperProps = {
-  isPlanner: boolean,
-};
-
-type StyledDivProps = {
-  selectedDay: string,
-  hasConflict: boolean
-};
-
-/* End of Defininf Props */
-
-export const Wrapper = styled.div<WrapperProps>`
+export const Wrapper = styled.div<StyledWrapperProps>`
   display: flex;
   color:  #e0e0e0;
 
@@ -169,7 +117,7 @@ export const StyledLoginError = styled.div<StyledLoginErrorProps>`
   }
 `;
 
-export const StyledLabel = styled.label<StyledErrorProps>`
+export const StyledLabel = styled.label<StyledInputProps>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -207,7 +155,7 @@ export const InvalidForm = styled.span`
   text-align: center;
 `;
 
-export const GeneralButton = styled.button<StyledButtonProps>`
+export const GeneralButton = styled.button<StyledButtonActionProps>`
   width: ${(props) => props.enteredButtonAction === "Login" ? `23.688rem` : `100%`};
   background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
   border-radius: 50px;
@@ -297,12 +245,14 @@ export const DescriptionWrapper = styled.hgroup`
 export const ClockWrapper = styled.hgroup`
   text-align: center;
 
-  & h1{
+  & time {
     font-size: 2.5rem;
+    font-weight: 700;
   }
 
-  & p{
+  & h3 {
     font-size: 1.25rem;
+    font-weight: 400;
   }
 `;
 
@@ -364,7 +314,7 @@ export const StyledDayFilter = styled.li<StyledDayProps>`
   transition: width .3s;
 `;
 
-export const StyledTaskTime = styled.time<StyledTimeProps>`
+export const StyledTaskTime = styled.time<TimeProps>`
   width: 5.313rem;
   height: ${(props) => props.belongTime === "Time" ? `4.688rem` : `5.313rem`};
   background: ${(props) => props.hasConflict ? 'rgba(0, 0, 0, 0.7)' : `var(--${props.belongDay.toLocaleLowerCase()})`};
@@ -428,7 +378,7 @@ export const Card = styled.div`
   }
 `;
 
-export const StyledDivTask = styled.div<StyledDivProps>`
+export const StyledDivTask = styled.div<StyledTaskProps>`
   width: .875rem;
   height: 100%;
   background: ${(props) => props.hasConflict ? 'rgba(0, 0, 0, 0.7)' : `var(--${props.selectedDay.toLocaleLowerCase()})`};
@@ -448,12 +398,12 @@ export const DeleteCardButton = styled.button`
   right: .438rem;
 `;
 
-export const CardsWrapper = styled.div<CardsWrapperProps>`
+export const CardsWrapper = styled.div<StyledCardsWrapperProps>`
   display: flex;
   align-items: center;
   column-gap: 1.063rem;
 
-  ${(props) => props.hasConflicts && (
+  ${(props) => props.hasConflict && (
     `&::after{
       content: "";
       width: 90%;

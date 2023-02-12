@@ -1,9 +1,9 @@
 import React from "react";
 import { ButtonWrapper, InputWrapper, StyledButtonTask, StyledFormTask, StyledInputTask } from "../../../assets/styles/Global.styles";
-import { Assignments, PlannerFormProps } from "../../../interfaces/Interfaces";
+import { Assignments, FormProps } from "../../../interfaces/Dashboard";
 import Select from "./Select";
 
-const PlannerForm = (props: PlannerFormProps) => {
+const PlannerForm = (props: FormProps) => {
   const [enteredTitle, setEnteredTitle] = React.useState<string>("");
   const [enteredDay, setEnteredDay] = React.useState<string>("MONDAY");
   const [enteredTime, setEnteredTime] = React.useState<string>("");

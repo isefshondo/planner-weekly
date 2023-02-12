@@ -3,7 +3,7 @@ import { Wrapper } from "../assets/styles/Global.styles";
 import PlannerForm from "../components/Dashboard/Form/PlannerForm";
 import Header from "../components/Dashboard/Header/Header";
 import DashboardPlanner from "../components/Dashboard/Planner/DashboardPlanner";
-import { Assignments } from "../interfaces/Interfaces";
+import { Assignments } from "../interfaces/Dashboard";
 
 const DashboardPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = React.useState<string>("");
@@ -17,7 +17,7 @@ const DashboardPage: React.FC = () => {
       );
     });
 
-    const organizedAssignments = [...assignments];
+    const organizedAssignments: Array<Assignments> = [...assignments];
 
     if (isTaskConflicting >= 0) {
       organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks.title);

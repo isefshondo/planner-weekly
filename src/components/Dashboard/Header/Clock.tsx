@@ -4,7 +4,7 @@ import { ClockWrapper } from "../../../assets/styles/Global.styles";
 const Clock = () => {
   const [currentDate, setCurrentDate] = React.useState<Date>(new Date());
 
-  let months = ["January", "February", "March", "April", "May", "June", 
+  let months: Array<string> = ["January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December"];
 
   let date: Date = new Date();
@@ -26,13 +26,13 @@ const Clock = () => {
 
   return (
     <ClockWrapper>
-      <h1>
+      <time>
         {currentDate.toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         })}
-      </h1>
-      <p>{`${currentMonth} ${abbreviationDate}, ${currentYear}`}</p>
+      </time>
+      <h3>{`${currentMonth} ${abbreviationDate}, ${currentYear}`}</h3>
     </ClockWrapper>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react";
 import axios, { AxiosError } from "axios";
 import { AppContext } from "../../../context/ApplicationContext";
-import { WeatherProps } from "../../../interfaces/Interfaces";
+import { ApplicationContext, } from "../../../interfaces/Interfaces";
+import { WeatherProps } from "../../../interfaces/Dashboard";
 import Icon from "../../../assets/imgs/weather-icon.svg"
 import { StyledWeather, WeatherWrapper } from "../../../assets/styles/Global.styles";
 
@@ -10,7 +11,7 @@ const Weather = () => {
 
   const [isCityValid, setIsCityValid] = React.useState<boolean>(true);
   const [weatherData, setWeatherData] = React.useState<WeatherProps>();
-  const { enteredUser } = React.useContext(AppContext);
+  const { enteredUser } = React.useContext<ApplicationContext>(AppContext);
 
   
   async function fetchingWeather() {

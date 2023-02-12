@@ -1,10 +1,6 @@
 import React from "react";
 import { DescriptionWrapper } from "../../../assets/styles/Global.styles";
-
-type DescriptionProps = {
-  title: string,
-  message: string
-};
+import { DescriptionProps } from "../../../interfaces/Dashboard";
 
 const Description = (props: DescriptionProps) => {
   return (

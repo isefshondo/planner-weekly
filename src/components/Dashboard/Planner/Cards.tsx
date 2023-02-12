@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, DeleteCardButton, StyledDivTask } from "../../../assets/styles/Global.styles";
-import { CardsProps } from "../../../interfaces/Interfaces";
+import { CardsProps } from "../../../interfaces/Dashboard";
 
 const Cards = (props: CardsProps) => {
   return (

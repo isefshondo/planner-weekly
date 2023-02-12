@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledDayFilter, StyledDayWrapper } from "../../../assets/styles/Global.styles";
-import { HeaderDayProps } from "../../../interfaces/Interfaces";
+import { SelectDayProps } from "../../../interfaces/Dashboard";
 
 const WeekDays = [
   { id: "Monday", value: "MONDAY" },
@@ -12,7 +12,7 @@ const WeekDays = [
   { id: "Sunday", value: "SUNDAY" },
 ];
 
-const HeaderDay = (props: HeaderDayProps) => {
+const HeaderDay = (props: SelectDayProps) => {
   return (
     <StyledDayWrapper>
       {WeekDays.map((days) => {

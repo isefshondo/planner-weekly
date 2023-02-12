@@ -1,10 +1,6 @@
-import React, { SetStateAction } from "react";
+import React from "react";
 import { StyledSelect } from "../../../assets/styles/Global.styles";
-
-type SelectProps = {
-  valueWeekDay: string;
-  setWeekDay: React.Dispatch<SetStateAction<string>>;
-};
+import { SelectProps } from "../../../interfaces/Dashboard";
 
 const WeekDays = [
   { id: "Monday", value: "MONDAY" },

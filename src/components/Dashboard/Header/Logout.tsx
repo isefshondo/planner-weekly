@@ -3,9 +3,10 @@ import Logo from "../../../assets/imgs/mini-logo.svg";
 import IconArrow from "../../../assets/imgs/arrow-right.svg";
 import { LogoutWrapper, StyledLogoutButton } from "../../../assets/styles/Global.styles";
 import { AppContext } from "../../../context/ApplicationContext";
+import { ApplicationContext } from "../../../interfaces/Interfaces";
 
 const Logout = () => {
-  const appCtx = React.useContext(AppContext);
+  const appCtx = React.useContext<ApplicationContext>(AppContext);
   
   return (
     <LogoutWrapper>

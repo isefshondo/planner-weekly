@@ -1,11 +1,11 @@
 import React from "react";
 import { CardsWrapper, PlannerWrapper } from "../../../assets/styles/Global.styles";
-import { PlannerProps } from "../../../interfaces/Interfaces";
+import { ActionProps } from "../../../interfaces/Dashboard";
 import Cards from "./Cards";
 import HeaderDay from "./HeaderDay";
 import TaskTime from "./TaskTime";
 
-const DashboardPlanner = (props: PlannerProps) => {
+const DashboardPlanner = (props: ActionProps) => {
   const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
 
   const selectedDayFilter = (selectedWeekDay: string) => {
@@ -57,7 +57,7 @@ const DashboardPlanner = (props: PlannerProps) => {
                     belongTime={task.choosenTime}
                     hasConflict={hasConflict}
                   />
-                  <CardsWrapper hasConflicts={hasConflict}>
+                  <CardsWrapper hasConflict={hasConflict}>
                     {task.conflictedTasks.map((items, index) => {
                       return (
                         <Cards
