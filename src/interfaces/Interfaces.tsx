@@ -20,15 +20,14 @@ export interface InputProps {
 };
 
 export interface RegisterProps {
-  enteredFirstName: string,
-  enteredLastName: string,
-  enteredBirthDate: string,
-  enteredCountry: string,
-  enteredCity: string,
-  enteredEmail: string,
-  enteredPassword: string,
-  enteredConfirmPassword: string,
-  fullName: string,
+  firstName: string,
+  lastName: string,
+  birthDate: string,
+  country: string,
+  city: string,
+  email: string,
+  password: string,
+  confirmPassword: string,
 }
 
 export interface ApplicationContext {
