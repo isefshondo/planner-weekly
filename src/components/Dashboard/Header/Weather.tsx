@@ -15,7 +15,7 @@ const Weather = () => {
 
   
   async function fetchingWeather() {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${enteredUser.enteredCity}&units=metric&appid=${myAPIKey}`, {
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${enteredUser.city}&units=metric&appid=${myAPIKey}`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       }
@@ -28,11 +28,11 @@ const Weather = () => {
 
   React.useEffect(() => {
     fetchingWeather()
-  }, [enteredUser.enteredCity]);
+  }, [enteredUser.city]);
 
   return (
     <WeatherWrapper>
-      <h6>{enteredUser.enteredCity} - {enteredUser.enteredCountry}</h6>
+      <h6>{enteredUser.city} - {enteredUser.country}</h6>
       <StyledWeather>
         <img src={Icon} alt="Weather's Icon" />
         {isCityValid ? `${Number(weatherData).toFixed(0)}` : "Location not found!"}

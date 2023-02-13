@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ApplicationContext, RegisterProps } from "../interfaces/Interfaces";
 
@@ -7,15 +8,14 @@ interface AppProviderProps {
 }
 
 let enteredUserData = {
-  enteredFirstName: "",
-  enteredLastName: "",
-  enteredBirthDate: "",
-  enteredCountry: "",
-  enteredCity: "",
-  enteredEmail: "",
-  enteredPassword: "",
-  enteredConfirmPassword: "",
-  fullName: "",
+  firstName: "",
+  lastName: "",
+  birthDate: "",
+  city: "",
+  country: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
 }
 
 export const AppContext = React.createContext<ApplicationContext>({
@@ -28,6 +28,7 @@ export const AppContext = React.createContext<ApplicationContext>({
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const toNavigate = useNavigate();
+  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>(enteredUserData);
 
@@ -39,8 +40,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   }, [setEnteredUser]);
   
   const onRegister = (obj: string) => {
-    setEnteredUser(JSON.parse(obj));
-    localStorage.setItem("enteredUser", obj);
+    // setEnteredUser(JSON.parse(obj));
+    axios.post(`${url}/users/sign-up`, JSON.parse(obj))
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
     toNavigate("login");
   };
 
@@ -50,7 +53,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       setIsLoggedIn(true);
       toNavigate("/");
     }
-  }, [])
+  }, []);
 
   const onLogInHandler = (
     username: string,

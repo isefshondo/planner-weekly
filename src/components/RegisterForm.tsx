@@ -11,15 +11,14 @@ import Input from "./UI/Input";
 const RegisterForm = () => {
   const appCtx = React.useContext(AppContext);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>({
-    enteredFirstName: "",
-    enteredLastName: "",
-    enteredBirthDate: "",
-    enteredCountry: "",
-    enteredCity: "",
-    enteredEmail: "",
-    enteredPassword: "",
-    enteredConfirmPassword: "",
-    fullName: "",
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    city: "",
+    country: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,26 +30,26 @@ const RegisterForm = () => {
 
   // Checking Input Validity
   const isFirstNameValid =
-    enteredUser.enteredFirstName.length >= 2 &&
-    !/\d/.test(enteredUser.enteredFirstName);
+    enteredUser.firstName.length >= 2 &&
+    !/\d/.test(enteredUser.firstName);
   const isLastNameValid =
-    enteredUser.enteredLastName.length >= 2 &&
-    !/\d/.test(enteredUser.enteredLastName);
+    enteredUser.lastName.length >= 2 &&
+    !/\d/.test(enteredUser.lastName);
   const isBirthDateValid =
-    enteredUser.enteredBirthDate.length === 10 &&
-    Number(enteredUser.enteredBirthDate.split("/")[0]) <= 12 &&
-    Number(enteredUser.enteredBirthDate.split("/")[1]) <= 31 &&
-    Number(enteredUser.enteredBirthDate.split("/")[2]) >= 1900;
-  const isCountryValid = enteredUser.enteredCountry.length > 0;
-  const isCityValid = enteredUser.enteredCity.length > 0;
+    enteredUser.birthDate.length === 10 &&
+    Number(enteredUser.birthDate.split("/")[0]) <= 12 &&
+    Number(enteredUser.birthDate.split("/")[1]) <= 31 &&
+    Number(enteredUser.birthDate.split("/")[2]) >= 1900;
+  const isCountryValid = enteredUser.country.length > 0;
+  const isCityValid = enteredUser.city.length > 0;
   const isEmailValid =
-    enteredUser.enteredEmail.length > 0 &&
-    enteredUser.enteredEmail.includes("@");
-  const isPasswordValid = enteredUser.enteredPassword.length >= 8;
+    enteredUser.email.length > 0 &&
+    enteredUser.email.includes("@");
+  const isPasswordValid = enteredUser.password.length >= 8;
   const isPasswordEqual =
-    enteredUser.enteredConfirmPassword.length ===
-      enteredUser.enteredPassword.length &&
-    enteredUser.enteredConfirmPassword === enteredUser.enteredPassword;
+    enteredUser.confirmPassword.length ===
+      enteredUser.password.length &&
+    enteredUser.confirmPassword === enteredUser.password;
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -68,7 +67,6 @@ const RegisterForm = () => {
       appCtx.onRegister(
         JSON.stringify({
           ...enteredUser,
-          fullName: `${enteredUser.enteredFirstName} ${enteredUser.enteredLastName}`,
         })
       );
     }
@@ -79,7 +77,7 @@ const RegisterForm = () => {
       <StyledInputWrapper>
         <Input
           id="first-name"
-          name="enteredFirstName"
+          name="firstName"
           type="text"
           placeholder="Your first name"
           label="first name"
@@ -93,7 +91,7 @@ const RegisterForm = () => {
         />
         <Input
           id="last-name"
-          name="enteredLastName"
+          name="lastName"
           type="text"
           placeholder="Your last name"
           label="last name"
@@ -107,7 +105,7 @@ const RegisterForm = () => {
         />
         <Input
           id="birth-date"
-          name="enteredBirthDate"
+          name="birthDate"
           type="text"
           placeholder="MM/DD/YYYY"
           label="birth date"
@@ -121,7 +119,7 @@ const RegisterForm = () => {
         />
         <Input
           id="country"
-          name="enteredCountry"
+          name="country"
           type="text"
           placeholder="Your country"
           label="Country"
@@ -135,7 +133,7 @@ const RegisterForm = () => {
         />
         <Input
           id="city"
-          name="enteredCity"
+          name="city"
           type="text"
           placeholder="Your city"
           label="City"
@@ -149,7 +147,7 @@ const RegisterForm = () => {
         />
         <Input
           id="email"
-          name="enteredEmail"
+          name="email"
           type="email"
           placeholder="A valid e-mail here"
           label="e-mail"
@@ -163,7 +161,7 @@ const RegisterForm = () => {
         />
         <Input
           id="password"
-          name="enteredPassword"
+          name="password"
           type="password"
           placeholder="Your password"
           label="password"
@@ -177,7 +175,7 @@ const RegisterForm = () => {
         />
         <Input
           id="confirm-password"
-          name="enteredConfirmPassword"
+          name="confirmPassword"
           type="password"
           placeholder="Confirm your password"
           label="password"
