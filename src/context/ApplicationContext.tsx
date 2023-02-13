@@ -34,23 +34,13 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>(enteredUserData);
-
-  React.useEffect(() => {
-    if(localStorage.getItem("enteredUser") !== null){
-      const enteredLocalStorage = JSON.parse(localStorage.getItem("enteredUser")!);
-      setEnteredUser(enteredLocalStorage);
-    }
-  }, [setEnteredUser]);
   
   const onRegister = async (obj: string) => {
     await axios.post(`${url}/users/sign-up`, JSON.parse(obj))
-    .then(
-      res => {
-        toNavigate("login");
-      }
-    )
-    .catch(error => 
-      console.log(error.response.data))
+    .then(res => {
+      console.log(res)
+      toNavigate("login");
+    }).catch(error => console.log(error.response.data));
   };
 
   React.useEffect(() => {
@@ -61,25 +51,14 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     }
   }, []);
 
-  const onLogInHandler = async (
-    username: string,
-    password: string,
-  ) => {
+  async function onLogInHandler(username: string, password: string) {
     await axios.post(`${url}/users/sign-in`, {
       email: username,
       password,
-    }).then(res => console.log(res))
-    .catch(error => console.log(error))
-    // const enteredUser = JSON.parse(localStorage.getItem("enteredUser")!);
-
-    // if(enteredUser === null) return;
-
-    // if((enteredUser.fullName === username || enteredUser.enteredEmail === username) && (enteredUser.enteredPassword === password)){
-    //   setIsLoggedIn(true);
-    //   localStorage.setItem("isLoggedIn", "LOGGED_IN");
-    //   toNavigate("/");
-    // }
-  };
+    }).then(res => {
+      console.log(res.data.user);
+    }).catch(err => console.log(err.response.data));
+  }
 
   const onLogOutHandler = () => {
     localStorage.removeItem("isLoggedIn");

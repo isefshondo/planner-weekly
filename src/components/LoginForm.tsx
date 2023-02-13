@@ -93,13 +93,13 @@ const LoginForm = () => {
           formState={isFormSent}
         />
       </StyledLogin>
-      {/* <InvalidForm>
-        {isFormSent && !isLoginValid && (
+      <InvalidForm>
+        {/* {isFormSent && !isLoginValid && (
           <p>
             Wow, invalid username or password. <br /> Please, try again!
           </p>
-        )}
-      </InvalidForm> */}
+        )} */}
+      </InvalidForm>
       <GeneralButton enteredButtonAction="Login">Log in</GeneralButton>
     </StyledLoginForm>
   );
