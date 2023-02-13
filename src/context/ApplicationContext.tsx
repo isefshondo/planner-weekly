@@ -27,6 +27,9 @@ export const AppContext = React.createContext<ApplicationContext>({
 });
 
 export const AppProvider = ({ children }: AppProviderProps) => {
+  // I would need to pass the state of the modal
+  // and then pass the error message as props
+  // also I would need to pass the state to the page
   const toNavigate = useNavigate();
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
@@ -39,12 +42,15 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     }
   }, [setEnteredUser]);
   
-  const onRegister = (obj: string) => {
-    // setEnteredUser(JSON.parse(obj));
-    axios.post(`${url}/users/sign-up`, JSON.parse(obj))
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
-    toNavigate("login");
+  const onRegister = async (obj: string) => {
+    await axios.post(`${url}/users/sign-up`, JSON.parse(obj))
+    .then(
+      res => {
+        toNavigate("login");
+      }
+    )
+    .catch(error => 
+      console.log(error.response.data))
   };
 
   React.useEffect(() => {
@@ -55,19 +61,24 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     }
   }, []);
 
-  const onLogInHandler = (
+  const onLogInHandler = async (
     username: string,
     password: string,
   ) => {
-    const enteredUser = JSON.parse(localStorage.getItem("enteredUser")!);
+    await axios.post(`${url}/users/sign-in`, {
+      email: username,
+      password,
+    }).then(res => console.log(res))
+    .catch(error => console.log(error))
+    // const enteredUser = JSON.parse(localStorage.getItem("enteredUser")!);
 
-    if(enteredUser === null) return;
+    // if(enteredUser === null) return;
 
-    if((enteredUser.fullName === username || enteredUser.enteredEmail === username) && (enteredUser.enteredPassword === password)){
-      setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", "LOGGED_IN");
-      toNavigate("/");
-    }
+    // if((enteredUser.fullName === username || enteredUser.enteredEmail === username) && (enteredUser.enteredPassword === password)){
+    //   setIsLoggedIn(true);
+    //   localStorage.setItem("isLoggedIn", "LOGGED_IN");
+    //   toNavigate("/");
+    // }
   };
 
   const onLogOutHandler = () => {

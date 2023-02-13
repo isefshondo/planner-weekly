@@ -21,10 +21,10 @@ const LoginForm = () => {
   const [passwordIconMove, setPasswordIconMove] =
     React.useState<boolean>(false);
 
-  const isLoginValid =
-    enteredUsername ===
-      (appCtx.enteredUser.enteredEmail || appCtx.enteredUser.fullName) &&
-    enteredPassword === appCtx.enteredUser.enteredPassword;
+  // const isLoginValid =
+  //   enteredUsername ===
+  //     (appCtx.enteredUser.email || appCtx.enteredUser.fullName) &&
+  //   enteredPassword === appCtx.enteredUser.password;
 
   React.useEffect(() => {
     enteredUsername.length > 0
@@ -68,7 +68,7 @@ const LoginForm = () => {
             enteredUsername.length === 0 && setUsernameIconMove(false);
           }}
           isAnimated={usernameIconMove}
-          errorPattern={isLoginValid}
+          errorPattern={true}
           formState={isFormSent}
         />
         <Input
@@ -89,17 +89,17 @@ const LoginForm = () => {
             enteredPassword.length === 0 && setPasswordIconMove(false);
           }}
           isAnimated={passwordIconMove}
-          errorPattern={isLoginValid}
+          errorPattern={true}
           formState={isFormSent}
         />
       </StyledLogin>
-      <InvalidForm>
+      {/* <InvalidForm>
         {isFormSent && !isLoginValid && (
           <p>
             Wow, invalid username or password. <br /> Please, try again!
           </p>
         )}
-      </InvalidForm>
+      </InvalidForm> */}
       <GeneralButton enteredButtonAction="Login">Log in</GeneralButton>
     </StyledLoginForm>
   );
