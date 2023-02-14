@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 
 export interface InputProps {
   id: string,
@@ -32,11 +32,9 @@ export interface RegisterProps {
 
 export interface ApplicationContext {
   isLoggedIn: boolean,
-  onLogin: (
-    username: string,
-    password: string,
-  ) => void,
   onLogout: () => void,
   onRegister: (obj: string) => void,
-  enteredUser: RegisterProps
+  setEnteredUser: React.Dispatch<SetStateAction<RegisterProps>>,
+  enteredUser: RegisterProps,
+  setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>
 }

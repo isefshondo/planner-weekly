@@ -9,6 +9,22 @@ const DashboardPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = React.useState<string>("");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
+  /*
+  // I don't know if I can use useEffect anymore
+  React.useEffect(() => {
+    function getEnteredEvents(description: string, dayOfWeek: string) {
+      const response = axios.get(`${url}/events?dayOfWeek=${dayOfWeek}&description=${description}/`, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        }
+      }).then((data) => {
+        console.log(data);
+        // setAssignments(data);
+      })
+    }
+  }, [assignments]);
+  */
+
   const addAssignments = (tasks: Assignments) => {
     const isTaskConflicting = [...assignments].findIndex((task) => {
       return (
@@ -40,6 +56,7 @@ const DashboardPage: React.FC = () => {
       <main>
         <PlannerForm
           addNewTask={addAssignments}
+          // addNewTask={getEnteredEvents}
           enteredTasks={assignments}
           setEnteredTasks={setAssignments}
           selectedDay={selectedDay}

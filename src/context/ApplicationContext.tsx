@@ -20,48 +20,39 @@ let enteredUserData = {
 
 export const AppContext = React.createContext<ApplicationContext>({
   isLoggedIn: false,
-  onLogin: (username, password) => {},
   onLogout: () => {},
   onRegister: (obj) => {},
-  enteredUser: enteredUserData
+  setEnteredUser: () => Array,
+  enteredUser: enteredUserData,
+  setIsLoggedIn: () => Array,
 });
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  // I would need to pass the state of the modal
-  // and then pass the error message as props
-  // also I would need to pass the state to the page
   const toNavigate = useNavigate();
+  // Create a axios file to put this (baseUrl)
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>(enteredUserData);
   
-  const onRegister = async (obj: string) => {
-    await axios.post(`${url}/users/sign-up`, JSON.parse(obj))
+  // Create a modal for the errors
+  const onRegister = (obj: string) => {
+    axios.post(`${url}/users/sign-up/`, JSON.parse(obj))
     .then(res => {
-      console.log(res)
+      console.log(res);
       toNavigate("login");
-    }).catch(error => console.log(error.response.data));
+    }).catch(err => console.log(err));
   };
 
   React.useEffect(() => {
-    const currentLoginState = localStorage.getItem("isLoggedIn");
-    if(currentLoginState === "LOGGED_IN"){
+    const currentLoginState = localStorage.getItem("enteredToken");
+    if(currentLoginState != null){
       setIsLoggedIn(true);
       toNavigate("/");
     }
   }, []);
 
-  async function onLogInHandler(username: string, password: string) {
-    await axios.post(`${url}/users/sign-in`, {
-      email: username,
-      password,
-    }).then(res => {
-      console.log(res.data.user);
-    }).catch(err => console.log(err.response.data));
-  }
-
   const onLogOutHandler = () => {
-    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("enteredToken");
     setIsLoggedIn(false);
   };
 
@@ -69,10 +60,11 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <AppContext.Provider value={
       {
         isLoggedIn: isLoggedIn,
-        onLogin: onLogInHandler,
         onLogout: onLogOutHandler,
         onRegister: onRegister,
+        setEnteredUser: setEnteredUser,
         enteredUser: enteredUser,
+        setIsLoggedIn: setIsLoggedIn,
       }
     }>
       { children }

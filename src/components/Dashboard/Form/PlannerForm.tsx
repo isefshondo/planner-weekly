@@ -21,6 +21,20 @@ const PlannerForm = (props: FormProps) => {
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
+    /*
+      const response = axios.post(`${url}/events/`, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: {
+          description: enteredTitle,
+          dayOfWeek: enteredDay.toLocaleLowerCase(),
+        }
+      }).then((data) => {
+        props.addNewTask(data, data);
+      }).catch((err) => console.log(err));
+    */
+
     const addTaskInformation: Assignments = {
       id: Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)

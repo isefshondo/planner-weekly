@@ -1,4 +1,5 @@
 import React from "react";
+import axios, { AxiosError } from "axios";
 import Input from "./UI/Input";
 import User from "../assets/imgs/icon-user.svg";
 import Password from "../assets/imgs/icon-password.svg";
@@ -9,9 +10,12 @@ import {
   StyledLoginForm,
 } from "../assets/styles/Global.styles";
 import { AppContext } from "../context/ApplicationContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const appCtx = React.useContext(AppContext);
+  const toNavigate = useNavigate();
+  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isFormSent, setIsFormSent] = React.useState<boolean>(false);
   const [enteredUsername, setEnteredUsername] = React.useState<string>("");
   const [enteredPassword, setEnteredPassword] = React.useState<string>("");
@@ -20,11 +24,6 @@ const LoginForm = () => {
     React.useState<boolean>(false);
   const [passwordIconMove, setPasswordIconMove] =
     React.useState<boolean>(false);
-
-  // const isLoginValid =
-  //   enteredUsername ===
-  //     (appCtx.enteredUser.email || appCtx.enteredUser.fullName) &&
-  //   enteredPassword === appCtx.enteredUser.password;
 
   React.useEffect(() => {
     enteredUsername.length > 0
@@ -40,9 +39,17 @@ const LoginForm = () => {
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-
-    appCtx.onLogin(enteredUsername, enteredPassword);
-
+    const response = axios.post(`${url}/users/sign-in/`, {
+      email: enteredUsername,
+      password: enteredPassword
+    }).then(data => {
+      appCtx.setEnteredUser(data.data.user);
+      localStorage.setItem("enteredToken", data.data.token);
+      appCtx.setIsLoggedIn(true);
+      toNavigate("/");
+    }).catch(err => 
+      alert(err.response.data)
+    );
     setIsFormSent(true);
   };
 
