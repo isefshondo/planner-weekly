@@ -1,9 +1,11 @@
+import axios from "axios";
 import React from "react";
 import { ButtonWrapper, InputWrapper, StyledButtonTask, StyledFormTask, StyledInputTask } from "../../../assets/styles/Global.styles";
 import { Assignments, FormProps } from "../../../interfaces/Dashboard";
 import Select from "./Select";
 
 const PlannerForm = (props: FormProps) => {
+  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [enteredTitle, setEnteredTitle] = React.useState<string>("");
   const [enteredDay, setEnteredDay] = React.useState<string>("MONDAY");
   const [enteredTime, setEnteredTime] = React.useState<string>("");
@@ -20,21 +22,19 @@ const PlannerForm = (props: FormProps) => {
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-
-    /*
-      const response = axios.post(`${url}/events/`, {
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: {
-          description: enteredTitle,
-          dayOfWeek: enteredDay.toLocaleLowerCase(),
-        }
-      }).then((data) => {
-        props.addNewTask(data, data);
-      }).catch((err) => console.log(err));
-    */
-
+/*
+    const response = axios.post(`${url}/events/`, {
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: {
+        description: enteredTitle,
+        dayOfWeek: enteredDay.toLocaleLowerCase(),
+      }
+    }).then((data) => {
+      props.addNewTask(data);
+    }).catch((err) => console.log(err));
+*/
     const addTaskInformation: Assignments = {
       id: Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)

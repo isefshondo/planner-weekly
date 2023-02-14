@@ -42,7 +42,13 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       toNavigate("login");
     }).catch(err => console.log(err));
   };
-
+  
+  const onLogOutHandler = () => {
+    localStorage.removeItem("enteredToken");
+    localStorage.removeItem("locationInfo");
+    setIsLoggedIn(false);
+  };
+  
   React.useEffect(() => {
     const currentLoginState = localStorage.getItem("enteredToken");
     if(currentLoginState != null){
@@ -51,10 +57,18 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     }
   }, []);
 
-  const onLogOutHandler = () => {
-    localStorage.removeItem("enteredToken");
-    setIsLoggedIn(false);
-  };
+  React.useEffect(() => {
+    if(localStorage.getItem("locationInfo") !== null) {
+      const enteredLocationInfo = JSON.parse(localStorage.getItem("locationInfo")!);
+      setEnteredUser(prevState => {
+        return ({
+          ...prevState,
+          city: enteredLocationInfo.city,
+          country: enteredLocationInfo.country,
+        })
+      })
+    }
+  }, [setEnteredUser]);
 
   return (
     <AppContext.Provider value={
