@@ -4,8 +4,8 @@ export interface Assignments {
   _id: string,
   description: string,
   dayOfWeek: string,
-  choosenTime: string,
-  conflictedTasks: Array<string>,
+  createdAt: string,
+  conflictedTasks: Array<Object>,
 }
 
 export interface DescriptionProps {

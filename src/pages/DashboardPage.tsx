@@ -12,30 +12,18 @@ const DashboardPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = React.useState<string>("");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
-  function getEnteredEvents() {
-    const response = axios.get(`${url}/events/`, {
-      headers: authHeader(),
-    }).then((data) => {
-      console.log(data);
-    }).catch(err => console.log(err));
-  }
-
-  React.useEffect(() => {
-    getEnteredEvents()
-  }, []);
-  
-  /*const addAssignments = (tasks: Assignments) => {
+  function addAssignments(tasks: Assignments) {
     const isTaskConflicting = [...assignments].findIndex((task) => {
       return (
-        task.selectedDay === tasks.selectedDay &&
-        task.choosenTime === tasks.choosenTime
+        task.dayOfWeek === tasks.dayOfWeek &&
+        task.createdAt === tasks.createdAt
       );
     });
 
     const organizedAssignments: Array<Assignments> = [...assignments];
 
     if (isTaskConflicting >= 0) {
-      organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks.title);
+      organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks);
     } else {
       organizedAssignments.push({
         ...tasks,
@@ -44,11 +32,33 @@ const DashboardPage: React.FC = () => {
 
     setAssignments(
       organizedAssignments.sort((a, b) =>
-        a.choosenTime.localeCompare(b.choosenTime)
+        a.createdAt.localeCompare(b.createdAt)
       )
-    );
-  };*/
+    )
+  }
 
+  function getEnteredEvents() {
+    const response = axios.get(`${url}/events/`, {
+      headers: authHeader(),
+    }).then((data) => {
+      const enteredTasksData = data.data.events.map((enteredTasks: Assignments) => {
+        const enteredTime = new Date(enteredTasks.createdAt).toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        return {
+          ...enteredTasks,
+          createdAt: enteredTime,
+        };
+      });
+      setAssignments(enteredTasksData);
+    }).catch(err => console.log(err));
+  }
+
+  React.useEffect(() => {
+    getEnteredEvents()
+  }, []);
+  
   return (
     <Wrapper isPlanner={true}>
       <Header />

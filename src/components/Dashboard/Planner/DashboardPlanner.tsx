@@ -56,13 +56,12 @@ const DashboardPlanner = (props: ActionProps) => {
                   <TaskTime
                     key={`${task._id}-TIME`}
                     belongDay={task.dayOfWeek}
-                    belongTime={task.choosenTime}
+                    belongTime={task.createdAt}
                     hasConflict={false}
                   />
                   <CardsWrapper hasConflict={false}>
                     <Cards
                       id={task._id}
-                      key={task._id}
                       selectedDay={task.dayOfWeek}
                       description={task.description}
                       hasConflict={false}
