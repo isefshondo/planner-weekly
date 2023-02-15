@@ -1,31 +1,30 @@
+import axios from "axios";
 import React from "react";
 import { Wrapper } from "../assets/styles/Global.styles";
+import authHeader from "../auth/auth-header";
 import PlannerForm from "../components/Dashboard/Form/PlannerForm";
 import Header from "../components/Dashboard/Header/Header";
 import DashboardPlanner from "../components/Dashboard/Planner/DashboardPlanner";
 import { Assignments } from "../interfaces/Dashboard";
 
 const DashboardPage: React.FC = () => {
+  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [selectedDay, setSelectedDay] = React.useState<string>("");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
-  /*
-  // I don't know if I can use useEffect anymore
-  React.useEffect(() => {
-    function getEnteredEvents(description: string, dayOfWeek: string) {
-      const response = axios.get(`${url}/events?dayOfWeek=${dayOfWeek}&description=${description}/`, {
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        }
-      }).then((data) => {
-        console.log(data);
-        // setAssignments(data);
-      })
-    }
-  }, [assignments]);
-  */
+  function getEnteredEvents() {
+    const response = axios.get(`${url}/events/`, {
+      headers: authHeader(),
+    }).then((data) => {
+      console.log(data);
+    }).catch(err => console.log(err));
+  }
 
-  const addAssignments = (tasks: Assignments) => {
+  React.useEffect(() => {
+    getEnteredEvents()
+  }, []);
+  
+  /*const addAssignments = (tasks: Assignments) => {
     const isTaskConflicting = [...assignments].findIndex((task) => {
       return (
         task.selectedDay === tasks.selectedDay &&
@@ -48,15 +47,13 @@ const DashboardPage: React.FC = () => {
         a.choosenTime.localeCompare(b.choosenTime)
       )
     );
-  };
+  };*/
 
   return (
     <Wrapper isPlanner={true}>
       <Header />
       <main>
         <PlannerForm
-          addNewTask={addAssignments}
-          // addNewTask={getEnteredEvents}
           enteredTasks={assignments}
           setEnteredTasks={setAssignments}
           selectedDay={selectedDay}

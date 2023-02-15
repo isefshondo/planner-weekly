@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { ButtonWrapper, InputWrapper, StyledButtonTask, StyledFormTask, StyledInputTask } from "../../../assets/styles/Global.styles";
+import authHeader from "../../../auth/auth-header";
 import { Assignments, FormProps } from "../../../interfaces/Dashboard";
 import Select from "./Select";
 
@@ -17,35 +18,19 @@ const PlannerForm = (props: FormProps) => {
   };
 
   const onDeleteAll = (selectedWeekDay: string) => {
-    props.setEnteredTasks(props.enteredTasks.filter((tasks) => tasks.selectedDay !== selectedWeekDay));
+    props.setEnteredTasks(props.enteredTasks.filter((tasks) => tasks.dayOfWeek !== selectedWeekDay));
   };
 
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-/*
-    const response = axios.post(`${url}/events/`, {
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: {
-        description: enteredTitle,
-        dayOfWeek: enteredDay.toLocaleLowerCase(),
-      }
-    }).then((data) => {
-      props.addNewTask(data);
-    }).catch((err) => console.log(err));
-*/
-    const addTaskInformation: Assignments = {
-      id: Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1),
-      title: enteredTitle,
-      selectedDay: enteredDay,
-      choosenTime: enteredTime,
-      conflictedTasks: [enteredTitle]
-    };
 
-    props.addNewTask(addTaskInformation);
+    const response = axios.post(`${url}/events/`, {
+      description: enteredTitle,
+      dayOfWeek: enteredDay.toLocaleLowerCase(),
+    }, {
+      headers: authHeader()
+    }
+    ).catch((err) => alert(err));
 
     // Reseting Input
     setEnteredTitle("");

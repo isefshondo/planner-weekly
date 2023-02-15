@@ -1,5 +1,5 @@
 import React from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import Input from "./UI/Input";
 import User from "../assets/imgs/icon-user.svg";
 import Password from "../assets/imgs/icon-password.svg";
@@ -44,14 +44,17 @@ const LoginForm = () => {
       email: enteredUsername,
       password: enteredPassword
     }).then(data => {
-      appCtx.setEnteredUser(data.data.user);
-      localStorage.setItem("enteredToken", data.data.token);
-      localStorage.setItem("locationInfo", JSON.stringify({
-        city: data.data.user.city,
-        country: data.data.user.country,
-      }));
-      appCtx.setIsLoggedIn(true);
-      toNavigate("/");
+      if(data.data.token) {
+        appCtx.setEnteredUser(data.data.user);
+        localStorage.setItem("enteredToken", data.data.token);
+        localStorage.setItem("locationInfo", JSON.stringify({
+          city: data.data.user.city,
+          country: data.data.user.country,
+        }));
+        appCtx.setIsLoggedIn(true);
+        toNavigate("/");
+      }
+      return data.data.token;
     }).catch(err => alert(err.response.data));
 
     setIsFormSent(true);

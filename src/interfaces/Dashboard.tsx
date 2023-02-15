@@ -1,9 +1,9 @@
 import React from "react";
 
 export interface Assignments {
-  id: string,
-  title: string,
-  selectedDay: string,
+  _id: string,
+  description: string,
+  dayOfWeek: string,
   choosenTime: string,
   conflictedTasks: Array<string>,
 }
@@ -14,7 +14,6 @@ export interface DescriptionProps {
 }
 
 export interface FormProps {
-  addNewTask: (tasks: Assignments) => void,
   enteredTasks: Array<Assignments>,
   setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
   selectedDay: string,

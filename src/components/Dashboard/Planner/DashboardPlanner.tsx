@@ -8,6 +8,8 @@ import TaskTime from "./TaskTime";
 const DashboardPlanner = (props: ActionProps) => {
   const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
 
+  console.log(props.enteredTasks);
+
   const selectedDayFilter = (selectedWeekDay: string) => {
     setSelectedDay(selectedWeekDay);
     props.setSelectedDay(selectedWeekDay);
@@ -17,7 +19,7 @@ const DashboardPlanner = (props: ActionProps) => {
     const deletedId = id.split("_");
     const cards = [...props.enteredTasks];
     const deleteCards = cards.findIndex((deleted) => {
-      return deleted.id == deletedId[0];
+      return deleted._id == deletedId[0];
     });
 
     if (cards[deleteCards].conflictedTasks.length === 1) {
@@ -45,30 +47,38 @@ const DashboardPlanner = (props: ActionProps) => {
         {props.enteredTasks &&
           props.enteredTasks
             .filter((cards) => {
-              return cards.selectedDay === selectedDay;
+              return cards.dayOfWeek === selectedDay.toLocaleLowerCase();
             })
             .map((task) => {
-              const hasConflict = task.conflictedTasks.length > 1;
+              // const hasConflict = task.conflictedTasks.length > 1;
               return (
                 <div style={{ display: "flex", columnGap: "1.063rem" }}>
                   <TaskTime
-                    key={task.id}
-                    belongDay={task.selectedDay}
+                    key={`${task._id}-TIME`}
+                    belongDay={task.dayOfWeek}
                     belongTime={task.choosenTime}
-                    hasConflict={hasConflict}
+                    hasConflict={false}
                   />
-                  <CardsWrapper hasConflict={hasConflict}>
-                    {task.conflictedTasks.map((items, index) => {
+                  <CardsWrapper hasConflict={false}>
+                    <Cards
+                      id={task._id}
+                      key={task._id}
+                      selectedDay={task.dayOfWeek}
+                      description={task.description}
+                      hasConflict={false}
+                      onClick={() => onDeleteTask(task._id)}
+                    />
+                    {/* {task.conflictedTasks.map((items, index) => {
                       return (
                         <Cards
-                          id={`${task.id}_${index}`}
-                          selectedDay={task.selectedDay}
+                          id={`${task._id}_${index}`}
+                          selectedDay={task.dayOfWeek}
                           description={items}
                           hasConflict={hasConflict}
-                          onClick={() => onDeleteTask(`${task.id}_${index}`)}
+                          onClick={() => onDeleteTask(`${task._id}_${index}`)}
                         />
                       );
-                    })}
+                    })} */}
                   </CardsWrapper>
                 </div>
               );
