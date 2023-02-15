@@ -18,7 +18,9 @@ const PlannerForm = (props: FormProps) => {
   };
 
   const onDeleteAll = (selectedWeekDay: string) => {
-    props.setEnteredTasks(props.enteredTasks.filter((tasks) => tasks.dayOfWeek !== selectedWeekDay));
+    const response = axios.delete(`${url}/events?dayOfWeek=${selectedWeekDay.toLocaleLowerCase()}`, {
+      headers: authHeader(),
+    }).catch(err => console.log(err));
   };
 
   const onSubmitHandler = (e: React.FormEvent) => {
@@ -29,8 +31,7 @@ const PlannerForm = (props: FormProps) => {
       dayOfWeek: enteredDay.toLocaleLowerCase(),
     }, {
       headers: authHeader()
-    }
-    ).catch((err) => alert(err));
+    }).catch((err) => alert(err));
 
     // Reseting Input
     setEnteredTitle("");
