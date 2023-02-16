@@ -17,12 +17,14 @@ export interface FormProps {
   enteredTasks: Array<Assignments>,
   setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
   selectedDay: string,
+  getEnteredEvents: () => void,
 }
 
 export interface ActionProps {
   enteredTasks: Array<Assignments>,
   setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
   setSelectedDay: React.Dispatch<React.SetStateAction<string>>,
+  getEnteredEvents: () => void,
 }
 
 export interface WeatherProps {

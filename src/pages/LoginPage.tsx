@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
       </InitialSection>
       <BackgroundImage />
       { appCtx.isFormSent && appCtx.isLoading && <Loading /> }
-      { appCtx.isFormSent && !appCtx.isLoading && appCtx.errorMessage != null && <Modal errorMessage={appCtx.errorMessage} /> }
+      {/* { appCtx.isFormSent && !appCtx.isLoading && appCtx.errorMessage != null && <Modal errorMessage={appCtx.errorMessage} /> } */}
     </Wrapper>
   );
 };

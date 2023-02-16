@@ -9,19 +9,19 @@ import { Assignments } from "../interfaces/Dashboard";
 
 const DashboardPage: React.FC = () => {
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
-  const [selectedDay, setSelectedDay] = React.useState<string>("");
+  const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
   function addAssignments(tasks: Array<Assignments>) {
-    const isTaskConflicting = [...assignments].findIndex(task => {
-      tasks.map((events) => {
-        return (
-          task.dayOfWeek === events.dayOfWeek &&
-          task.createdAt === events.createdAt
-        )
-      })
-      // console.log(task.dayOfWeek, tasks.dayOfWeek, task.createdAt, tasks.createdAt)
-    });
+    // const isTaskConflicting = [...assignments].findIndex(task => {
+    //   tasks.map((events) => {
+    //     return (
+    //       task.dayOfWeek === events.dayOfWeek &&
+    //       task.createdAt === events.createdAt
+    //     )
+    //   })
+    //   // console.log(task.dayOfWeek, tasks.dayOfWeek, task.createdAt, tasks.createdAt)
+    // });
     // const isTaskConflicting = tasks.map(events => {
     //   tasks.findIndex((task) => {
     //     return (
@@ -30,7 +30,7 @@ const DashboardPage: React.FC = () => {
     //     )
     //   })
     // });
-    console.log(isTaskConflicting);
+    // console.log(isTaskConflicting);
     // const organizedAssignments: Array<Assignments> = [...tasks];
 
     // .findIndex((task) => {
@@ -57,8 +57,9 @@ const DashboardPage: React.FC = () => {
     // )
   }
 
-  function getEnteredEvents() {
-    const response = axios.get(`${url}/events/`, {
+  function getEnteredEvents(day: string) {
+    console.log(day);
+    const response = axios.get(`${url}/events?dayOfWeek=${day}`, {
       headers: authHeader(),
     }).then((data) => {
       const enteredTasksData = data.data.events.map((enteredTasks: Assignments) => {
@@ -72,13 +73,13 @@ const DashboardPage: React.FC = () => {
         };
       });
       setAssignments(enteredTasksData);
-      addAssignments(enteredTasksData);
+      // addAssignments(enteredTasksData);
     }).catch(err => console.log(err));
   }
 
   React.useEffect(() => {
-    getEnteredEvents()
-  }, []);
+    getEnteredEvents(selectedDay.toLocaleLowerCase());
+  }, [selectedDay]);
   
   return (
     <Wrapper isPlanner={true}>
@@ -88,11 +89,13 @@ const DashboardPage: React.FC = () => {
           enteredTasks={assignments}
           setEnteredTasks={setAssignments}
           selectedDay={selectedDay}
+          getEnteredEvents={() => getEnteredEvents(selectedDay.toLocaleLowerCase())}
         />
         <DashboardPlanner
           enteredTasks={assignments}
           setEnteredTasks={setAssignments}
           setSelectedDay={setSelectedDay}
+          getEnteredEvents={() => getEnteredEvents(selectedDay.toLocaleLowerCase())}
         />
       </main>
     </Wrapper>

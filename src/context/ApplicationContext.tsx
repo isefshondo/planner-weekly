@@ -50,7 +50,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       setIsFormSent(false);
     }).catch(err => {
       setIsLoading(false);
-      setErrorMessage(err.response.data);
+      alert(err.response.data);
     });
   };
   

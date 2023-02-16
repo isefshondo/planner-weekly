@@ -20,6 +20,10 @@ const PlannerForm = (props: FormProps) => {
   const onDeleteAll = (selectedWeekDay: string) => {
     const response = axios.delete(`${url}/events?dayOfWeek=${selectedWeekDay.toLocaleLowerCase()}`, {
       headers: authHeader(),
+    }).then(data => {
+      if(data.status === 200) {
+        props.getEnteredEvents()
+      }
     }).catch(err => console.log(err));
   };
 
@@ -31,6 +35,10 @@ const PlannerForm = (props: FormProps) => {
       dayOfWeek: enteredDay.toLocaleLowerCase(),
     }, {
       headers: authHeader()
+    }).then(data => {
+      if(data.status === 201) {
+        props.getEnteredEvents();
+      }
     }).catch((err) => alert(err));
 
     // Reseting Input

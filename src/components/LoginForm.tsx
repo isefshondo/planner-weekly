@@ -58,7 +58,11 @@ const LoginForm = () => {
       return data.data.token;
     }).catch(err => {
       appCtx.setIsLoading(false);
-      appCtx.setErrorMessage(err.response.data);
+      if(typeof err.response.data === "object") {
+        alert(err.response.data.errors[0]);
+      } else {
+        alert(err.response.data);
+      }
     });
 
     setIsFormSent(true);

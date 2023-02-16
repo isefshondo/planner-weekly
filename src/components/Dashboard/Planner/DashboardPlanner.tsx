@@ -19,6 +19,10 @@ const DashboardPlanner = (props: ActionProps) => {
   const onDeleteTask = (id: string) => {
     const response = axios.delete(`${url}/events/${id}`, {
       headers: authHeader(),
+    }).then(data => {
+      if(data.status === 204) {
+        props.getEnteredEvents();
+      }
     }).catch(err => {
       console.log(err)
     })
@@ -39,9 +43,6 @@ const DashboardPlanner = (props: ActionProps) => {
         />
         {props.enteredTasks &&
           props.enteredTasks
-            .filter((cards) => {
-              return cards.dayOfWeek === selectedDay.toLocaleLowerCase();
-            })
             .map((task) => {
               return (
                 <div style={{ display: "flex", columnGap: "1.063rem" }}>
