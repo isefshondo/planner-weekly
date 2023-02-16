@@ -71,8 +71,6 @@ const RegisterForm = () => {
         })
       );
     }
-    appCtx.setIsFormSent(true);
-    appCtx.setIsLoading(true);
   };
 
   return (

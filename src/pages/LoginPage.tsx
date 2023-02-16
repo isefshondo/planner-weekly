@@ -13,7 +13,6 @@ import WelcomeMessage from "../components/UI/WelcomeMessage";
 import { AppContext } from "../context/ApplicationContext";
 
 const LoginPage: React.FC = () => {
-  const appCtx = React.useContext(AppContext);
   return (
     <Wrapper isPlanner={false}>
       <InitialSection>
@@ -28,8 +27,6 @@ const LoginPage: React.FC = () => {
         </LinkWrapper>
       </InitialSection>
       <BackgroundImage />
-      { appCtx.isFormSent && appCtx.isLoading && <Loading /> }
-      {/* { appCtx.isFormSent && !appCtx.isLoading && appCtx.errorMessage != null && <Modal errorMessage={appCtx.errorMessage} /> } */}
     </Wrapper>
   );
 };

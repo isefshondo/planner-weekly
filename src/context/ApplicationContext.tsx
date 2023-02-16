@@ -25,12 +25,6 @@ export const AppContext = React.createContext<ApplicationContext>({
   setEnteredUser: () => Array,
   enteredUser: enteredUserData,
   setIsLoggedIn: () => Array,
-  setIsFormSent: () => Array,
-  isFormSent: false,
-  setIsLoading: () => Array,
-  isLoading: false,
-  setErrorMessage: () => Array,
-  errorMessage: "",
 });
 
 export const AppProvider = ({ children }: AppProviderProps) => {
@@ -38,19 +32,17 @@ export const AppProvider = ({ children }: AppProviderProps) => {
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>(enteredUserData);
-  const [isFormSent, setIsFormSent] = React.useState<boolean>(false);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = React.useState<string>("");
 
   const onRegister = (obj: string) => {
     axios.post(`${url}/users/sign-up/`, JSON.parse(obj))
     .then(res => {
-      setIsLoading(false);
       toNavigate("login");
-      setIsFormSent(false);
     }).catch(err => {
-      setIsLoading(false);
-      alert(err.response.data);
+      if(typeof err.response.data === "object") {
+        alert(err.response.data.errors[0]);
+      } else {
+        alert(err.response.data);
+      }
     });
   };
   
@@ -58,7 +50,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     localStorage.removeItem("enteredToken");
     localStorage.removeItem("locationInfo");
     setIsLoggedIn(false);
-    setIsFormSent(false);
   };
   
   React.useEffect(() => {
@@ -91,12 +82,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         setEnteredUser: setEnteredUser,
         enteredUser: enteredUser,
         setIsLoggedIn: setIsLoggedIn,
-        setIsFormSent,
-        isFormSent,
-        setIsLoading,
-        isLoading,
-        setErrorMessage,
-        errorMessage
       }
     }>
       { children }

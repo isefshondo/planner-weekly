@@ -24,7 +24,13 @@ const PlannerForm = (props: FormProps) => {
       if(data.status === 200) {
         props.getEnteredEvents()
       }
-    }).catch(err => console.log(err));
+    }).catch(err => {
+      if(typeof err.response.data === "object") {
+        alert(err.response.data.errors[0]);
+      } else {
+        alert(err.response.data);
+      }
+    });
   };
 
   const onSubmitHandler = (e: React.FormEvent) => {
@@ -39,7 +45,13 @@ const PlannerForm = (props: FormProps) => {
       if(data.status === 201) {
         props.getEnteredEvents();
       }
-    }).catch((err) => alert(err));
+    }).catch((err) => {
+      if(typeof err.response.data === "object") {
+        alert(err.response.data.errors[0]);
+      } else {
+        alert(err.response.data);
+      }
+    });
 
     // Reseting Input
     setEnteredTitle("");

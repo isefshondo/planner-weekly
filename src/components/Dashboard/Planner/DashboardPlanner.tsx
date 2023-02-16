@@ -24,7 +24,11 @@ const DashboardPlanner = (props: ActionProps) => {
         props.getEnteredEvents();
       }
     }).catch(err => {
-      console.log(err)
+      if(typeof err.response.data === "object") {
+        alert(err.response.data.errors[0]);
+      } else {
+        alert(err.response.data);
+      }
     })
   };
 
