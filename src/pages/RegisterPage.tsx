@@ -7,9 +7,12 @@ import {
 } from "../assets/styles/Global.styles";
 import RegisterForm from "../components/RegisterForm";
 import BackgroundImage from "../components/UI/BackgroundImage";
+import Loading from "../components/UI/Loading";
 import WelcomeMessage from "../components/UI/WelcomeMessage";
+import { AppContext } from "../context/ApplicationContext";
 
 const RegisterPage: React.FC = () => {
+  const appCtx = React.useContext(AppContext);
   return (
     <Wrapper isPlanner={false}>
       <InitialSection>
@@ -22,6 +25,7 @@ const RegisterPage: React.FC = () => {
         </LinkWrapper>
       </InitialSection>
       <BackgroundImage />
+      { appCtx.isFormSent && appCtx.isLoading && <Loading /> }
     </Wrapper>
   );
 };

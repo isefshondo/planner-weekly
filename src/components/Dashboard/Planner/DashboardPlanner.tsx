@@ -1,14 +1,15 @@
+import axios from "axios";
 import React from "react";
 import { CardsWrapper, PlannerWrapper } from "../../../assets/styles/Global.styles";
+import authHeader from "../../../auth/auth-header";
 import { ActionProps } from "../../../interfaces/Dashboard";
 import Cards from "./Cards";
 import HeaderDay from "./HeaderDay";
 import TaskTime from "./TaskTime";
 
 const DashboardPlanner = (props: ActionProps) => {
+  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
-
-  console.log(props.enteredTasks);
 
   const selectedDayFilter = (selectedWeekDay: string) => {
     setSelectedDay(selectedWeekDay);
@@ -16,19 +17,11 @@ const DashboardPlanner = (props: ActionProps) => {
   };
 
   const onDeleteTask = (id: string) => {
-    const deletedId = id.split("_");
-    const cards = [...props.enteredTasks];
-    const deleteCards = cards.findIndex((deleted) => {
-      return deleted._id == deletedId[0];
-    });
-
-    if (cards[deleteCards].conflictedTasks.length === 1) {
-      cards.splice(deleteCards, 1);
-    } else {
-      cards[deleteCards].conflictedTasks.splice(Number(deletedId[1]), 1);
-    }
-
-    props.setEnteredTasks(cards);
+    const response = axios.delete(`${url}/events/${id}`, {
+      headers: authHeader(),
+    }).catch(err => {
+      console.log(err)
+    })
   };
 
   return (
@@ -50,7 +43,6 @@ const DashboardPlanner = (props: ActionProps) => {
               return cards.dayOfWeek === selectedDay.toLocaleLowerCase();
             })
             .map((task) => {
-              // const hasConflict = task.conflictedTasks.length > 1;
               return (
                 <div style={{ display: "flex", columnGap: "1.063rem" }}>
                   <TaskTime

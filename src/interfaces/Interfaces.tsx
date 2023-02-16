@@ -36,7 +36,13 @@ export interface ApplicationContext {
   onRegister: (obj: string) => void,
   setEnteredUser: React.Dispatch<SetStateAction<RegisterProps>>,
   enteredUser: RegisterProps,
-  setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>
+  setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>,
+  setIsFormSent: React.Dispatch<SetStateAction<boolean>>,
+  isFormSent: boolean,
+  setIsLoading: React.Dispatch<SetStateAction<boolean>>,
+  isLoading: boolean,
+  setErrorMessage: React.Dispatch<SetStateAction<string>>,
+  errorMessage: string,
 }
 
 export interface ModalProps {

@@ -7,6 +7,7 @@ import {
 import { AppContext } from "../context/ApplicationContext";
 import { RegisterProps } from "../interfaces/Interfaces";
 import Input from "./UI/Input";
+import Loading from "./UI/Loading";
 
 const RegisterForm = () => {
   const appCtx = React.useContext(AppContext);
@@ -70,6 +71,8 @@ const RegisterForm = () => {
         })
       );
     }
+    appCtx.setIsFormSent(true);
+    appCtx.setIsLoading(true);
   };
 
   return (

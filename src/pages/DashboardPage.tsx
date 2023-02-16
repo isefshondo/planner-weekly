@@ -12,29 +12,49 @@ const DashboardPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = React.useState<string>("");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
-  function addAssignments(tasks: Assignments) {
-    const isTaskConflicting = [...assignments].findIndex((task) => {
-      return (
-        task.dayOfWeek === tasks.dayOfWeek &&
-        task.createdAt === tasks.createdAt
-      );
+  function addAssignments(tasks: Array<Assignments>) {
+    const isTaskConflicting = [...assignments].findIndex(task => {
+      tasks.map((events) => {
+        return (
+          task.dayOfWeek === events.dayOfWeek &&
+          task.createdAt === events.createdAt
+        )
+      })
+      // console.log(task.dayOfWeek, tasks.dayOfWeek, task.createdAt, tasks.createdAt)
     });
+    // const isTaskConflicting = tasks.map(events => {
+    //   tasks.findIndex((task) => {
+    //     return (
+    //       task.dayOfWeek === events.dayOfWeek &&
+    //       task.createdAt === events.createdAt
+    //     )
+    //   })
+    // });
+    console.log(isTaskConflicting);
+    // const organizedAssignments: Array<Assignments> = [...tasks];
 
-    const organizedAssignments: Array<Assignments> = [...assignments];
+    // .findIndex((task) => {
+    //   return (
+    //     task.dayOfWeek === tasks.dayOfWeek &&
+    //     task.createdAt === tasks.createdAt
+    //   );
+    // });
 
-    if (isTaskConflicting >= 0) {
-      organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks);
-    } else {
-      organizedAssignments.push({
-        ...tasks,
-      });
-    }
+    // const organizedAssignments: Array<Assignments> = [...assignments];
 
-    setAssignments(
-      organizedAssignments.sort((a, b) =>
-        a.createdAt.localeCompare(b.createdAt)
-      )
-    )
+    // if (isTaskConflicting >= 0) {
+    //   organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks);
+    // } else {
+    //   organizedAssignments.push({
+    //     ...tasks,
+    //   });
+    // }
+
+    // setAssignments(
+    //   organizedAssignments.sort((a, b) =>
+    //     a.createdAt.localeCompare(b.createdAt)
+    //   )
+    // )
   }
 
   function getEnteredEvents() {
@@ -52,6 +72,7 @@ const DashboardPage: React.FC = () => {
         };
       });
       setAssignments(enteredTasksData);
+      addAssignments(enteredTasksData);
     }).catch(err => console.log(err));
   }
 

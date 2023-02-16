@@ -25,22 +25,31 @@ export const AppContext = React.createContext<ApplicationContext>({
   setEnteredUser: () => Array,
   enteredUser: enteredUserData,
   setIsLoggedIn: () => Array,
+  setIsFormSent: () => Array,
+  isFormSent: false,
+  setIsLoading: () => Array,
+  isLoading: false,
+  setErrorMessage: () => Array,
+  errorMessage: "",
 });
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const toNavigate = useNavigate();
-  // Create a axios file to put this (baseUrl)
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>(enteredUserData);
-  
-  // Create a modal for the errors
+  const [isFormSent, setIsFormSent] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
+
   const onRegister = (obj: string) => {
     axios.post(`${url}/users/sign-up/`, JSON.parse(obj))
     .then(res => {
-      console.log(res);
+      setIsLoading(false);
       toNavigate("login");
-    }).catch(err => console.log(err));
+    }).catch(err => {
+      setErrorMessage(err.response.message);
+    });
   };
   
   const onLogOutHandler = () => {
@@ -79,6 +88,12 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         setEnteredUser: setEnteredUser,
         enteredUser: enteredUser,
         setIsLoggedIn: setIsLoggedIn,
+        setIsFormSent,
+        isFormSent,
+        setIsLoading,
+        isLoading,
+        setErrorMessage,
+        errorMessage
       }
     }>
       { children }
