@@ -47,8 +47,10 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     .then(res => {
       setIsLoading(false);
       toNavigate("login");
+      setIsFormSent(false);
     }).catch(err => {
-      setErrorMessage(err.response.message);
+      setIsLoading(false);
+      setErrorMessage(err.response.data);
     });
   };
   
@@ -56,6 +58,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     localStorage.removeItem("enteredToken");
     localStorage.removeItem("locationInfo");
     setIsLoggedIn(false);
+    setIsFormSent(false);
   };
   
   React.useEffect(() => {

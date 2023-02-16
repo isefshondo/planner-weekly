@@ -44,6 +44,7 @@ const LoginForm = () => {
       email: enteredUsername,
       password: enteredPassword
     }).then(data => {
+      appCtx.setIsLoading(false);
       if(data.data.token) {
         appCtx.setEnteredUser(data.data.user);
         localStorage.setItem("enteredToken", data.data.token);
@@ -55,9 +56,14 @@ const LoginForm = () => {
         toNavigate("/");
       }
       return data.data.token;
-    }).catch(err => alert(err.response.data));
+    }).catch(err => {
+      appCtx.setIsLoading(false);
+      appCtx.setErrorMessage(err.response.data);
+    });
 
     setIsFormSent(true);
+    appCtx.setIsFormSent(true);
+    appCtx.setIsLoading(true);
   };
 
   return (

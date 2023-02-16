@@ -8,6 +8,7 @@ import {
 import RegisterForm from "../components/RegisterForm";
 import BackgroundImage from "../components/UI/BackgroundImage";
 import Loading from "../components/UI/Loading";
+import Modal from "../components/UI/Modal";
 import WelcomeMessage from "../components/UI/WelcomeMessage";
 import { AppContext } from "../context/ApplicationContext";
 
@@ -26,6 +27,7 @@ const RegisterPage: React.FC = () => {
       </InitialSection>
       <BackgroundImage />
       { appCtx.isFormSent && appCtx.isLoading && <Loading /> }
+      { appCtx.isFormSent && !appCtx.isLoading && appCtx.errorMessage != null && <Modal errorMessage={appCtx.errorMessage} /> }
     </Wrapper>
   );
 };

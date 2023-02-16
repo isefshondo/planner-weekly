@@ -44,3 +44,7 @@ export interface StyledDayProps {
 export interface StyledCardsWrapperProps {
   hasConflict: boolean,
 }
+
+export interface CloseModalProps {
+  closeModal: boolean,
+}

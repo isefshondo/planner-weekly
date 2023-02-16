@@ -47,6 +47,4 @@ export interface ApplicationContext {
 
 export interface ModalProps {
   errorMessage: string,
-  isOpen: boolean,
-  onClose: () => void
 }
