@@ -1,11 +1,20 @@
 import React from "react";
 
+export interface TasksProps {
+  id: string,
+  description: string,
+  dayOfWeek: string,
+  createdAtTime: string,
+  createdAtDate: string,
+  conflictingTasks: Array<ConflictedCardsProps>,
+}
+
 export interface Assignments {
   _id: string,
   description: string,
   dayOfWeek: string,
   createdAt: string,
-  date: string,
+  createdAtDate: string,
   conflictedTasks: Array<ConflictedCardsProps>,
 }
 
@@ -23,14 +32,14 @@ export interface FormProps {
   enteredTasks: Array<Assignments>,
   setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
   selectedDay: string,
-  getEnteredEvents: () => void,
+  refetchEvents: () => void,
 }
 
 export interface ActionProps {
   enteredTasks: Array<Assignments>,
   setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
   setSelectedDay: React.Dispatch<React.SetStateAction<string>>,
-  getEnteredEvents: () => void,
+  refetchEvents: () => void,
 }
 
 export interface WeatherProps {

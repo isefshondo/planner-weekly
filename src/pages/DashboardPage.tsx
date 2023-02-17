@@ -5,42 +5,43 @@ import authHeader from "../auth/auth-header";
 import PlannerForm from "../components/Dashboard/Form/PlannerForm";
 import Header from "../components/Dashboard/Header/Header";
 import DashboardPlanner from "../components/Dashboard/Planner/DashboardPlanner";
-import { Assignments } from "../interfaces/Dashboard";
+import { Assignments, TasksProps } from "../interfaces/Dashboard";
+
+let enteredTask: Array<Assignments> = [];
 
 const DashboardPage: React.FC = () => {
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
-  let enteredTask: Array<Assignments> = [];
-
-  function resetTasksEvents() {
+  function refetchEventsTask() {
     enteredTask = [];
     setAssignments([]);
+    getEnteredEvents(selectedDay.toLocaleLowerCase());
   }
 
-  function addAssignments(tasks: Assignments) {
+  function addAssignments(tasks: TasksProps) {
     const isTaskConflicting = enteredTask.findIndex((task) => {
       return (
-        task.dayOfWeek === tasks.dayOfWeek && task.createdAt === tasks.createdAt
+        task.dayOfWeek === tasks.dayOfWeek && task.createdAt === tasks.createdAtTime
       );
     });
 
     if(isTaskConflicting >= 0) {
       enteredTask[isTaskConflicting].conflictedTasks.push({
-        id: tasks._id,
+        id: tasks.id,
         description: tasks.description,
       });
     } else {
       enteredTask.push({
-        _id: tasks._id,
+        _id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1),
         dayOfWeek: tasks.dayOfWeek,
-        createdAt: tasks.createdAt,
+        createdAt: tasks.createdAtTime,
         description: tasks.description,
-        date: tasks.date,
+        createdAtDate: tasks.createdAtDate,
         conflictedTasks: [
           {
-            id: tasks._id,
+            id: tasks.id,
             description: tasks.description,
           },
         ],
@@ -54,25 +55,25 @@ const DashboardPage: React.FC = () => {
     const response = axios.get(`${url}/events?dayOfWeek=${day}`, {
       headers: authHeader(),
     }).then((data) => {
-      const enteredTasksData: Array<Assignments> = data.data.events.map((enteredTasks: Assignments) => {
+      data.data.events.map((enteredTasks: Assignments) => {
         const enteredTime = new Date(enteredTasks.createdAt).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         });
-
+        
         const enteredDate = new Date(
           enteredTasks.createdAt
         ).toLocaleDateString();
 
-        return {
-          ...enteredTasks,
-          createdAt: enteredTime,
-          date: enteredDate,
-        }
+        addAssignments({
+          id: enteredTasks._id,
+          description: enteredTasks.description,
+          dayOfWeek: enteredTasks.dayOfWeek,
+          createdAtTime: enteredTime,
+          createdAtDate: enteredDate,
+          conflictingTasks: [],
+        })
       });
-      enteredTasksData.forEach(item => {
-        addAssignments(item);
-      })
     }).catch(err => {
       console.log(err);
       typeof err.response.data === "object"
@@ -82,8 +83,7 @@ const DashboardPage: React.FC = () => {
   }
 
   React.useEffect(() => {
-    getEnteredEvents(selectedDay.toLocaleLowerCase());
-    resetTasksEvents();
+    refetchEventsTask();
   }, [selectedDay]);
   
   return (
@@ -94,13 +94,13 @@ const DashboardPage: React.FC = () => {
           enteredTasks={assignments}
           setEnteredTasks={setAssignments}
           selectedDay={selectedDay}
-          getEnteredEvents={() => getEnteredEvents(selectedDay.toLocaleLowerCase())}
+          refetchEvents={() => refetchEventsTask()}
         />
         <DashboardPlanner
           enteredTasks={assignments}
           setEnteredTasks={setAssignments}
           setSelectedDay={setSelectedDay}
-          getEnteredEvents={() => getEnteredEvents(selectedDay.toLocaleLowerCase())}
+          refetchEvents={() => refetchEventsTask()}
         />
       </main>
     </Wrapper>

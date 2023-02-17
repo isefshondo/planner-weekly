@@ -21,7 +21,7 @@ const DashboardPlanner = (props: ActionProps) => {
       headers: authHeader(),
     }).then(data => {
       if(data.status === 204) {
-        props.getEnteredEvents();
+        props.refetchEvents();
       }
     }).catch(err => {
       if(typeof err.response.data === "object") {
@@ -53,7 +53,7 @@ const DashboardPlanner = (props: ActionProps) => {
                 minute: '2-digit',
               });
               const currentDate = new Date().toLocaleDateString();
-              const hasConflict = (task.date < currentDate) || (task.createdAt < currentTime) || task.conflictedTasks.length > 1;
+              const hasConflict = (task.createdAtDate < currentDate) || (task.createdAt < currentTime) || task.conflictedTasks.length > 1;
               return (
                 <div style={{ display: "flex", columnGap: "1.063rem" }}>
                   <TaskTime

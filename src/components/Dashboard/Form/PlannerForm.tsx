@@ -22,7 +22,7 @@ const PlannerForm = (props: FormProps) => {
       headers: authHeader(),
     }).then(data => {
       if(data.status === 200) {
-        props.getEnteredEvents();
+        props.refetchEvents();
       }
     }).catch(err => {
       if(typeof err.response.data === "object") {
@@ -43,7 +43,7 @@ const PlannerForm = (props: FormProps) => {
       headers: authHeader()
     }).then(data => {
       if(data.status === 201) {
-        props.getEnteredEvents();
+        props.refetchEvents();
       }
     }).catch((err) => {
       if(typeof err.response.data === "object") {
