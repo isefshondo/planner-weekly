@@ -12,57 +12,39 @@ const DashboardPage: React.FC = () => {
   const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
 
-  function addAssignments(tasks: Array<Assignments>) {
-    // const isTaskConflicting = [...assignments].findIndex(task => {
-    //   tasks.map((events) => {
-    //     return (
-    //       task.dayOfWeek === events.dayOfWeek &&
-    //       task.createdAt === events.createdAt
-    //     )
-    //   })
-    //   // console.log(task.dayOfWeek, tasks.dayOfWeek, task.createdAt, tasks.createdAt)
-    // });
-    // const isTaskConflicting = tasks.map(events => {
-    //   tasks.findIndex((task) => {
-    //     return (
-    //       task.dayOfWeek === events.dayOfWeek &&
-    //       task.createdAt === events.createdAt
-    //     )
-    //   })
-    // });
-    // console.log(isTaskConflicting);
-    // const organizedAssignments: Array<Assignments> = [...tasks];
+  const enteredTask: Array<Assignments> = [];
 
-    // .findIndex((task) => {
-    //   return (
-    //     task.dayOfWeek === tasks.dayOfWeek &&
-    //     task.createdAt === tasks.createdAt
-    //   );
-    // });
+  function addAssignments(tasks: Assignments) {
+    const isTaskConflicting = enteredTask.findIndex(task => {
+      return (
+        task.dayOfWeek === tasks.dayOfWeek &&
+        task.createdAt === tasks.createdAt
+      )
+    });
 
-    // const organizedAssignments: Array<Assignments> = [...assignments];
+    if(isTaskConflicting >= 0) {
+      enteredTask[isTaskConflicting].conflictedTasks.push({
+        id: tasks._id,
+        description: tasks.description,
+      })
+    } else {
+      enteredTask.push({
+        ...tasks,
+        conflictedTasks: [{
+          id: tasks._id,
+          description: tasks.description,
+        }]
+      })
+    }
 
-    // if (isTaskConflicting >= 0) {
-    //   organizedAssignments[isTaskConflicting].conflictedTasks.push(tasks);
-    // } else {
-    //   organizedAssignments.push({
-    //     ...tasks,
-    //   });
-    // }
-
-    // setAssignments(
-    //   organizedAssignments.sort((a, b) =>
-    //     a.createdAt.localeCompare(b.createdAt)
-    //   )
-    // )
+    setAssignments(enteredTask);
   }
 
   function getEnteredEvents(day: string) {
-    console.log(day);
     const response = axios.get(`${url}/events?dayOfWeek=${day}`, {
       headers: authHeader(),
     }).then((data) => {
-      const enteredTasksData = data.data.events.map((enteredTasks: Assignments) => {
+      const enteredTasksData: Array<Assignments> = data.data.events.map((enteredTasks: Assignments) => {
         const enteredTime = new Date(enteredTasks.createdAt).toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
@@ -72,8 +54,7 @@ const DashboardPage: React.FC = () => {
           createdAt: enteredTime,
         };
       });
-      setAssignments(enteredTasksData);
-      // addAssignments(enteredTasksData);
+      enteredTasksData.forEach(item => addAssignments(item));
     }).catch(err => {
       if(typeof err.response.data === "object") {
         alert(err.response.data.errors[0]);

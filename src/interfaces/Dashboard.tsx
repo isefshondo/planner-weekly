@@ -5,7 +5,12 @@ export interface Assignments {
   description: string,
   dayOfWeek: string,
   createdAt: string,
-  conflictedTasks: Array<Object>,
+  conflictedTasks: Array<ConflictedCardsProps>,
+}
+
+export interface ConflictedCardsProps {
+  id: string,
+  description: string,
 }
 
 export interface DescriptionProps {
