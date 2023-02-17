@@ -48,11 +48,12 @@ const DashboardPlanner = (props: ActionProps) => {
         {props.enteredTasks && 
           props.enteredTasks
             .map((task) => {
-              const currentDate = new Date().toLocaleTimeString([], {
+              const currentTime = new Date().toLocaleTimeString([], {
                 hour: '2-digit',
                 minute: '2-digit',
-              })
-              const hasConflict = task.createdAt < currentDate || task.conflictedTasks.length > 1;
+              });
+              const currentDate = new Date().toLocaleDateString();
+              const hasConflict = (task.date < currentDate) || (task.createdAt < currentTime) || task.conflictedTasks.length > 1;
               return (
                 <div style={{ display: "flex", columnGap: "1.063rem" }}>
                   <TaskTime
@@ -62,7 +63,7 @@ const DashboardPlanner = (props: ActionProps) => {
                     hasConflict={hasConflict}
                   />
                   <CardsWrapper hasConflict={false}>
-                    {task.conflictedTasks.map((items) => {
+                  {task.conflictedTasks.map((items) => {
                       return (
                         <Cards
                           id={items.id}

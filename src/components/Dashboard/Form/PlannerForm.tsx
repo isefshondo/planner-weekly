@@ -22,7 +22,7 @@ const PlannerForm = (props: FormProps) => {
       headers: authHeader(),
     }).then(data => {
       if(data.status === 200) {
-        props.getEnteredEvents()
+        props.getEnteredEvents();
       }
     }).catch(err => {
       if(typeof err.response.data === "object") {
