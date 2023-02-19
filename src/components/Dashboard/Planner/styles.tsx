@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { TimeProps } from "../../../interfaces/dashboard-interfaces";
-import { StyledCardsWrapperProps, StyledDayProps, StyledTaskProps } from "../../../interfaces/styles-interfaces";
+import { StyledCardsWrapperProps, StyledDayProps, StyledTaskModalProps, StyledTaskProps } from "../../../interfaces/styles-interfaces";
 
 /* Planner's Style */
 export const PlannerWrapper = styled.section`
@@ -46,7 +46,7 @@ export const TasksWrapper = styled.div`
   overflow-x: scroll;
 
   &::-webkit-scrollbar{
-    width: 1rem;
+    height: .75rem;
     background: #fff;
     border-radius: 1.375rem;
   }
@@ -62,6 +62,7 @@ export const TasksWrapper = styled.div`
 `;
 
 export const CardsWrapper = styled.div<StyledCardsWrapperProps>`
+  width: 100vw;
   display: flex;
   align-items: center;
   column-gap: 1.063rem;
@@ -122,8 +123,8 @@ export const StyledTaskTime = styled.time<TimeProps>`
 
 /* Card's Style */
 export const Card = styled.div`
-  width: 32rem;
-  height: 5.313rem;
+  width: 512px;
+  height: 85px;
   background: linear-gradient(112.83deg, rgba(228, 240, 248, 0.42) 0%, rgba(255, 255, 255, 0.336) 110.84%);
   box-shadow: 0px 2px 5.5px rgba(0, 0, 0, 0.02);
   backdrop-filter: blur(10.5px);
@@ -165,3 +166,23 @@ export const DeleteCardButton = styled.button`
   right: .438rem;
 `;
 /* End of Card's Style */
+
+/* Tasks Loader's Style */
+export const StyledLoadModal = styled.hgroup<StyledTaskModalProps>`
+  ${(props) => !props.isTaskNotFound && (`
+    @keyframes fadeLoader {
+      50% {
+        opacity: 0.55;
+      } 
+    }
+  `)}
+
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${(props) => props.isTaskNotFound ? `none` : `fadeLoader 1.5s ease infinite`};
+`;
+/* End of Tasks Loader's Style */

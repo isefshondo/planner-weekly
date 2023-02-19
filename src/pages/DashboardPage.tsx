@@ -10,6 +10,7 @@ import { Assignments, TasksProps } from "../interfaces/dashboard-interfaces";
 let enteredTask: Array<Assignments> = [];
 
 const DashboardPage: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(true);
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [selectedDay, setSelectedDay] = React.useState<string>("MONDAY");
   const [assignments, setAssignments] = React.useState<Array<Assignments>>([]);
@@ -17,6 +18,7 @@ const DashboardPage: React.FC = () => {
   function refetchEventsTask() {
     enteredTask = [];
     setAssignments([]);
+    setIsLoading(true);
     getEnteredEvents(selectedDay.toLocaleLowerCase());
   }
 
@@ -55,6 +57,7 @@ const DashboardPage: React.FC = () => {
     const response = axios.get(`${url}/events?dayOfWeek=${day}`, {
       headers: authHeader(),
     }).then((data) => {
+      setIsLoading(false);
       data.data.events.map((enteredTasks: Assignments) => {
         const enteredTime = new Date(enteredTasks.createdAt).toLocaleTimeString([], {
           hour: "2-digit",
@@ -103,6 +106,7 @@ const DashboardPage: React.FC = () => {
           setEnteredTasks={setAssignments}
           setSelectedDay={setSelectedDay}
           refetchEvents={() => refetchEventsTask()}
+          isLoading={isLoading}
         />
       </main>
     </Wrapper>

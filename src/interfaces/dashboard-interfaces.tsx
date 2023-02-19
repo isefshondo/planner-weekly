@@ -40,6 +40,7 @@ export interface ActionProps {
   setEnteredTasks: React.Dispatch<React.SetStateAction<Assignments[]>>,
   setSelectedDay: React.Dispatch<React.SetStateAction<string>>,
   refetchEvents: () => void,
+  isLoading: boolean,
 }
 
 export interface WeatherProps {

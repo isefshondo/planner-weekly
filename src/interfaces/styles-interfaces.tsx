@@ -48,3 +48,7 @@ export interface StyledCardsWrapperProps {
 export interface CloseModalProps {
   closeModal: boolean,
 }
+
+export interface StyledTaskModalProps {
+  isTaskNotFound: boolean,
+}

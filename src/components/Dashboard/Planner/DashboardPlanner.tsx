@@ -1,11 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { CardsWrapper, PlannerWrapper, TasksWrapper, TimeWrapper } from "./styles";
+import { CardsWrapper, PlannerWrapper, StyledLoadModal, TasksWrapper, TimeWrapper } from "./styles";
 import authHeader from "../../../auth/auth-header";
 import { ActionProps } from "../../../interfaces/dashboard-interfaces";
 import Cards from "./Cards";
 import HeaderDay from "./HeaderDay";
 import TaskTime from "./TaskTime";
+import TasksLoader from "./TasksLoader";
 
 const DashboardPlanner = (props: ActionProps) => {
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
@@ -70,7 +71,12 @@ const DashboardPlanner = (props: ActionProps) => {
             })}
         </TimeWrapper>
         <TasksWrapper>
-          <div style={{ height: "4.688rem" }} />
+          <div style={{ width: "100vw", height: "75px" }} />
+          {!props.isLoading && props.enteredTasks.length === 0 && (
+            <StyledLoadModal isTaskNotFound={true}>
+              <h1>No tasks were found!</h1>
+            </StyledLoadModal>
+          )}
           {props.enteredTasks &&
             props.enteredTasks.map((task) => {
               const hasConflict =
@@ -78,7 +84,10 @@ const DashboardPlanner = (props: ActionProps) => {
                 task.createdAt < currentTime ||
                 task.conflictedTasks.length > 1;
               return (
-                <CardsWrapper hasConflict={hasConflict}>
+                <CardsWrapper
+                  key={`${task._id}-WRAPPER`}
+                  hasConflict={hasConflict}
+                >
                   {task.conflictedTasks.map((items) => {
                     return (
                       <Cards
@@ -93,6 +102,7 @@ const DashboardPlanner = (props: ActionProps) => {
                 </CardsWrapper>
               );
             })}
+          {props.isLoading && <TasksLoader />}
         </TasksWrapper>
       </PlannerWrapper>
     </React.Fragment>
