@@ -1,6 +1,6 @@
 import React from "react";
-import { StyledErrorMessage, StyledInput, StyledLabel, StyledLoginError } from "../../assets/styles/Global.styles";
-import { InputProps } from "../../interfaces/Interfaces";
+import { StyledErrorMessage, StyledInput, StyledLabel, StyledLoginError } from "./styles";
+import { InputProps } from "../../interfaces/general-interfaces";
 
 const Input = (props : InputProps) => {
   const [isInputTouched, setIsInputTouched] = React.useState<boolean>(false);

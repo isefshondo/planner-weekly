@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageSection } from "../../assets/styles/Global.styles";
+import { ImageSection } from "./styles";
 import Logo from "../../assets/imgs/logo.svg";
 
 export const BackgroundImage: React.FC = () => {

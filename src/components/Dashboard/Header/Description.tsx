@@ -1,5 +1,5 @@
 import React from "react";
-import { DescriptionWrapper } from "../../../assets/styles/Global.styles";
+import { DescriptionWrapper } from "./styles";
 import { DescriptionProps } from "../../../interfaces/dashboard-interfaces";
 
 const Description = (props: DescriptionProps) => {

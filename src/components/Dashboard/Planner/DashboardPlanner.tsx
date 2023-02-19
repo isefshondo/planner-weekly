@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { CardsWrapper, PlannerWrapper } from "../../../assets/styles/Global.styles";
+import { CardsWrapper, PlannerWrapper } from "./styles";
 import authHeader from "../../../auth/auth-header";
 import { ActionProps } from "../../../interfaces/dashboard-interfaces";
 import Cards from "./Cards";
@@ -63,7 +63,7 @@ const DashboardPlanner = (props: ActionProps) => {
                     belongTime={task.createdAt}
                     hasConflict={hasConflict}
                   />
-                  <CardsWrapper hasConflict={false}>
+                  <CardsWrapper hasConflict={hasConflict}>
                   {task.conflictedTasks.map((items) => {
                       return (
                         <Cards

@@ -1,5 +1,5 @@
 import React from "react";
-import { ClockWrapper } from "../../../assets/styles/Global.styles";
+import { ClockWrapper } from "./styles";
 
 const Clock = () => {
   const [currentDate, setCurrentDate] = React.useState<Date>(new Date());

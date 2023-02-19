@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Wrapper } from "../assets/styles/Global.styles";
+import { Wrapper } from "../components/UI/styles";
 import authHeader from "../auth/auth-header";
 import PlannerForm from "../components/Dashboard/Form/PlannerForm";
 import Header from "../components/Dashboard/Header/Header";

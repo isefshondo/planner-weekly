@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, DeleteCardButton, StyledDivTask } from "../../../assets/styles/Global.styles";
+import { Card, DeleteCardButton, StyledDivTask } from "./styles";
 import { CardsProps } from "../../../interfaces/dashboard-interfaces";
 
 const Cards = (props: CardsProps) => {

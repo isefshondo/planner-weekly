@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledHeader } from "../../../assets/styles/Global.styles";
+import { StyledHeader } from "./styles";
 import Clock from "./Clock";
 import Description from "./Description";
 import Logout from "./Logout";

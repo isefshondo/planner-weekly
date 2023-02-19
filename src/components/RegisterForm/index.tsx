@@ -1,13 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {
-  GeneralButton,
-  StyledInputWrapper,
-  StyledRegisterForm,
-} from "../assets/styles/Global.styles";
-import { RegisterProps } from "../interfaces/Interfaces";
-import Input from "./UI/Input";
+import { GeneralButton, StyledInputWrapper } from "../UI/styles";
+import { StyledRegisterForm } from "./styles";
+import { RegisterProps } from "../../interfaces/general-interfaces";
+import Input from "../UI/Input";
 
 const RegisterForm = () => {
   const toNavigate = useNavigate();

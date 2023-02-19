@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
-import { ButtonWrapper, InputWrapper, StyledButtonTask, StyledFormTask, StyledInputTask } from "../../../assets/styles/Global.styles";
+import { ButtonWrapper, InputWrapper, StyledButtonTask, StyledFormTask, StyledInputTask } from "./styles";
 import authHeader from "../../../auth/auth-header";
-import { Assignments, FormProps } from "../../../interfaces/dashboard-interfaces";
+import { FormProps } from "../../../interfaces/dashboard-interfaces";
 import Select from "./Select";
 
 const PlannerForm = (props: FormProps) => {

@@ -1,15 +1,11 @@
 import React from "react";
 import axios from "axios";
-import Input from "./UI/Input";
-import User from "../assets/imgs/icon-user.svg";
-import Password from "../assets/imgs/icon-password.svg";
-import {
-  GeneralButton,
-  InvalidForm,
-  StyledLogin,
-  StyledLoginForm,
-} from "../assets/styles/Global.styles";
-import { AppContext } from "../context/ApplicationContext";
+import Input from "../UI/Input";
+import User from "../../assets/imgs/icon-user.svg";
+import Password from "../../assets/imgs/icon-password.svg";
+import { GeneralButton, InvalidForm } from "../UI/styles";
+import { StyledLogin, StyledLoginForm } from "./styles";
+import { AppContext } from "../../context/ApplicationContext";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {

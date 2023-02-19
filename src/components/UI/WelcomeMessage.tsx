@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledMessage } from "../../assets/styles/Global.styles";
+import { StyledMessage } from "./styles";
 
 const WelcomeMessage = ({ message }: { message: string }) => {
   return (

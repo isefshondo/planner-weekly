@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledDayFilter, StyledDayWrapper } from "../../../assets/styles/Global.styles";
+import { StyledDayFilter, StyledDayWrapper } from "./styles";
 import { SelectDayProps } from "../../../interfaces/dashboard-interfaces";
 
 const WeekDays = [

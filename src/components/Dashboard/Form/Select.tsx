@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledSelect } from "../../../assets/styles/Global.styles";
+import { StyledSelect } from "./styles";
 import { SelectProps } from "../../../interfaces/dashboard-interfaces";
 
 const WeekDays = [

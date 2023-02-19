@@ -1,16 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  InitialSection,
-  LinkWrapper,
-  Wrapper,
-} from "../assets/styles/Global.styles";
+import { Wrapper, InitialSection, LinkWrapper } from "../components/UI/styles";
 import LoginForm from "../components/LoginForm";
 import BackgroundImage from "../components/UI/BackgroundImage";
-import Loading from "../components/UI/Loading";
-import Modal from "../components/UI/Modal";
 import WelcomeMessage from "../components/UI/WelcomeMessage";
-import { AppContext } from "../context/ApplicationContext";
 
 const LoginPage: React.FC = () => {
   return (

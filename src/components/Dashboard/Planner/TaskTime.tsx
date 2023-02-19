@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledTaskTime } from "../../../assets/styles/Global.styles";
+import { StyledTaskTime } from "./styles";
 import { TimeProps } from "../../../interfaces/dashboard-interfaces";
 
 const TaskTime = (props: TimeProps) => {

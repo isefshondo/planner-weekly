@@ -1,10 +1,10 @@
 import React from "react";
 import axios, { AxiosError } from "axios";
 import { AppContext } from "../../../context/ApplicationContext";
-import { ApplicationContext, } from "../../../interfaces/Interfaces";
+import { ApplicationContext, } from "../../../interfaces/general-interfaces";
 import { WeatherProps } from "../../../interfaces/dashboard-interfaces";
 import Icon from "../../../assets/imgs/weather-icon.svg"
-import { StyledWeather, WeatherWrapper } from "../../../assets/styles/Global.styles";
+import { StyledWeather, WeatherWrapper } from "./styles";
 
 const Weather = () => {
   const myAPIKey: string = "28272ea1cee8074586ce4325ff060c94";

@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ApplicationContext, RegisterProps } from "../interfaces/Interfaces";
+import { ApplicationContext, RegisterProps } from "../interfaces/general-interfaces";
 
 interface AppProviderProps {
   children: React.ReactNode

@@ -37,7 +37,3 @@ export interface ApplicationContext {
   enteredUser: RegisterProps,
   setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>,
 }
-
-export interface ModalProps {
-  errorMessage: string,
-}
