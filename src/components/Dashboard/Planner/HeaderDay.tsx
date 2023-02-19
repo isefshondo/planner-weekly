@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledDayFilter, StyledDayWrapper } from "../../../assets/styles/Global.styles";
-import { SelectDayProps } from "../../../interfaces/Dashboard";
+import { SelectDayProps } from "../../../interfaces/dashboard-interfaces";
 
 const WeekDays = [
   { id: "Monday", value: "MONDAY" },

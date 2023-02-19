@@ -56,8 +56,9 @@ const LoginForm = () => {
       }
       return data.data.token;
     }).catch(err => {
-      if(typeof err.response.data === "object") {
-        alert(err.response.data.errors[0]);
+      if(err.response.data.errors && err.response.data.errors !== null) {
+        const errorsMessages: Array<string> = err.response.data.errors;
+        errorsMessages.map(messages => alert(messages));
       } else {
         alert(err.response.data);
       }

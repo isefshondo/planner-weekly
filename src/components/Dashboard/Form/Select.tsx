@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledSelect } from "../../../assets/styles/Global.styles";
-import { SelectProps } from "../../../interfaces/Dashboard";
+import { SelectProps } from "../../../interfaces/dashboard-interfaces";
 
 const WeekDays = [
   { id: "Monday", value: "MONDAY" },

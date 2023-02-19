@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledTaskTime } from "../../../assets/styles/Global.styles";
-import { TimeProps } from "../../../interfaces/Dashboard";
+import { TimeProps } from "../../../interfaces/dashboard-interfaces";
 
 const TaskTime = (props: TimeProps) => {
   return (

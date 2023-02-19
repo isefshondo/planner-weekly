@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CloseModalProps } from "../../interfaces/Styles";
+import { CloseModalProps } from "../../interfaces/styles-interfaces";
 
 export const Loader = styled.div`
   width: 100%;

@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 import { CardsWrapper, PlannerWrapper } from "../../../assets/styles/Global.styles";
 import authHeader from "../../../auth/auth-header";
-import { ActionProps } from "../../../interfaces/Dashboard";
+import { ActionProps } from "../../../interfaces/dashboard-interfaces";
 import Cards from "./Cards";
 import HeaderDay from "./HeaderDay";
 import TaskTime from "./TaskTime";
@@ -24,10 +24,11 @@ const DashboardPlanner = (props: ActionProps) => {
         props.refetchEvents();
       }
     }).catch(err => {
-      if(typeof err.response.data === "object") {
-        alert(err.response.data.errors[0]);
+      if(err.response.data.errors && err.response.data.errors !== null) {
+        const errorsMessages: Array<string> = err.response.data.errors;
+        errorsMessages.map(messages => alert(messages));
       } else {
-        alert(err.response.data);
+        alert(err.response.data.message);
       }
     })
   };

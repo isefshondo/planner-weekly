@@ -1,16 +1,17 @@
 import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   GeneralButton,
   StyledInputWrapper,
   StyledRegisterForm,
 } from "../assets/styles/Global.styles";
-import { AppContext } from "../context/ApplicationContext";
 import { RegisterProps } from "../interfaces/Interfaces";
 import Input from "./UI/Input";
-import Loading from "./UI/Loading";
 
 const RegisterForm = () => {
-  const appCtx = React.useContext(AppContext);
+  const toNavigate = useNavigate();
+  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>({
     firstName: "",
     lastName: "",
@@ -55,22 +56,32 @@ const RegisterForm = () => {
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      isFirstNameValid === true &&
-      isLastNameValid === true &&
-      isBirthDateValid === true &&
-      isCountryValid === true &&
-      isCityValid === true &&
-      isEmailValid === true &&
-      isPasswordValid === true &&
-      isPasswordEqual === true
-    ) {
-      appCtx.onRegister(
-        JSON.stringify({
-          ...enteredUser,
-        })
-      );
-    }
+    const onRegister = (obj: string) => {
+      axios.post(`${url}/users/sign-up/`, JSON.parse(obj))
+      .then(res => {
+        toNavigate("login");
+      }).catch(err => {
+        console.log(err);
+        if(err.response.data.errors && err.response.data.errors !== null) {
+          const errorsMessages: Array<string> = err.response.data.errors;
+          errorsMessages.length === 7
+            ? alert("Fill all the data required, please!")
+            : errorsMessages.map((messages) =>
+                messages.includes("/^[a-zA-Z0-9]{3,30}$/")
+                  ? alert("Password can only contain alphabetic letters or numbers!")
+                  : alert(messages)
+              );
+        } else {
+          alert(err.response.data);
+        }
+      });
+    };
+
+    onRegister(
+      JSON.stringify({
+        ...enteredUser,
+      })
+    )
   };
 
   return (

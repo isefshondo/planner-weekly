@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Background from "../imgs/main-img.png";
 import PlannerLogo from "../imgs/logo-uol.svg"
-import { StyledButtonActionProps, StyledButtonTaskProps, StyledCardsWrapperProps, StyledDayProps, StyledErrorMessageProps, StyledInputProps, StyledInputTaskProps, StyledLoginErrorProps, StyledTaskProps, StyledWrapperProps } from "../../interfaces/Styles";
-import { TimeProps } from "../../interfaces/Dashboard";
+import { StyledButtonActionProps, StyledButtonTaskProps, StyledCardsWrapperProps, StyledDayProps, StyledErrorMessageProps, StyledInputProps, StyledInputTaskProps, StyledLoginErrorProps, StyledTaskProps, StyledWrapperProps } from "../../interfaces/styles-interfaces";
+import { TimeProps } from "../../interfaces/dashboard-interfaces";
 
 export const Wrapper = styled.div<StyledWrapperProps>`
   display: flex;

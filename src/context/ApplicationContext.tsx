@@ -21,7 +21,6 @@ let enteredUserData = {
 export const AppContext = React.createContext<ApplicationContext>({
   isLoggedIn: false,
   onLogout: () => {},
-  onRegister: (obj) => {},
   setEnteredUser: () => Array,
   enteredUser: enteredUserData,
   setIsLoggedIn: () => Array,
@@ -29,22 +28,8 @@ export const AppContext = React.createContext<ApplicationContext>({
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const toNavigate = useNavigate();
-  const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [isLoggedIn, setIsLoggedIn] = React.useState<boolean>(false);
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>(enteredUserData);
-
-  const onRegister = (obj: string) => {
-    axios.post(`${url}/users/sign-up/`, JSON.parse(obj))
-    .then(res => {
-      toNavigate("login");
-    }).catch(err => {
-      if(typeof err.response.data === "object") {
-        alert(err.response.data.errors[0]);
-      } else {
-        alert(err.response.data);
-      }
-    });
-  };
   
   const onLogOutHandler = () => {
     localStorage.removeItem("enteredToken");
@@ -78,7 +63,6 @@ export const AppProvider = ({ children }: AppProviderProps) => {
       {
         isLoggedIn: isLoggedIn,
         onLogout: onLogOutHandler,
-        onRegister: onRegister,
         setEnteredUser: setEnteredUser,
         enteredUser: enteredUser,
         setIsLoggedIn: setIsLoggedIn,

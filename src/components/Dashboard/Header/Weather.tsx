@@ -2,7 +2,7 @@ import React from "react";
 import axios, { AxiosError } from "axios";
 import { AppContext } from "../../../context/ApplicationContext";
 import { ApplicationContext, } from "../../../interfaces/Interfaces";
-import { WeatherProps } from "../../../interfaces/Dashboard";
+import { WeatherProps } from "../../../interfaces/dashboard-interfaces";
 import Icon from "../../../assets/imgs/weather-icon.svg"
 import { StyledWeather, WeatherWrapper } from "../../../assets/styles/Global.styles";
 

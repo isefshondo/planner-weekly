@@ -33,7 +33,6 @@ export interface RegisterProps {
 export interface ApplicationContext {
   isLoggedIn: boolean,
   onLogout: () => void,
-  onRegister: (obj: string) => void,
   setEnteredUser: React.Dispatch<SetStateAction<RegisterProps>>,
   enteredUser: RegisterProps,
   setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>,

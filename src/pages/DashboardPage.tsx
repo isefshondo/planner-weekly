@@ -5,7 +5,7 @@ import authHeader from "../auth/auth-header";
 import PlannerForm from "../components/Dashboard/Form/PlannerForm";
 import Header from "../components/Dashboard/Header/Header";
 import DashboardPlanner from "../components/Dashboard/Planner/DashboardPlanner";
-import { Assignments, TasksProps } from "../interfaces/Dashboard";
+import { Assignments, TasksProps } from "../interfaces/dashboard-interfaces";
 
 let enteredTask: Array<Assignments> = [];
 
@@ -75,10 +75,12 @@ const DashboardPage: React.FC = () => {
         })
       });
     }).catch(err => {
-      console.log(err);
-      typeof err.response.data === "object"
-        ? alert(err.response.data)
-        : alert(err.response.data);
+      if(err.response.data.errors && err.response.data.errors !== null) {
+        const errorsMessages: Array<string> = err.response.data.errors;
+        errorsMessages.map(messages => alert(messages));
+      } else {
+        alert(err.response.data.message);
+      }
     });
   }
 
