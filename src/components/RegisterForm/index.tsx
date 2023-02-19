@@ -3,10 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GeneralButton, StyledInputWrapper } from "../UI/styles";
 import { StyledRegisterForm } from "./styles";
-import { RegisterProps } from "../../interfaces/general-interfaces";
+import { RegisterFormProps, RegisterProps } from "../../interfaces/general-interfaces";
 import Input from "../UI/Input";
 
-const RegisterForm = () => {
+const RegisterForm = (props: RegisterFormProps) => {
   const toNavigate = useNavigate();
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
   const [enteredUser, setEnteredUser] = React.useState<RegisterProps>({
@@ -53,12 +53,15 @@ const RegisterForm = () => {
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    props.setIsLoading(true);
+
     const onRegister = (obj: string) => {
       axios.post(`${url}/users/sign-up/`, JSON.parse(obj))
       .then(res => {
+        props.setIsLoading(false);
         toNavigate("login");
       }).catch(err => {
-        console.log(err);
+        props.setIsLoading(false);
         if(err.response.data.errors && err.response.data.errors !== null) {
           const errorsMessages: Array<string> = err.response.data.errors;
           errorsMessages.length === 7

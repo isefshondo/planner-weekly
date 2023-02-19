@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { StyledButtonActionProps, StyledErrorMessageProps, StyledInputProps, StyledLoginErrorProps, StyledWrapperProps } from "../../interfaces/styles-interfaces";
 
 import Background from "../../assets/imgs/main-img.png";
@@ -156,3 +156,53 @@ export const GeneralButton = styled.button<StyledButtonActionProps>`
   padding-block: .75rem;
 `;
 /* End of Form's General Styles */
+
+/* Loading Style */
+export const StyledModal = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledOverlay = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .75);
+  cursor: pointer;
+`;
+
+export const StyledLoader = styled.div`
+  display: flex;
+  column-gap: .5em;
+
+  @keyframes fade {
+    50% {
+      transform: translateY(-3.5px);
+      opacity: 0;
+    }
+  }
+
+  & span {
+    width: .75em;
+    height: .75em;
+    display: block;
+    border-radius: 50%;
+    background-color: rgba(252, 128, 1, 1);
+    animation: fade 1.5s ease infinite;
+
+    &:nth-child(2) {
+      animation-delay: .25s;
+      background-color: rgba(252, 128, 1, .8);
+    }
+
+    &:nth-child(3) {
+      animation-delay: .35s;
+      background-color: rgba(252, 128, 1, .6);
+    }
+  }
+`;
+/* End of Loading Style */

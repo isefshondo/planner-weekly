@@ -7,8 +7,9 @@ import { GeneralButton, InvalidForm } from "../UI/styles";
 import { StyledLogin, StyledLoginForm } from "./styles";
 import { AppContext } from "../../context/ApplicationContext";
 import { useNavigate } from "react-router-dom";
+import { LoginFormProps } from "../../interfaces/general-interfaces";
 
-const LoginForm = () => {
+const LoginForm = (props: LoginFormProps) => {
   const appCtx = React.useContext(AppContext);
   const toNavigate = useNavigate();
   const url: string = "https://latam-challenge-2.deta.dev/api/v1";
@@ -36,10 +37,13 @@ const LoginForm = () => {
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
+    props.setIsLoading(true);
+
     const response = axios.post(`${url}/users/sign-in/`, {
       email: enteredUsername,
       password: enteredPassword
     }).then(data => {
+      props.setIsLoading(false);
       if(data.data.token) {
         appCtx.setEnteredUser(data.data.user);
         localStorage.setItem("enteredToken", data.data.token);
@@ -52,6 +56,7 @@ const LoginForm = () => {
       }
       return data.data.token;
     }).catch(err => {
+      props.setIsLoading(false);
       if(err.response.data.errors && err.response.data.errors !== null) {
         const errorsMessages: Array<string> = err.response.data.errors;
         errorsMessages.map(messages => alert(messages));
@@ -110,13 +115,7 @@ const LoginForm = () => {
           formState={isFormSent}
         />
       </StyledLogin>
-      <InvalidForm>
-        {/* {isFormSent && !isLoginValid && (
-          <p>
-            Wow, invalid username or password. <br /> Please, try again!
-          </p>
-        )} */}
-      </InvalidForm>
+      <InvalidForm />
       <GeneralButton enteredButtonAction="Login">Log in</GeneralButton>
     </StyledLoginForm>
   );

@@ -37,3 +37,11 @@ export interface ApplicationContext {
   enteredUser: RegisterProps,
   setIsLoggedIn: React.Dispatch<SetStateAction<boolean>>,
 }
+
+export interface LoginFormProps {
+  setIsLoading: React.Dispatch<SetStateAction<boolean>>,
+}
+
+export interface RegisterFormProps {
+  setIsLoading: React.Dispatch<SetStateAction<boolean>>,
+}
