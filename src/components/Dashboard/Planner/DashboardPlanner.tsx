@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { CardsWrapper, PlannerWrapper } from "./styles";
+import { CardsWrapper, PlannerWrapper, TasksWrapper, TimeWrapper } from "./styles";
 import authHeader from "../../../auth/auth-header";
 import { ActionProps } from "../../../interfaces/dashboard-interfaces";
 import Cards from "./Cards";
@@ -33,6 +33,12 @@ const DashboardPlanner = (props: ActionProps) => {
     })
   };
 
+  const currentDate = new Date().toLocaleDateString();
+  const currentTime = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+
   return (
     <React.Fragment>
       <HeaderDay
@@ -40,45 +46,54 @@ const DashboardPlanner = (props: ActionProps) => {
         setSelectedDayFilter={selectedDayFilter}
       />
       <PlannerWrapper>
-        <TaskTime
-          key="TimeColumn"
-          belongDay="Everyday"
-          belongTime="Time"
-          hasConflict={false}
-        />
-        {props.enteredTasks && 
-          props.enteredTasks
-            .map((task) => {
-              const currentTime = new Date().toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit',
-              });
-              const currentDate = new Date().toLocaleDateString();
-              const hasConflict = (task.createdAtDate < currentDate) || (task.createdAt < currentTime) || task.conflictedTasks.length > 1;
+        <TimeWrapper>
+          <TaskTime
+            key="TimeColumn"
+            belongDay="Everyday"
+            belongTime="Time"
+            hasConflict={false}
+          />
+          {props.enteredTasks &&
+            props.enteredTasks.map((time) => {
+              const hasConflict =
+                time.createdAtDate < currentDate ||
+                time.createdAt < currentTime ||
+                time.conflictedTasks.length > 1;
               return (
-                <div style={{ display: "flex", columnGap: "1.063rem" }}>
-                  <TaskTime
-                    key={`${task._id}-TIME`}
-                    belongDay={task.dayOfWeek}
-                    belongTime={task.createdAt}
-                    hasConflict={hasConflict}
-                  />
-                  <CardsWrapper hasConflict={hasConflict}>
-                  {task.conflictedTasks.map((items) => {
-                      return (
-                        <Cards
-                          id={items.id}
-                          selectedDay={task.dayOfWeek}
-                          description={items.description}
-                          hasConflict={hasConflict}
-                          onClick={() => onDeleteTask(items.id)}
-                        />
-                      );
-                    })}
-                  </CardsWrapper>
-                </div>
+                <TaskTime
+                  key={`${time._id}-TIME`}
+                  belongDay={time.dayOfWeek}
+                  belongTime={time.createdAt}
+                  hasConflict={hasConflict}
+                />
               );
             })}
+        </TimeWrapper>
+        <TasksWrapper>
+          <div style={{ height: "4.688rem" }} />
+          {props.enteredTasks &&
+            props.enteredTasks.map((task) => {
+              const hasConflict =
+                task.createdAtDate < currentDate ||
+                task.createdAt < currentTime ||
+                task.conflictedTasks.length > 1;
+              return (
+                <CardsWrapper hasConflict={hasConflict}>
+                  {task.conflictedTasks.map((items) => {
+                    return (
+                      <Cards
+                        id={items.id}
+                        selectedDay={task.dayOfWeek}
+                        description={items.description}
+                        hasConflict={hasConflict}
+                        onClick={() => onDeleteTask(items.id)}
+                      />
+                    );
+                  })}
+                </CardsWrapper>
+              );
+            })}
+        </TasksWrapper>
       </PlannerWrapper>
     </React.Fragment>
   );

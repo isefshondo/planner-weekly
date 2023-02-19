@@ -7,11 +7,44 @@ export const PlannerWrapper = styled.section`
   width: 100%;
   height: 70vh;
   display: flex;
-  flex-direction: column;
-  overflow: scroll;
+  column-gap: 1.125rem;
+  /* flex-direction: column; */
+  overflow-y: scroll;
   padding-inline-start: 1.5rem;
   padding-inline-end: .625rem;
   
+  &::-webkit-scrollbar{
+    width: 1rem;
+    background: #fff;
+    border-radius: 1.375rem;
+  }
+
+  &::-webkit-scrollbar-thumb{
+    background: #dcdfe3;
+    border-radius: .5rem;
+  }
+
+  &::-webkit-scrollbar-corner{
+    visibility: hidden;
+  }
+`;
+
+export const TimeWrapper = styled.div`
+  width: 5.313rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.875rem;
+`;
+
+export const TasksWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: .875rem;
+  overflow-x: scroll;
+
   &::-webkit-scrollbar{
     width: 1rem;
     background: #fff;
@@ -33,7 +66,7 @@ export const CardsWrapper = styled.div<StyledCardsWrapperProps>`
   align-items: center;
   column-gap: 1.063rem;
 
-  ${(props) => props.hasConflict && (
+  /*${(props) => props.hasConflict && (
     `&::after{
       content: "";
       width: 90%;
@@ -42,7 +75,7 @@ export const CardsWrapper = styled.div<StyledCardsWrapperProps>`
       border-radius: 5px;
       position: absolute;
     }`
-  )}
+  )}*/
 `;
 /* End of Planner's Style */
 
@@ -84,7 +117,6 @@ export const StyledTaskTime = styled.time<TimeProps>`
   align-items: center;
   font-size: 1.063rem;
   font-weight: 800;
-  margin-block: .875rem;
 `;
 /* End of Time's Card Style */
 
