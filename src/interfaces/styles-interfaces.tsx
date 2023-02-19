@@ -45,10 +45,6 @@ export interface StyledCardsWrapperProps {
   hasConflict: boolean,
 }
 
-export interface CloseModalProps {
-  closeModal: boolean,
-}
-
 export interface StyledTaskModalProps {
   isTaskNotFound: boolean,
 }
