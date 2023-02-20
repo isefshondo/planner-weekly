@@ -40,10 +40,10 @@ If a certain time presents more than one task, it will be crossed out of the pla
 ## :wrench: Features
 <ul>
   <li>
-    <strong>On Register Page</strong>: Validation of inputs on Register and Login pages - Registered user saved on localStorage - Protected Routes.
+    <strong>On Register Page</strong>: Validation of inputs on Register and Login pages - Protected Routes.
   </li>
   <li>
-    <strong>On Login Page</strong>: User can log in using their full name or e-mail - Protected Routes.
+    <strong>On Login Page</strong>: User can log in using their e-mail - Protected Routes.
   </li>
   <li>
     <strong>On Dashboard Page</strong>: Real Time Clock - Weather API - Logout button - Tasks filtered by day of the week - Delete button excludes the tasks that are showing on planner - It is possible to delete a specific card - Conflicting tasks are crossed out by a line and present a different color.
