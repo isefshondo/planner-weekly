@@ -66,17 +66,30 @@ export const CardsWrapper = styled.div<StyledCardsWrapperProps>`
   display: flex;
   align-items: center;
   column-gap: 1.063rem;
+  position: relative;
 
-  /*${(props) => props.hasConflict && (
-    `&::after{
+  ${(props) => props.hasConflict && (
+    `
+    &::after{
       content: "";
-      width: 90%;
+      width: 100%;
       background: rgba(0, 0, 0, .7);
       border: 4px solid rgba(0, 0, 0, .7);
       border-radius: 5px;
       position: absolute;
-    }`
-  )}*/
+    }
+    
+    &::before{
+      content: "";
+      width: 2.25em;
+      height: 2.25em;
+      background: rgba(0, 0, 0, .7);
+      border-radius: 50%;
+      position: absolute;
+      z-index: 10;
+    }
+    `
+  )}
 `;
 /* End of Planner's Style */
 

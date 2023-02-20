@@ -35,7 +35,7 @@ const Weather = () => {
       <h6>{enteredUser.city} - {enteredUser.country}</h6>
       <StyledWeather>
         <img src={Icon} alt="Weather's Icon" />
-        {isCityValid ? `${Number(weatherData).toFixed(0)}` : "Location not found!"}
+        {isCityValid ? `${Number(weatherData).toFixed(0)}°` : "Location not found!"}
       </StyledWeather>
     </WeatherWrapper>
   );
