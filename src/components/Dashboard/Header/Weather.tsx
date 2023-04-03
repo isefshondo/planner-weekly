@@ -7,7 +7,7 @@ import Icon from "../../../assets/imgs/weather-icon.svg"
 import { StyledWeather, WeatherWrapper } from "./styles";
 
 const Weather = () => {
-  const myAPIKey: string = "28272ea1cee8074586ce4325ff060c94";
+  const myAPIKey: string = "";
 
   const [isCityValid, setIsCityValid] = React.useState<boolean>(true);
   const [weatherData, setWeatherData] = React.useState<WeatherProps>();
